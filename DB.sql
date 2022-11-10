@@ -38,11 +38,11 @@ create table project
 
 create table equipementused
 (
+    EquipementUsed_ID int auto_increment primary key,
     Equipement_ID  int          not null,
     Project_ID     int          not null,
     StartCondition varchar(255) not null,
     EndCondition   varchar(255) not null,
-    primary key (Equipement_ID, Project_ID),
     constraint equipementused_ibfk_1
         foreign key (Equipement_ID) references equipement (Equipement_ID),
     constraint equipementused_ibfk_2
@@ -77,10 +77,10 @@ create table staff
 
 create table assigments
 (
+    Assigments_ID int auto_increment primary key,
     Project_ID int         not null,
     Member_ID  int         not null,
     Task       varchar(50) not null,
-    primary key (Project_ID, Member_ID),
     constraint assigments_ibfk_1
         foreign key (Project_ID) references project (Project_ID),
     constraint assigments_ibfk_2
@@ -92,9 +92,9 @@ create index Member_ID
 
 create table staffskill
 (
+    StaffSkill_ID int auto_increment primary key,
     Skill_ID  int not null,
     Member_ID int not null,
-    primary key (Skill_ID, Member_ID),
     constraint Skill_ID
         foreign key (Skill_ID) references skills (Skill_ID),
     constraint Staff_ID
