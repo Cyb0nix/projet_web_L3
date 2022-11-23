@@ -75,7 +75,7 @@ module.exports = {
         }
     },
 
-    async editOneProject(Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client){ 
+    async editOneProject(Project_ID, type, starting_date, ending_date, Is_Paid, Benefits, state, Client){ 
         try {
             let conn = await pool.getConnection();
             let sql = "UPDATE Project SET=?, type=?, Client=?, WHERE Project_ID=? "; // TODO: d parameters? :something
