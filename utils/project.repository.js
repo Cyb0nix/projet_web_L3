@@ -3,13 +3,13 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankProject(){
         return{
-            "Project_ID" : "null",
-            "type": "null",
-            "Is_Paid" : "null",
-            "starting_date" : "00/00/0000",
-            "ending_date" : "00/00/0000",
-            "Benefits" : 0,
-            "state" : "null",
+            "Project_ID" : null,
+            "type": null,
+            "Is_Paid" : null,
+            "starting_date" : null,
+            "ending_date" : null,
+            "Benefits" : null,
+            "state" : null,
         }
     },
     async getAllProject(){ 
@@ -61,11 +61,11 @@ module.exports = {
         }
     },
  
-    async addOneProject(Project_ID){ 
+    async addOneProject(Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO project (Project_ID) VALUES (NULL, ?) ";
-            const [okPacket, fields] = await conn.execute(sql, [Project_ID]); // affectedRows, insertId
+            let sql = "INSERT INTO project (Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client) VALUES (NULL, ?) ";
+            const [okPacket, fields] = await conn.execute(sql, [Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
