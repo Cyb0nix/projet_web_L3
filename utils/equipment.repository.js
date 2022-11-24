@@ -80,7 +80,7 @@ module.exports = {
         }
     },
 
-    async editOneCar(equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate){ 
+    async editOneEquipement(equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate){ 
         try {
             let conn = await pool.getConnection();
             let sql = "UPDATE cars SET car_brand=?, car_name=?, car_baseprice=?, car_isFancy=?, car_realPrice=? WHERE car_id=? "; // TODO: named parameters? :something
