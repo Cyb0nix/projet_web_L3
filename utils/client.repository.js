@@ -14,43 +14,46 @@ module.exports = {
     async getAllClient(){
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM clients";
-            const rows = await conn.query(sql);
-            conn.end();
+            let sql = "SELECT * FROM client";
+            const [rows, fields] = await conn.execute(sql);
+            conn.release();
             return rows;
-        } catch (error) {
-            console.log(error);
-            throw error;
+        }
+        catch (err) {
+            // TODO: log/send error ... 
+            console.log(err);
+            throw err; // return false ???
         }
     },
 
-    async getOneClient(clientId){ 
+    async getOneStaff(clientId){ 
         try {
             let conn = await pool.getConnection();
-            // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
-            // escape input OR prepared statements OR use orm
-            let sql = "SELECT * FROM cars WHERE car_id = ?";
-            const rows = await conn.query(sql, clientId);
-            conn.end();
-            console.log("ROWS FETCHED: "+rows.length);
+            // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
+            // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
+            // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
+            let sql = "SELECT * FROM staff WHERE clientId = ?";
+            const [rows, fields] = await conn.execute(sql, [ clientId ]);
+            conn.release();
+            console.log("CLIENT FETCHED: "+rows.length);
             if (rows.length == 1) {
                 return rows[0];
             } else {
                 return false;
             }
         }
-        catch (error) {
-            console.log(error);
-            throw error; 
+        catch (err) {
+            console.log(err);
+            throw err; 
         }
     },
-    async delOneClient(clientId){ 
+    async delOneStaff(clientId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM clients WHERE clientId = ?";
-            const okPacket = await conn.query(sql, clienId); // affectedRows, insertId
-            conn.end();
-            console.log(okPacket);
+            let sql = "DELETE FROM client WHERE clientId = ?";
+            const [okPacket, fields] = await conn.execute(sql, [ clientId ]);  // affectedRows, insertId
+            conn.release();
+            console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
         }
         catch (err) {
@@ -58,29 +61,15 @@ module.exports = {
             throw err; 
         }
     },
-    async addOneClient(name){ 
+    async addOneStaff(clientId, name, number, email){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO clients (clientId, name) VALUES (NULL,?) ";
-            const okPacket = await conn.query(sql,name); // affectedRows, insertId
-            conn.end();
-            console.log(okPacket);
+            let sql = "UPDATE staff SET name=?, number=?, email=?, WHERE clientId=? "; // TODO: named parameters? :something
+            const [okPacket, fields] = await conn.execute(sql, 
+                        [name,number,email]);
+            conn.release();
+            console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
-        }
-        catch (error) {
-            console.log(error);
-            throw error; 
-        }
-    },
-    async editOneClient(clientId, name, number, email){ 
-        try {
-            let conn = await pool.getConnection();
-            let sql = "UPDATE cars SET name=?, number=?, email=?, WHERE clientId=? "; // TODO: named parameters? :something
-            const okPacket = await conn.query(sql, 
-                        [name, number, email, clientId]);
-            conn.end();
-            console.log(okPacket);
-            return okPacket.affectedRows;
         }
         catch (error) {
             console.log(error);
