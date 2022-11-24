@@ -29,9 +29,6 @@ module.exports = {
     async getOneStaff(clientId){ 
         try {
             let conn = await pool.getConnection();
-            // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
-            // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
-            // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
             let sql = "SELECT * FROM staff WHERE clientId = ?";
             const [rows, fields] = await conn.execute(sql, [ clientId ]);
             conn.release();
