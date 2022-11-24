@@ -1,51 +1,52 @@
-
-
 pool = require("../utils/db.js");
 
 module.exports = {
-    getBlankEquipement(){
-        return{
-            "equipement_ID" : null,
-            "name" : null,
-            "type": null,
-            "condition" : null,
-            "available" : null,
-            "purchase_date" : null,
-            "storage_place" : null,
-            "renting_rate" : null,
-            "bail_rate" : null,
-        }
+    getBlankEquipment(){ 
+        return {
+            "equipement_ID": 0,
+            "type": "null",
+            "name": "null",
+            "condition": "null",
+            "available": "null",
+            "purchase_date": "00/00/0000",
+            "storage_place" : "null",
+            "renting_rate" : "null",
+            "bail_rate" : "null",
+        };
     },
 
-    async getAllEquipement(){
-        try{
-            let conn = await pool.getConnection();
-            let sql = "SELECT * FROM equipement";
-            const rows = await conn.query(sql);
-            conn.end();
-            return rows;
-        } catch (error) {
-            console.log(error);
-            throw error;
-        }
-    },
-
-    async getOneEquipment(equipement_ID){ 
+    async getAllEquipement(){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM equipement WHERE equipement_ID = ?";
-            const rows = await conn.query(sql, equipement_ID);
-            conn.end();
-            console.log("ROWS FETCHED: "+rows.length);
+            let sql = "SELECT * FROM equipement";
+            const [rows, fields] = await conn.execute(sql);
+            conn.release();
+            console.log("Equipement FETCHED: "+rows.length);
+            return rows;
+        }
+        catch (err) {
+            console.log(err);
+            throw err; 
+        }
+    },
+    
+    async getOneEquipement(equipement_ID){ 
+        try {
+            let conn = await pool.getConnection();
+            
+            let sql = "SELECT * FROM equipement";
+            const [rows, fields] = await conn.execute(sql, [ carId ]);
+            conn.release();
+            console.log("Equipement FETCHED: "+rows.length);
             if (rows.length == 1) {
                 return rows[0];
             } else {
                 return false;
             }
         }
-        catch (error) {
-            console.log(error);
-            throw error; 
+        catch (err) {
+            console.log(err);
+            throw err; 
         }
     },
 
@@ -53,9 +54,9 @@ module.exports = {
         try {
             let conn = await pool.getConnection();
             let sql = "DELETE FROM equipement WHERE equipement_ID = ?";
-            const okPacket = await conn.query(sql, equipement_ID); // affectedRows, insertId
-            conn.end();
-            console.log(okPacket);
+            const [okPacket, fields] = await conn.execute(sql, [ equipement_ID ]);
+            conn.release();
+            console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
         }
         catch (err) {
@@ -67,34 +68,37 @@ module.exports = {
     async addOneEquipement(name){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO equipement (equipement_ID, name) VALUES (NULL,?) ";
-            const okPacket = await conn.query(sql,name); // affectedRows, insertId
-            conn.end();
-            console.log(okPacket);
+            let sql = "INSERT INTO equipement (equipement_ID, name) VALUES (NULL, ?) ";
+            const [okPacket, fields] = await conn.execute(sql, [name]); // affectedRows, insertId
+            conn.release();
+            console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
         }
-        catch (error) {
-            console.log(error);
-            throw error; 
+        catch (err) {
+            console.log(err);
+            throw err; 
         }
     },
 
-    async editOneEquipement(equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate){ 
+    async editOneCar(equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE equipement SET name=?, number=?, email=?, WHERE equipement_ID=? "; // TODO: named parameters? :something
-            const okPacket = await conn.query(sql, 
-                        [name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate]);
-            conn.end();
-            console.log(okPacket);
+            let sql = "UPDATE cars SET car_brand=?, car_name=?, car_baseprice=?, car_isFancy=?, car_realPrice=? WHERE car_id=? "; // TODO: named parameters? :something
+            const [okPacket, fields] = await conn.execute(sql, 
+                        [name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate, equipement_ID]);
+            conn.release();
+            console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
         }
-        catch (error) {
-            console.log(error);
-            throw error; 
+        catch (err) {
+            console.log(err);
+            throw err; 
         }
     }
-}
+};
+
+
+
 
 
 class equipment{
@@ -170,3 +174,5 @@ class equipment{
         this.bail_rate = newBail_rate;
     }
 }
+
+  
