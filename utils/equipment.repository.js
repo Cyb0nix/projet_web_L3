@@ -3,15 +3,15 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankEquipment(){ 
         return {
-            "equipement_ID": 0,
-            "type": "null",
-            "name": "null",
-            "condition": "null",
-            "available": "null",
-            "purchase_date": "00/00/0000",
-            "storage_place" : "null",
-            "renting_rate" : "null",
-            "bail_rate" : "null",
+            "equipement_ID": null,
+            "type": null,
+            "name": null,
+            "condition": null,
+            "available": null,
+            "purchase_date": null,
+            "storage_place" : null,
+            "renting_rate" : null,
+            "bail_rate" : null,
         };
     },
 
@@ -65,11 +65,11 @@ module.exports = {
         }
     },
 
-    async addOneEquipement(name){ 
+    async addOneEquipement(equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO equipement (equipement_ID, name) VALUES (NULL, ?) ";
-            const [okPacket, fields] = await conn.execute(sql, [name]); // affectedRows, insertId
+            let sql = "INSERT INTO equipement (equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate) VALUES (NULL, ?) ";
+            const [okPacket, fields] = await conn.execute(sql, [equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
