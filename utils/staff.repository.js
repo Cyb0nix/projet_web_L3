@@ -4,7 +4,7 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankClient(){
         return {
-            "memberId" : null,
+            "staffId" : null,
             "name" : null,
             "discordId" : null,
             "email" : null,
@@ -67,10 +67,10 @@ module.exports = {
             throw err; 
         }
     },
-    async addOneStaff(memberId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
+    async addOneStaff(name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE staff SET name=?, discordId=?, email=?, phone=?, role=?, joinDate=?, isFormed=?, mdp=?, isAdmin=?, WHERE memberId=? "; // TODO: named parameters? :something
+            let sql = "INSERT INTO staff (memberId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
                         [name,discordId,email,phone,role,joinDate,isFormed,mdp,isAdmin]);
             conn.release();
@@ -80,6 +80,22 @@ module.exports = {
         catch (error) {
             console.log(error);
             throw error; 
+        }
+    },
+
+    async editOneStaff(memberId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
+        try {
+            let conn = await pool.getConnection();
+            let sql = "UPDATE staff SET name=?, discordId=?, email=?, phone=?, role=?, joinDate=?, isFormed=?, mdp=?, isAdmin=?, WHERE memberId=?"; // TODO: named parameters? :something
+            const [okPacket, fields] = await conn.execute(sql, 
+                        [name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin, memberId]);
+            conn.release();
+            console.log("UPDATE "+JSON.stringify(okPacket));
+            return okPacket.affectedRows;
+        }
+        catch (err) {
+            console.log(err);
+            throw err; 
         }
     },
 
@@ -98,4 +114,4 @@ module.exports = {
         }
     },
     
-}
+};

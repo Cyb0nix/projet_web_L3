@@ -26,10 +26,10 @@ module.exports = {
         }
     },
 
-    async getOneStaff(clientId){ 
+    async getOneClient(clientId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM staff WHERE clientId = ?";
+            let sql = "SELECT * FROM client WHERE clientId = ?";
             const [rows, fields] = await conn.execute(sql, [ clientId ]);
             conn.release();
             console.log("CLIENT FETCHED: "+rows.length);
@@ -44,7 +44,7 @@ module.exports = {
             throw err; 
         }
     },
-    async delOneStaff(clientId){ 
+    async delOneClient(clientId){ 
         try {
             let conn = await pool.getConnection();
             let sql = "DELETE FROM client WHERE clientId = ?";
@@ -58,10 +58,10 @@ module.exports = {
             throw err; 
         }
     },
-    async addOneStaff(clientId, name, number, email){ 
+    async addOneClient(name, number, email){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE staff SET name=?, number=?, email=?, WHERE clientId=? "; // TODO: named parameters? :something
+            let sql = "INSERT INTO client (clientId, name, number, email) VALUES (NULL, ?, ?, ?) "; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
                         [name,number,email]);
             conn.release();
@@ -72,5 +72,23 @@ module.exports = {
             console.log(error);
             throw error; 
         }
+    },
+
+    async editOneClient(clientId, name, number, email){ 
+        try {
+            let conn = await pool.getConnection();
+            let sql = "UPDATE staff SET name=?, number=?, email=?, WHERE clientId=? "; 
+            const [okPacket, fields] = await conn.execute(sql, 
+                        [name,number,email,clientId]);
+            conn.release();
+            console.log("UPDATE "+JSON.stringify(okPacket));
+            return okPacket.affectedRows;
+        }
+        catch (err) {
+            console.log(err);
+            throw err; 
+        }
     }
+
+    
 }
