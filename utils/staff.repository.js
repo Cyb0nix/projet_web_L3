@@ -32,14 +32,14 @@ module.exports = {
         }
     },
 
-    async getOneStaff(memberId){ 
+    async getOneStaff(staffId){ 
         try {
             let conn = await pool.getConnection();
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
             // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
             let sql = "SELECT * FROM staff WHERE memberId = ?";
-            const [rows, fields] = await conn.execute(sql, [ memberId ]);
+            const [rows, fields] = await conn.execute(sql, [ staffId ]);
             conn.release();
             console.log("CARS FETCHED: "+rows.length);
             if (rows.length == 1) {
@@ -70,7 +70,7 @@ module.exports = {
     async addOneStaff(name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO staff (memberId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // TODO: named parameters? :something
+            let sql = "INSERT INTO staff (staffId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
                         [name,discordId,email,phone,role,joinDate,isFormed,mdp,isAdmin]);
             conn.release();
@@ -83,12 +83,12 @@ module.exports = {
         }
     },
 
-    async editOneStaff(memberId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
+    async editOneStaff(staffId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE staff SET name=?, discordId=?, email=?, phone=?, role=?, joinDate=?, isFormed=?, mdp=?, isAdmin=?, WHERE memberId=?"; // TODO: named parameters? :something
+            let sql = "UPDATE staff SET name=?, discordId=?, email=?, phone=?, role=?, joinDate=?, isFormed=?, mdp=?, isAdmin=?, WHERE staffId=?"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin, memberId]);
+                        [name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin, staffId]);
             conn.release();
             console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
