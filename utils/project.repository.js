@@ -26,7 +26,7 @@ module.exports = {
             throw err; 
         }
     },
-    async getOneProject(Project_ID){ 
+    async getOneEquipement(equipement_ID){ 
         try {
             let conn = await pool.getConnection();
             
@@ -46,7 +46,7 @@ module.exports = {
         }
     },
 
-    async delOneProject(Project_ID){ 
+    async delOneEquipement(Project_ID){ 
         try {
             let conn = await pool.getConnection();
             let sql = "DELETE FROM project WHERE Project_ID = ?";
@@ -61,11 +61,12 @@ module.exports = {
         }
     },
  
-    async addOneProject(Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client){ 
+    async addOneProject(type, startin_date, ending_date, Is_Paid, Benefits, state, Client){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO project (Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client) VALUES (NULL, ?) ";
-            const [okPacket, fields] = await conn.execute(sql, [Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client]);
+            let sql = "INSERT INTO project (Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?) ";
+            const [okPacket, fields] = await conn.execute(sql, 
+                [type, startin_date, ending_date, Is_Paid, Benefits, state, Client]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
@@ -79,7 +80,7 @@ module.exports = {
     async editOneProject(Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE project SET type=?, starting_date=?, ending_date=?, Is_Paid=?, Benefits=?, state=?, Client=? WHERE Project_ID=? "; // TODO: named parameters? :something
+            let sql = "UPDATE project SET type=?, starting_date=?, ending_date=?, Is_Paid=?, Benefits=?, state=?, Client=? WHERE Project_ID=?";
             const [okPacket, fields] = await conn.execute(sql, 
                         [type, startin_date, ending_date, Is_Paid, Benefits, state, Client, Project_ID]);
             conn.release();
@@ -92,5 +93,8 @@ module.exports = {
         }
     }
 };
+
+
+
 
 
