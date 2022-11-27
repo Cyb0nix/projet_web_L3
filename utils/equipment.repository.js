@@ -68,7 +68,7 @@ module.exports = {
     async addOneEquipement(name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO equipement (equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            let sql = "INSERT INTO equipement (equipement_ID, name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
             const [okPacket, fields] = await conn.execute(sql, 
                         [name, type, condition, available, purchase_date, storage_place, renting_rate, bail_rate]);
             conn.release();
