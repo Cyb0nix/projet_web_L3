@@ -2,7 +2,7 @@
 pool = require("../utils/db.js");
 
 module.exports = {
-    getBlankClient(){
+    getBlankStaff(){
         return {
             "staffId" : null,
             "name" : null,
