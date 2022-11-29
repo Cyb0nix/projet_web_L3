@@ -34,7 +34,7 @@ async function equipementEditAction(request, response) {
     var brands = await equipementRepo.getAllEquipement();
     var equipement_ID = request.params.equipement_ID;
     if (equipement_ID!== null)
-        var car = await carRepo.getOneEquipement(equipement_ID);
+        var equipement = await equipementRepo.getOneEquipement(equipement_ID);
     else
         var equipement = equipementRepo.getBlankEquipement();
     response.render("equipement_edit", { "oneEquipement": equipement, "type": type });
