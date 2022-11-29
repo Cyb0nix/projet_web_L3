@@ -10,14 +10,14 @@ module.exports = {
         }
     },
 
-    async getOneStaffSkills(memberId){ 
+    async getOneStaffSkills(staffId){ 
         try {
             let conn = await pool.getConnection();
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
             // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
-            let sql = "SELECT * FROM skills WHERE staffId = ?";
-            const [rows, fields] = await conn.execute(sql, [ memberId ]);
+            let sql = "SELECT * FROM staffskills WHERE staffId = ?";
+            const [rows, fields] = await conn.execute(sql, [ staffId ]);
             conn.release();
             if (rows.length == 1) {
                 return rows[0];
@@ -37,11 +37,11 @@ module.exports = {
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
             // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
-            let sql = "SELECT * FROM skills WHERE skillId = ?";
+            let sql = "SELECT * FROM staffskills WHERE skillId = ?";
             const [rows, fields] = await conn.execute(sql, [ skillId ]);
             conn.release();
             if (rows.length == 1) {
-                return rows[0];
+                return rows;
             } else {
                 return false;
             }
@@ -55,7 +55,7 @@ module.exports = {
     async delOneStaffSkill(staffId,skillId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM staffskill WHERE staffId = ? AND skillId = ?";
+            let sql = "DELETE FROM staffskills WHERE staffId = ? AND skillId = ?";
             const [okPacket, fields] = await conn.execute(sql, [ staffId, skillId]);  // affectedRows, insertId
             conn.release();
             console.log("DELETE "+JSON.stringify(okPacket));
