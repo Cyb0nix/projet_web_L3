@@ -56,10 +56,10 @@ module.exports = {
         }
     },
 
-    async addOneSkills(skillId, skill){ 
+    async addOneSkill(skill){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE skills SET skill=?, WHERE skillId=? "; 
+            let sql = "INSERT INTO client (clientId, skill) VALUES (NULL, ?) " ;
             const [okPacket, fields] = await conn.execute(sql, 
                         [skill]);
             conn.release();
@@ -72,3 +72,4 @@ module.exports = {
         }
     },
 }
+
