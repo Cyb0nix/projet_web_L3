@@ -1,7 +1,7 @@
 // controllers/equipement.route.js
 const express = require('express');
 const router = express.Router();
-const carRepo = require('../utils/equipment.repository');
+const carRepo = require('../utils/equipement.repository');
 
 router.get('/', equipementRootAction);
 router.get('/list', equipementListAction);
