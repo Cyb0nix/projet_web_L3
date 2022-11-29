@@ -37,11 +37,11 @@ app.use(session({
     resave: false
 }));
 
-const auth = require("./utils/users.auth");
-auth.initialization(app);
+// const auth = require("./utils/users.auth");
+// auth.initialization(app);
 
 // app.use(routeBase, callback);
-app.use("/static", express.static(__dirname + '/static'));
-app.use("/hello", require("./controllers/hello.route"));
-app.use("/cars", require("./controllers/cars.route"));
-app.use("/auth", require("./controllers/auth.route"));
+// app.use("/static", express.static(__dirname + '/static'));
+// app.use("/hello", require("./controllers/hello.route"));
+app.use("/client", require("./controllers/client.routes"));
+// app.use("/auth", require("./controllers/auth.route"));
