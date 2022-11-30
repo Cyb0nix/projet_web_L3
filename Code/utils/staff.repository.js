@@ -35,10 +35,10 @@ module.exports = {
     async getOneStaff(staffId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM staff WHERE memberId = ?";
+            let sql = "SELECT * FROM staff WHERE staffId = ?";
             const [rows, fields] = await conn.execute(sql, [ staffId ]);
             conn.release();
-            console.log("CARS FETCHED: "+rows.length);
+            console.log("STAFF FETCHED: "+rows.length);
             if (rows.length == 1) {
                 return rows[0];
             } else {

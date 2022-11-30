@@ -17,7 +17,7 @@ function clientRootAction(request, response) {
 }
 async function clientListAction(request, response) {
     // response.send("LIST ACTION");
-    var client = await clientRepo.getAllclient();
+    var client = await clientRepo.getAllClient();
     // console.log(client);
 
     
@@ -25,23 +25,23 @@ async function clientListAction(request, response) {
 }
 async function clientShowAction(request, response) {
     // response.send("SHOW ACTION");
-    var oneclient = await clientRepo.getOneclient(request.params.clientId);
+    var oneclient = await clientRepo.getOneClient(request.params.clientId);
     response.send(oneclient);
 }
 async function clientEditAction(request, response) {
     // response.send("EDIT ACTION");
-    var brands = await clientRepo.getAllclient();
+    var brands = await clientRepo.getAllClient();
     var clientId = request.params.clientId;
     if (clientId!== null)
-        var client = await clientRepo.getOneclient(clientId);
+        var client = await clientRepo.getOneClient(clientId);
     else
-        var client = clientRepo.getBlankclient();
+        var client = clientRepo.getBlankClient();
     response.send(client);
 }
 async function clientDelAction(request, response) {
     // response.send("DEL ACTION");
     // TODO: remove extras for car, unless the car cannot be removed!!!
-    var numRows = await clientRepo.delOneclient(request.params.clientId);
+    var numRows = await clientRepo.delOneClient(request.params.clientId);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
 
 }
@@ -50,13 +50,13 @@ async function clientUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var clientId = request.params.clientId;
     if (clientId===null) {
-        clientId = await clientRepo.addOneclient(request.body.name, 
+        clientId = await clientRepo.addOneClient(request.body.name, 
             request.body.number, 
             request.body.email);
-            
+
         response.send(clientId);
     }else{
-        var numRows = await clientRepo.editOneclient(clientId, 
+        var numRows = await clientRepo.editOneClient(clientId, 
             request.body.name, 
             request.body.number,  
             request.body.email);

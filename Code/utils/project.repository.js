@@ -26,7 +26,7 @@ module.exports = {
             throw err; 
         }
     },
-    async getOneEquipement(equipement_ID){ 
+    async getOneProject(Project_ID){ 
         try {
             let conn = await pool.getConnection();
             
@@ -46,7 +46,7 @@ module.exports = {
         }
     },
 
-    async delOneEquipement(Project_ID){ 
+    async delOneProject(Project_ID){ 
         try {
             let conn = await pool.getConnection();
             let sql = "DELETE FROM project WHERE Project_ID = ?";

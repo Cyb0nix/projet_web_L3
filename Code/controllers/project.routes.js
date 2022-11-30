@@ -26,7 +26,7 @@ async function projectListAction(request, response) {
 }
 async function projectShowAction(request, response) {
     // response.send("SHOW ACTION");
-    var oneproject = await projectRepo.getOneproject(request.params.Project_ID);
+    var oneproject = await projectRepo.getOneProject(request.params.Project_ID);
 
     response.send(oneproject)
 }
