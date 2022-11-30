@@ -22,13 +22,12 @@ async function projectListAction(request, response) {
     var flashMessage = request.session.flashMessage; // express-flash ...
     request.session.flashMessage = "";
     
-    response.render(project);
     response.send(project);
 }
 async function projectShowAction(request, response) {
     // response.send("SHOW ACTION");
     var oneproject = await projectRepo.getOneproject(request.params.Project_ID);
-    response.render(oneproject);
+
     response.send(oneproject)
 }
 async function projectEditAction(request, response) {
@@ -39,7 +38,7 @@ async function projectEditAction(request, response) {
         var car = await projectRepo.getOneProject(Project_ID);
     else
         var project = projectRepo.getBlankProject();
-    response.render(project);
+
     response.send(project);
 }
 
@@ -51,7 +50,15 @@ async function projectDelAction(request, response) {
 async function projectUpdateAction(request, response) {
     var Project_ID = request.params.Project_ID;
     if (Project_ID==="0"){
-        Project_ID = await projectRepo.addOneProject(request.body.type);
+        Project_ID = await projectRepo.addOneProject(request.body.type, 
+            request.body.type,  
+            Is_Paid, 
+            request.body.starting_date,
+            request.body.ending_date,
+            request.body.storage_place,
+            request.body.Benefits,
+            request.body.state);
+        response.send(Project_ID)
     }else{
         var Is_Paid = request.body.Is_Paid === undefined ? 0 : 1;
         var numRows = await projectRepo.editOneProject(Project_ID, 

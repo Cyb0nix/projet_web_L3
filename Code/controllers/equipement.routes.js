@@ -22,14 +22,13 @@ async function equipementListAction(request, response) {
     var flashMessage = request.session.flashMessage; // express-flash ...
     request.session.flashMessage = "";
     
-    response.render(equipement);
     response.send(equipement);
 }
 
 async function equipementShowAction(request, response) {
     // response.send("SHOW ACTION");
     var oneEquipement = await equipementRepo.getOneEquipement(request.params.equipement_ID);
-    response.render(oneEquipement);
+
     response.send(oneEquipement);
 }
 async function equipementEditAction(request, response) {
@@ -40,7 +39,7 @@ async function equipementEditAction(request, response) {
         var equipement = await equipementRepo.getOneEquipement(equipement_ID);
     else
         var equipement = equipementRepo.getBlankEquipement();
-    response.render(equipement);
+
     response.send(equipement);
 }
 async function equipementDelAction(request, response) {

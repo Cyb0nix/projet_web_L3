@@ -1,7 +1,7 @@
 // controllers/client.route.js
 const express = require('express');
 const router = express.Router();
-const clientRepo = require('../utils/equipment.repository');
+const clientRepo = require('../utils/clients.repository');
 
 router.get('/', clientRootAction);
 router.get('/list', clientListAction);
@@ -27,7 +27,6 @@ async function clientShowAction(request, response) {
     // response.send("SHOW ACTION");
     var oneclient = await clientRepo.getOneclient(request.params.clientId);
     response.send(oneclient);
-    response.render(oneclient);
 }
 async function clientEditAction(request, response) {
     // response.send("EDIT ACTION");
@@ -38,7 +37,6 @@ async function clientEditAction(request, response) {
     else
         var client = clientRepo.getBlankclient();
     response.send(client);
-    response.render(client);
 }
 async function clientDelAction(request, response) {
     // response.send("DEL ACTION");
@@ -52,7 +50,10 @@ async function clientUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var clientId = request.params.clientId;
     if (clientId===null) {
-        clientId = await clientRepo.addOneclient(request.body.name, request.body.number, request.body.email);
+        clientId = await clientRepo.addOneclient(request.body.name, 
+            request.body.number, 
+            request.body.email);
+            
         response.send(clientId);
     }else{
         var numRows = await clientRepo.editOneclient(clientId, 
