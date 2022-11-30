@@ -41,7 +41,8 @@ app.use(session({
 // auth.initialization(app);
 
 // app.use(routeBase, callback);
-// app.use("/static", express.static(__dirname + '/static'));
-// app.use("/hello", require("./controllers/hello.route"));
+app.use("/project", require("./controllers/project.routes"));
+app.use("/equipement", require("./controllers/equipement.routes"));
 app.use("/client", require("./controllers/client.routes"));
+app.use("/staff", require("./controllers/staff.routes"));
 // app.use("/auth", require("./controllers/auth.route"));
