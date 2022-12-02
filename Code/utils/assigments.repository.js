@@ -10,28 +10,10 @@ module.exports = {
         }
     },
 
-    async getOneassigment(projectId){ 
+    async getAllProjectsOf(staffId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM assigments WHERE projectId = ?";
-            const [rows, fields] = await conn.execute(sql, [ projectId ]);
-            conn.release();
-            if (rows.length == 1) {
-                return rows[0];
-            } else {
-                return false;
-            }
-        }
-        catch (err) {
-            console.log(err);
-            throw err; 
-        }
-    },
-
-    async getAllStaffsof(staffId){ 
-        try {
-            let conn = await pool.getConnection();
-            let sql = "SELECT * FROM assigments WHERE staffId = ?";
+            let sql = "SELECT Type, starting_date,ending_date, state FROM assigments INNER JOIN project p on assigments.projectId = p.projectId WHERE staffId = ?";
             const [rows, fields] = await conn.execute(sql, [ staffId ]);
             conn.release();
             if (rows.length == 1) {
@@ -46,10 +28,10 @@ module.exports = {
         }
     },
 
-    async getAllProjectsof(projectId){ 
+    async getAllStaffsOf(projectId){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM assigments WHERE projectId = ?";
+            let sql = "SELECT staffId,task,name,role FROM assigments INNER JOIN staff ON staffId = assignement.staffId WHERE projectId = ?";
             const [rows, fields] = await conn.execute(sql, [ projectId ]);
             conn.release();
             if (rows.length == 1) {
