@@ -35,7 +35,7 @@ async function projectEditAction(request, response) {
     var brands = await projectRepo.getAllProject();
     var Project_ID = request.params.Project_ID;
     if (Project_ID!== null)
-        var car = await projectRepo.getOneProject(Project_ID);
+        var project = await projectRepo.getOneProject(Project_ID);
     else
         var project = projectRepo.getBlankProject();
 
@@ -51,8 +51,7 @@ async function projectUpdateAction(request, response) {
     var Project_ID = request.params.Project_ID;
     if (Project_ID==="0"){
         Project_ID = await projectRepo.addOneProject(request.body.type, 
-            request.body.type,  
-            Is_Paid, 
+            request.body.Is_Paid, 
             request.body.starting_date,
             request.body.ending_date,
             request.body.storage_place,
