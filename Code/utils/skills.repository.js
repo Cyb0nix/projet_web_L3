@@ -3,7 +3,7 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankSkills(){
         return {
-            "skillId" : null,
+            "skillID" : null,
             "skill" : null,
         }
     },
@@ -22,11 +22,11 @@ module.exports = {
         }
     },
 
-    async getOneSkills(skillId){ 
+    async getOneSkills(skillID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM skills WHERE skillId = ?";
-            const [rows, fields] = await conn.execute(sql, [ skillId ]);
+            let sql = "SELECT * FROM skills WHERE skillID = ?";
+            const [rows, fields] = await conn.execute(sql, [ skillID ]);
             conn.release();
             console.log("SKILLS FETCHED: "+rows.length);
             if (rows.length == 1) {
@@ -41,11 +41,11 @@ module.exports = {
         }
     },
 
-    async delOneSkills(skillId){ 
+    async delOneSkills(skillID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM skills WHERE skillId = ?";
-            const [okPacket, fields] = await conn.execute(sql, [ skillId ]);  
+            let sql = "DELETE FROM skills WHERE skillID = ?";
+            const [okPacket, fields] = await conn.execute(sql, [ skillID ]);  
             conn.release();
             console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;

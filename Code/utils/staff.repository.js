@@ -4,9 +4,9 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankStaff(){
         return {
-            "staffId" : null,
+            "staffID" : null,
             "name" : null,
-            "discordId" : null,
+            "discordID" : null,
             "email" : null,
             "phone" : null,
             "role" : null,
@@ -32,11 +32,11 @@ module.exports = {
         }
     },
 
-    async getOneStaff(staffId){ 
+    async getOneStaff(staffID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM staff WHERE staffId = ?";
-            const [rows, fields] = await conn.execute(sql, [ staffId ]);
+            let sql = "SELECT * FROM staff WHERE staffID = ?";
+            const [rows, fields] = await conn.execute(sql, [ staffID ]);
             conn.release();
             console.log("STAFF FETCHED: "+rows.length);
             if (rows.length == 1) {
@@ -50,11 +50,11 @@ module.exports = {
             throw err; 
         }
     },
-    async delOneStaff(staffId){ 
+    async delOneStaff(staffID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM staff WHERE staffId = ?";
-            const [okPacket, fields] = await conn.execute(sql, [ staffId ]);  // affectedRows, insertId
+            let sql = "DELETE FROM staff WHERE staffID = ?";
+            const [okPacket, fields] = await conn.execute(sql, [ staffID ]);  // affectedRows, insertId
             conn.release();
             console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
@@ -64,12 +64,12 @@ module.exports = {
             throw err; 
         }
     },
-    async addOneStaff(name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
+    async addOneStaff(name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO staff (staffId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // TODO: named parameters? :something
+            let sql = "INSERT INTO staff (staffID, name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [name,discordId,email,phone,role,joinDate,isFormed,mdp,isAdmin]);
+                        [name,discordID,email,phone,role,joinDate,isFormed,mdp,isAdmin]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
@@ -80,12 +80,12 @@ module.exports = {
         }
     },
 
-    async editOneStaff(staffId, name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
+    async editOneStaff(staffID, name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE staff SET name=?, discordId=?, email=?, phone=?, role=?, joinDate=?, isFormed=?, mdp=?, isAdmin=?, WHERE staffId=?"; // TODO: named parameters? :something
+            let sql = "UPDATE staff SET name=?, discordID=?, email=?, phone=?, role=?, joinDate=?, isFormed=?, mdp=?, isAdmin=?, WHERE staffID=?"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [name, discordId, email, phone, role, joinDate, isFormed, mdp, isAdmin, staffId]);
+                        [name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin, staffID]);
             conn.release();
             console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;

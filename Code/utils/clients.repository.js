@@ -4,7 +4,7 @@ pool = require("./db.js");
 module.exports = {
     getBlankClient(){
         return {
-            "clientId" : null,
+            "clientID" : null,
             "name" : null,
             "number" : null,
             "email" : null
@@ -26,11 +26,11 @@ module.exports = {
         }
     },
 
-    async getOneClient(clientId){ 
+    async getOneClient(clientID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT * FROM clients WHERE clientId = ?";
-            const [rows, fields] = await conn.execute(sql, [ clientId ]);
+            let sql = "SELECT * FROM clients WHERE clientID = ?";
+            const [rows, fields] = await conn.execute(sql, [ clientID ]);
             conn.release();
             console.log("CLIENT FETCHED: "+rows.length);
             if (rows.length == 1) {
@@ -44,11 +44,11 @@ module.exports = {
             throw err; 
         }
     },
-    async delOneClient(clientId){ 
+    async delOneClient(clientID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM clients WHERE clientId = ?";
-            const [okPacket, fields] = await conn.execute(sql, [ clientId ]);  // affectedRows, insertId
+            let sql = "DELETE FROM clients WHERE clientID = ?";
+            const [okPacket, fields] = await conn.execute(sql, [ clientID ]);  // affectedRows, insertId
             conn.release();
             console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
@@ -61,7 +61,7 @@ module.exports = {
     async addOneClient(name, number, email){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO clients (clientId, name, number, email) VALUES (NULL, ?, ?, ?) "; // TODO: named parameters? :something
+            let sql = "INSERT INTO clients (clientID, name, number, email) VALUES (NULL, ?, ?, ?) "; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
                         [name,number,email]);
             conn.release();
@@ -74,12 +74,12 @@ module.exports = {
         }
     },
 
-    async editOneClient(clientId, name, number, email){ 
+    async editOneClient(clientID, name, number, email){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE clients SET name=?, number=?, email=?, WHERE clientId=? "; 
+            let sql = "UPDATE clients SET name=?, number=?, email=?, WHERE clientID=? "; 
             const [okPacket, fields] = await conn.execute(sql, 
-                        [name,number,email,clientId]);
+                        [name,number,email,clientID]);
             conn.release();
             console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;

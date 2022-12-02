@@ -4,17 +4,17 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankClient(){
         return {
-            "assigmentId":null,
-            "projectId" : null,
-            "staffId" : null
+            "assigmentID":null,
+            "projectID" : null,
+            "staffID" : null
         }
     },
 
-    async getAllProjectsOf(staffId){ 
+    async getAllProjectsOf(staffID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT Type, starting_date,ending_date, state FROM assigments INNER JOIN project p on assigments.projectId = p.projectId WHERE staffId = ?";
-            const [rows, fields] = await conn.execute(sql, [ staffId ]);
+            let sql = "SELECT Type, starting_date,ending_date, state FROM assigments INNER JOIN project p on assigments.projectID = p.projectID WHERE staffID = ?";
+            const [rows, fields] = await conn.execute(sql, [ staffID ]);
             conn.release();
             if (rows.length == 1) {
                 return rows;
@@ -28,11 +28,11 @@ module.exports = {
         }
     },
 
-    async getAllStaffsOf(projectId){ 
+    async getAllStaffsOf(projectID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT staffId,task,name,role FROM assigments INNER JOIN staff ON staffId = assignement.staffId WHERE projectId = ?";
-            const [rows, fields] = await conn.execute(sql, [ projectId ]);
+            let sql = "SELECT staffID,task,name,role FROM assigments INNER JOIN staff ON staffID = assignement.staffID WHERE projectID = ?";
+            const [rows, fields] = await conn.execute(sql, [ projectID ]);
             conn.release();
             if (rows.length == 1) {
                 return rows;
@@ -46,11 +46,11 @@ module.exports = {
         }
     },
     
-    async delOneAssignement(projectId, staffId){ 
+    async delOneAssignement(projectID, staffID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM assigments WHERE projectId = ? AND staffId = ?";
-            const [okPacket, fields] = await conn.execute(sql, [ projectId, staffId]);  // affectedRows, insertId
+            let sql = "DELETE FROM assigments WHERE projectID = ? AND staffID = ?";
+            const [okPacket, fields] = await conn.execute(sql, [ projectID, staffID]);  // affectedRows, insertId
             conn.release();
             console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
@@ -61,12 +61,12 @@ module.exports = {
         }
     },
 
-    async addOneAssignement(projectId, staffId){ 
+    async addOneAssignement(projectID, staffID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO assigments (staffstaffId, projectId, staffId) VALUES (NULL, ?, ?)"; // TODO: named parameters? :something
+            let sql = "INSERT INTO assigments (staffstaffID, projectID, staffID) VALUES (NULL, ?, ?)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [projectId, staffId]);
+                        [projectID, staffID]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;

@@ -3,12 +3,13 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankProject(){
         return{
-            "Project_ID" : null,
+            "ProjectID" : null,
+            "projectName" : null,
             "type": null,
-            "Is_Paid" : null,
-            "starting_date" : null,
-            "ending_date" : null,
-            "Benefits" : null,
+            "IsPaid" : null,
+            "startingDate" : null,
+            "endingDate" : null,
+            "benefits" : null,
             "state" : null,
         }
     },
@@ -26,12 +27,12 @@ module.exports = {
             throw err; 
         }
     },
-    async getOneProject(Project_ID){ 
+    async getOneProject(ProjectID){ 
         try {
             let conn = await pool.getConnection();
             
             let sql = "SELECT * FROM project";
-            const [rows, fields] = await conn.execute(sql, [ Project_ID ]);
+            const [rows, fields] = await conn.execute(sql, [ ProjectID ]);
             conn.release();
             console.log("Project FETCHED: "+rows.length);
             if (rows.length == 1) {
@@ -46,11 +47,11 @@ module.exports = {
         }
     },
 
-    async delOneProject(Project_ID){ 
+    async delOneProject(ProjectID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM project WHERE Project_ID = ?";
-            const [okPacket, fields] = await conn.execute(sql, [ Project_ID ]);
+            let sql = "DELETE FROM project WHERE ProjectID = ?";
+            const [okPacket, fields] = await conn.execute(sql, [ ProjectID ]);
             conn.release();
             console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
@@ -61,12 +62,12 @@ module.exports = {
         }
     },
  
-    async addOneProject(type, startin_date, ending_date, Is_Paid, Benefits, state, Client){ 
+    async addOneProject(projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO project (Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?) ";
+            let sql = "INSERT INTO project (ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client) VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?) ";
             const [okPacket, fields] = await conn.execute(sql, 
-                [type, startin_date, ending_date, Is_Paid, Benefits, state, Client]);
+                [projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
@@ -77,12 +78,12 @@ module.exports = {
         }
     },
     
-    async editOneProject(Project_ID, type, startin_date, ending_date, Is_Paid, Benefits, state, Client){ 
+    async editOneProject(ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE project SET type=?, starting_date=?, ending_date=?, Is_Paid=?, Benefits=?, state=?, Client=? WHERE Project_ID=?";
+            let sql = "UPDATE project SET projectName=?, type=?, startingDate=?, endingDate=?, IsPaid=?, benefits=?, state=?, Client=? WHERE ProjectID=?";
             const [okPacket, fields] = await conn.execute(sql, 
-                        [type, startin_date, ending_date, Is_Paid, Benefits, state, Client, Project_ID]);
+                        [projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client, ProjectID]);
             conn.release();
             console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
