@@ -5,10 +5,10 @@ const equipementRepo = require('../utils/equipment.repository');
 
 router.get('/', equipementRootAction);
 router.get('/list', equipementListAction);
-router.get('/show/:equipement_ID', equipementShowAction);
-router.get('/del/:equipement_ID', equipementDelAction);
-router.get('/edit/:equipement_ID', equipementEditAction);
-router.post('/update/:equipement_ID', equipementUpdateAction);
+router.get('/show/:equipementID', equipementShowAction);
+router.get('/del/:equipementID', equipementDelAction);
+router.get('/edit/:equipementID', equipementEditAction);
+router.post('/update/:equipementID', equipementUpdateAction);
 
 
 function equipementRootAction(request, response) {
@@ -27,30 +27,30 @@ async function equipementListAction(request, response) {
 
 async function equipementShowAction(request, response) {
     // response.send("SHOW ACTION");
-    var oneEquipement = await equipementRepo.getOneEquipement(request.params.equipement_ID);
+    var oneEquipement = await equipementRepo.getOneEquipement(request.params.equipementID);
 
     response.send(oneEquipement);
 }
 async function equipementEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await equipementRepo.getAllEquipement();
-    var equipement_ID = request.params.equipement_ID;
-    if (equipement_ID!== null)
-        var equipement = await equipementRepo.getOneEquipement(equipement_ID);
+    var equipementID = request.params.equipementID;
+    if (equipementID!== null)
+        var equipement = await equipementRepo.getOneEquipement(equipementID);
     else
         var equipement = equipementRepo.getBlankEquipement();
 
     response.send(equipement);
 }
 async function equipementDelAction(request, response) {
-    var numRows = await equipementRepo.delOneEquipement(request.params.equipement_ID);
+    var numRows = await equipementRepo.delOneEquipement(request.params.equipementID);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
 }
 async function equipementUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
-    var equipement_ID = request.params.equipement_ID;
-    if (equipement_ID===null){
-        equipement_ID = await equipementRepo.addOneEquipement(request.body.type, 
+    var equipementID = request.params.equipementID;
+    if (equipementID===null){
+        equipementID = await equipementRepo.addOneEquipement(request.body.type, 
             request.body.name,  
             request.body.condition, 
             request.body.available,
@@ -59,10 +59,10 @@ async function equipementUpdateAction(request, response) {
             request.body.renting_rate,
             request.body.bail_rate);
         
-        response.send(equipement_ID);
+        response.send(equipementID);
     }else{
         var available = request.body.available === undefined ? 0 : 1; 
-        var numRows = await equipementRepo.editOneEquipement(equipement_ID, 
+        var numRows = await equipementRepo.editOneEquipement(equipementID, 
             request.body.type, 
             request.body.name,  
             request.body.condition, 

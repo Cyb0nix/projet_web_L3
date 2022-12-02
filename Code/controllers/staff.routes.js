@@ -5,10 +5,10 @@ const StaffRepo = require('../utils/staff.repository');
 
 router.get('/', StaffRootAction);
 router.get('/list', StaffListAction);
-router.get('/show/:staffId', StaffShowAction);
-router.get('/del/:staffId', StaffDelAction);
-router.get('/edit/:staffId', StaffEditAction);
-router.post('/update/:staffId', StaffUpdateAction);
+router.get('/show/:staffID', StaffShowAction);
+router.get('/del/:staffID', StaffDelAction);
+router.get('/edit/:staffID', StaffEditAction);
+router.post('/update/:staffID', StaffUpdateAction);
 
 
 function StaffRootAction(request, response) {
@@ -27,31 +27,31 @@ async function StaffListAction(request, response) {
 
 async function StaffShowAction(request, response) {
     // response.send("SHOW ACTION");
-    var oneStaff = await StaffRepo.getOneStaff(request.params.staffId);
+    var oneStaff = await StaffRepo.getOneStaff(request.params.staffID);
 
     response.send(oneStaff);
 }
 async function StaffEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await StaffRepo.getAllStaff();
-    var staffId = request.params.staffId;
-    if (staffId!== null)
-        var Staff = await StaffRepo.getOneStaff(staffId);
+    var staffID = request.params.staffID;
+    if (staffID!== null)
+        var Staff = await StaffRepo.getOneStaff(staffID);
     else
         var Staff = StaffRepo.getBlankStaff();
 
     response.send(Staff);
 }
 async function StaffDelAction(request, response) {
-    var numRows = await StaffRepo.delOneStaff(request.params.staffId);
+    var numRows = await StaffRepo.delOneStaff(request.params.staffID);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
 }
 async function StaffUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
-    var staffId = request.params.staffId;
-    if (staffId===null){
-        staffId = await StaffRepo.addOneStaff(request.body.name, 
-            request.body.discordId,  
+    var staffID = request.params.staffID;
+    if (staffID===null){
+        staffID = await StaffRepo.addOneStaff(request.body.name, 
+            request.body.discordID,  
             request.body.email, 
             request.body.phone,
             request.body.role,
@@ -60,11 +60,11 @@ async function StaffUpdateAction(request, response) {
             request.body.mdp,
             request.body.isAdmin);
         
-        response.send(staffId);
+        response.send(staffID);
     }else{
         var available = request.body.available === undefined ? 0 : 1; 
         var numRows = await StaffRepo.editOneStaff(request.body.name, 
-            request.body.discordId,  
+            request.body.discordID,  
             request.body.email, 
             request.body.phone,
             request.body.role,

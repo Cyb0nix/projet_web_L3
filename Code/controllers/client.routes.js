@@ -5,10 +5,10 @@ const clientRepo = require('../utils/clients.repository');
 
 router.get('/', clientRootAction);
 router.get('/list', clientListAction);
-router.get('/show/:clientId', clientShowAction);
-router.get('/del/:clientId', clientDelAction);
-router.get('/edit/:clientId', clientEditAction);
-router.post('/update/:clientId', clientUpdateAction);
+router.get('/show/:clientID', clientShowAction);
+router.get('/del/:clientID', clientDelAction);
+router.get('/edit/:clientID', clientEditAction);
+router.post('/update/:clientID', clientUpdateAction);
 
 
 function clientRootAction(request, response) {
@@ -25,15 +25,15 @@ async function clientListAction(request, response) {
 }
 async function clientShowAction(request, response) {
     // response.send("SHOW ACTION");
-    var oneclient = await clientRepo.getOneClient(request.params.clientId);
+    var oneclient = await clientRepo.getOneClient(request.params.clientID);
     response.send(oneclient);
 }
 async function clientEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await clientRepo.getAllClient();
-    var clientId = request.params.clientId;
-    if (clientId!== null)
-        var client = await clientRepo.getOneClient(clientId);
+    var clientID = request.params.clientID;
+    if (clientID!== null)
+        var client = await clientRepo.getOneClient(clientID);
     else
         var client = clientRepo.getBlankClient();
     response.send(client);
@@ -41,22 +41,22 @@ async function clientEditAction(request, response) {
 async function clientDelAction(request, response) {
     // response.send("DEL ACTION");
     // TODO: remove extras for car, unless the car cannot be removed!!!
-    var numRows = await clientRepo.delOneClient(request.params.clientId);
+    var numRows = await clientRepo.delOneClient(request.params.clientID);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
 
 }
 
 async function clientUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
-    var clientId = request.params.clientId;
-    if (clientId===null) {
-        clientId = await clientRepo.addOneClient(request.body.name, 
+    var clientID = request.params.clientID;
+    if (clientID===null) {
+        clientID = await clientRepo.addOneClient(request.body.name, 
             request.body.number, 
             request.body.email);
 
-        response.send(clientId);
+        response.send(clientID);
     }else{
-        var numRows = await clientRepo.editOneClient(clientId, 
+        var numRows = await clientRepo.editOneClient(clientID, 
             request.body.name, 
             request.body.number,  
             request.body.email);

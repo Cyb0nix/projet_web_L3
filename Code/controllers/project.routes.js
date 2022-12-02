@@ -5,10 +5,10 @@ const projectRepo = require('../utils/project.repository');
 
 router.get('/', projectRootAction);
 router.get('/list', projectListAction);
-router.get('/show/:Project_ID', projectShowAction);
-router.get('/del/:Project_ID', projectDelAction);
-router.get('/edit/:Project_ID', projectEditAction);
-router.post('/update/:Project_ID', projectUpdateAction);
+router.get('/show/:ProjectID', projectShowAction);
+router.get('/del/:ProjectID', projectDelAction);
+router.get('/edit/:ProjectID', projectEditAction);
+router.post('/update/:ProjectID', projectUpdateAction);
 
 
 function projectRootAction(request, response) {
@@ -26,16 +26,16 @@ async function projectListAction(request, response) {
 }
 async function projectShowAction(request, response) {
     // response.send("SHOW ACTION");
-    var oneproject = await projectRepo.getOneProject(request.params.Project_ID);
+    var oneproject = await projectRepo.getOneProject(request.params.ProjectID);
 
     response.send(oneproject)
 }
 async function projectEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await projectRepo.getAllProject();
-    var Project_ID = request.params.Project_ID;
-    if (Project_ID!== null)
-        var project = await projectRepo.getOneProject(Project_ID);
+    var ProjectID = request.params.ProjectID;
+    if (ProjectID!== null)
+        var project = await projectRepo.getOneProject(ProjectID);
     else
         var project = projectRepo.getBlankProject();
 
@@ -43,30 +43,30 @@ async function projectEditAction(request, response) {
 }
 
 async function projectDelAction(request, response) {
-    var numRows = await projectRepo.delOneProject(request.params.Project_ID);
+    var numRows = await projectRepo.delOneProject(request.params.ProjectID);
     request.session.flashMessage = "ROWS DELETED: "+numRows;
 }
 
 async function projectUpdateAction(request, response) {
-    var Project_ID = request.params.Project_ID;
-    if (Project_ID==="0"){
-        Project_ID = await projectRepo.addOneProject(request.body.type, 
-            request.body.Is_Paid, 
-            request.body.starting_date,
-            request.body.ending_date,
-            request.body.storage_place,
-            request.body.Benefits,
+    var ProjectID = request.params.ProjectID;
+    if (ProjectID==="0"){
+        ProjectID = await projectRepo.addOneProject(request.body.type, 
+            request.body.isPaid, 
+            request.body.startingDate,
+            request.body.endingDate,
+            request.body.storagePlace,
+            request.body.benefits,
             request.body.state);
-        response.send(Project_ID)
+        response.send(ProjectID)
     }else{
-        var Is_Paid = request.body.Is_Paid === undefined ? 0 : 1;
-        var numRows = await projectRepo.editOneProject(Project_ID, 
+        var isPaid = request.body.isPaid === undefined ? 0 : 1;
+        var numRows = await projectRepo.editOneProject(ProjectID, 
             request.body.type,  
-            Is_Paid, 
-            request.body.starting_date,
-            request.body.ending_date,
-            request.body.storage_place,
-            request.body.Benefits,
+            isPaid, 
+            request.body.startingDate,
+            request.body.endingDate,
+            request.body.storagePlace,
+            request.body.benefits,
             request.body.state);
     
         request.session.flashMessage = "ROWS UPDATED: "+numRows;
