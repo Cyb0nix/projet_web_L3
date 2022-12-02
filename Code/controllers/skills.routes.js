@@ -53,11 +53,11 @@ async function skillsUpdateAction(request, response) {
         skillID = await skillsRepo.addOneskills(request.body.skill);
         response.send(skillID)
     }else{
-        var skill = request.body.skill === undefined ? 0 : 1;
-        var numRows = await skillsRepo.editOneskills(skillID, 
-            skill);
+        // var skill = request.body.skill === undefined ? 0 : 1;
+        // var numRows = await skillsRepo.editOneskills(skillID, 
+        //     skill);
     
-        request.session.flashMessage = "ROWS UPDATED: "+numRows;
+        // request.session.flashMessage = "ROWS UPDATED: "+numRows;
     }
     
 }

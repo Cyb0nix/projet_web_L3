@@ -2,12 +2,20 @@
 const express = require('express');
 const router = express.Router();
 const StaffRepo = require('../utils/staff.repository');
+const AssigmentRepo = require('../utils/assigments.repository')
+const StaffSkillRepo =require('../utils/staffskills.repository')
 
 router.get('/', StaffRootAction);
 router.get('/list', StaffListAction);
 router.get('/show/:staffID', StaffShowAction);
 router.get('/del/:staffID', StaffDelAction);
 router.get('/edit/:staffID', StaffEditAction);
+router.get('/formed',StaffFormed);
+router.get('/projects/:staffID',StaffProjects);
+router.post('/addProject/:staffID',StaffAddProject);
+router.get('/delProject/:staffID',StaffDelProject);
+router.post('/addSkill/:staffID',StaffAddSkill);
+router.get('/delSkill/:staffID',StaffDelSkill);
 router.post('/update/:staffID', StaffUpdateAction);
 
 
@@ -23,6 +31,48 @@ async function StaffListAction(request, response) {
     request.session.flashMessage = "";
     
     response.send(Staff);
+}
+async function StaffFormed(request, response) {
+    // response.send("LIST ACTION");
+    var Staff = await StaffRepo.getformed();
+    // console.log(Staff);
+    var flashMessage = request.session.flashMessage; // express-flash ...
+    request.session.flashMessage = "";
+    
+    response.send(Staff);
+}
+
+async function StaffProjects(request, response) {
+    // response.send("SHOW ACTION");
+    var oneStaff = await AssigmentRepo.getAllProjectsOf(request.params.staffID);
+
+    response.send(oneStaff);
+}
+
+async function StaffAddProject(request, response) {
+    // response.send("SHOW ACTION");
+    var assigmentID = await AssigmentRepo.addOneAssignement(request.body.projectID,request.params.staffID);
+    response.send(assigmentID);
+
+}
+
+async function StaffDelProject(request, response) {
+    // response.send("SHOW ACTION");
+    var assigmentID = await AssigmentRepo.delOneAssignement(request.body.projectID,request.params.staffID);
+    response.send(assigmentID);
+
+}
+async function StaffAddSkill(request, response) {
+    // response.send("SHOW ACTION");
+    var assigmentID = await StaffSkillRepo.addOneStaffSkill(request.params.staffID,request.body.skillID);
+    response.send(assigmentID);
+
+}
+
+async function StaffDelSkill(request, response) {
+    // response.send("SHOW ACTION");
+    var assigmentID = await StaffSkillRepo.delOneStaffSkill(request.params.staffID,request.body.skillID);
+
 }
 
 async function StaffShowAction(request, response) {
