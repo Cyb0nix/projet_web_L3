@@ -16,7 +16,7 @@ module.exports = {
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
             // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
-            let sql = "SELECT * FROM staffSkills WHERE staffID = ?";
+            let sql = "SELECT * FROM staffSkills INNER JOIN staff s on staffSkill.skillID = s.skillID WHERE staffID = ?";
             const [rows, fields] = await conn.execute(sql, [ staffID ]);
             conn.release();
             if (rows.length == 1) {
@@ -37,7 +37,7 @@ module.exports = {
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
             // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
-            let sql = "SELECT * FROM staffSkills WHERE skillID = ?";
+            let sql = "SELECT staffID,name,role FROM staffSkills INNER JOIN staff ON staffID = assignement.staffID WHERE skillID = ?";
             const [rows, fields] = await conn.execute(sql, [ skillID ]);
             conn.release();
             if (rows.length == 1) {

@@ -4,22 +4,22 @@ pool = require("../utils/db.js");
 module.exports = {
     getBlankClient(){
         return {
-            "equipementUsedID":null,
-            "equipementID" : null,
+            "equipmentUsedID":null,
+            "equipmentID" : null,
             "projectID" : null,
             "startCondition":null,
             "endCondition":null
         }
     },
 
-    async getProjectsOf(equipementID){ 
+    async getProjectsOf(equipmentID){ 
         try {
             let conn = await pool.getConnection();
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
             // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
-            let sql = "SELECT * FROM equipementUsed WHERE equipementID = ?";
-            const [rows, fields] = await conn.execute(sql, [ equipementID ]);
+            let sql = "SELECT name, type, startingDate,endingDate, state FROM equipementUsed INNER JOIN project p on equipementUsed.projectID = p.projectID WHERE equipmentID = ?";
+            const [rows, fields] = await conn.execute(sql, [ equipmentID ]);
             conn.release();
             if (rows.length == 1) {
                 return rows;
@@ -39,7 +39,7 @@ module.exports = {
             // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
             // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
             // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
-            let sql = "SELECT * FROM equipementUsed WHERE projectID = ?";
+            let sql = "SELECT * FROM assigments INNER JOIN staff ON equipmentID = equipmentUsed.equipmentID WHERE projectID = ?";
             const [rows, fields] = await conn.execute(sql, [ projectID ]);
             conn.release();
             if (rows.length == 1) {
@@ -54,11 +54,11 @@ module.exports = {
         }
     },
     
-    async delOneProjectEquipment(equipementID,projectID){ 
+    async delOneProjectEquipment(equipmentID,projectID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "DELETE FROM equipementUsed WHERE equipementID = ? AND projectID = ?";
-            const [okPacket, fields] = await conn.execute(sql, [ equipementID, projectID]);  // affectedRows, insertId
+            let sql = "DELETE FROM equipementUsed WHERE equipmentID = ? AND projectID = ?";
+            const [okPacket, fields] = await conn.execute(sql, [ equipmentID, projectID]);  // affectedRows, insertId
             conn.release();
             console.log("DELETE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
@@ -69,12 +69,12 @@ module.exports = {
         }
     },
 
-    async addOneProjectEquipement(equipementID, projectID, startCondition, endCondition){ 
+    async addOneProjectEquipement(equipmentID, projectID, startCondition, endCondition){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO equipementUsed (equipementUsedID, equipementID, projectID, startCondition, endCondition) VALUES (NULL, ?, ?, ?, ?)"; // TODO: named parameters? :something
+            let sql = "INSERT INTO equipementUsed (equipmentUsedID, equipmentID, projectID, startCondition, endCondition) VALUES (NULL, ?, ?, ?, ?)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [equipementID, projectID, startCondition, endCondition]);
+                        [equipmentID, projectID, startCondition, endCondition]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
@@ -85,12 +85,12 @@ module.exports = {
         }
     },
 
-    async editOneProjectEquipement(equipementUsedID, equipementID, projectID, startCondition, endCondition){ 
+    async editOneProjectEquipement(equipmentUsedID, equipmentID, projectID, startCondition, endCondition){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE equipementUsed SET equipementID=?, projectID=?, startCondition=?, endCondition=?, WHERE equipement_ID=?"; // TODO: named parameters? :something
+            let sql = "UPDATE equipementUsed SET equipmentID=?, projectID=?, startCondition=?, endCondition=?, WHERE equipement_ID=?"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [equipementID, projectID, startCondition, endCondition, equipementUsedID]);
+                        [equipmentID, projectID, startCondition, endCondition, equipmentUsedID]);
             conn.release();
             console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
