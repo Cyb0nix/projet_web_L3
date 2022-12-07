@@ -11,6 +11,7 @@ module.exports = {
             "endingDate" : null,
             "benefits" : null,
             "state" : null,
+            "clientID" : null
         }
     },
     async getAllProject(){ 
@@ -62,12 +63,12 @@ module.exports = {
         }
     },
  
-    async addOneProject(projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client){ 
+    async addOneProject(projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO project (ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client) VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?) ";
+            let sql = "INSERT INTO project (ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID) VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?) ";
             const [okPacket, fields] = await conn.execute(sql, 
-                [projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client]);
+                [projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
@@ -78,12 +79,12 @@ module.exports = {
         }
     },
     
-    async editOneProject(ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client){ 
+    async editOneProject(ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE project SET projectName=?, type=?, startingDate=?, endingDate=?, IsPaid=?, benefits=?, state=?, Client=? WHERE ProjectID=?";
+            let sql = "UPDATE project SET projectName=?, type=?, startingDate=?, endingDate=?, IsPaid=?, benefits=?, state=?, ClientID=? WHERE ProjectID=?";
             const [okPacket, fields] = await conn.execute(sql, 
-                        [projectName, type, startin_date, endingDate, IsPaid, benefits, state, Client, ProjectID]);
+                        [projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID, ProjectID]);
             conn.release();
             console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
