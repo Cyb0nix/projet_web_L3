@@ -40,6 +40,8 @@ app.use(session({
 // const auth = require("./utils/users.auth");
 // auth.initialization(app);
 
+
+
 // app.use(routeBase, callback);
 app.use("/project", require("./controllers/project.routes"));
 app.use("/equipement", require("./controllers/equipement.routes"));
