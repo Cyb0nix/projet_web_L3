@@ -10,77 +10,73 @@ router.get('/list', StaffListAction);
 router.get('/show/:staffID', StaffShowAction);
 router.get('/del/:staffID', StaffDelAction);
 router.get('/edit/:staffID', StaffEditAction);
+router.post('/update/:staffID', StaffUpdateAction);
 router.get('/formed',StaffFormed);
 router.get('/projects/:staffID',StaffProjects);
-router.post('/addProject/:staffID',StaffAddProject);
-router.get('/delProject/:staffID',StaffDelProject);
 router.post('/addSkill/:staffID',StaffAddSkill);
 router.get('/delSkill/:staffID',StaffDelSkill);
-router.post('/update/:staffID', StaffUpdateAction);
+router.get('/getSkill/:staffID',StaffGetSkill);
+
 
 
 function StaffRootAction(request, response) {
-    //response.send("ROOT ACTION");
-    response.redirect("/staff/list");
+
+    response.redirect("/toudoomapi/staff/list");
 }
 async function StaffListAction(request, response) {
-    // response.send("LIST ACTION");
+
     var Staff = await StaffRepo.getAllStaff();
-    // console.log(Staff);
-    var flashMessage = request.session.flashMessage; // express-flash ...
-    request.session.flashMessage = "";
     
-    response.send(Staff);
+    response.send(JSON.stringify(Staff));
+    console.log('[',request.ip,'] FETCHED all Staff ');
 }
 async function StaffFormed(request, response) {
-    // response.send("LIST ACTION");
-    var Staff = await StaffRepo.getformed();
-    // console.log(Staff);
-    var flashMessage = request.session.flashMessage; // express-flash ...
-    request.session.flashMessage = "";
+
+    var StaffFormed = await StaffRepo.getformed();
     
-    response.send(Staff);
+    response.send(JSON.stringify(StaffFormed));
+    console.log('[',request.ip,'] FETCHED all formed Staff ');
 }
 
 async function StaffProjects(request, response) {
     // response.send("SHOW ACTION");
     var oneStaff = await AssigmentRepo.getAllProjectsOf(request.params.staffID);
 
-    response.send(oneStaff);
+    response.send(JSON.stringify(oneStaff));
+    console.log('[',request.ip,'] FETCHED all projetcs of Staff :', request.params.staffID);
 }
 
-async function StaffAddProject(request, response) {
-    // response.send("SHOW ACTION");
-    var assigmentID = await AssigmentRepo.addOneAssignement(request.body.projectID,request.params.staffID);
-    response.send(assigmentID);
-
-}
-
-async function StaffDelProject(request, response) {
-    // response.send("SHOW ACTION");
-    var assigmentID = await AssigmentRepo.delOneAssignement(request.body.projectID,request.params.staffID);
-    response.send(assigmentID);
-
-}
 async function StaffAddSkill(request, response) {
     // response.send("SHOW ACTION");
     var assigmentID = await StaffSkillRepo.addOneStaffSkill(request.params.staffID,request.body.skillID);
-    response.send(assigmentID);
+    response.send(JSON.stringify(assigmentID));
+    console.log('[',request.ip,'] ADDED skill to Staff :', request.params.staffID);
 
 }
 
 async function StaffDelSkill(request, response) {
     // response.send("SHOW ACTION");
     var assigmentID = await StaffSkillRepo.delOneStaffSkill(request.params.staffID,request.body.skillID);
+    console.log('[',request.ip,'] DELETED skill to Staff :', request.params.staffID);
 
+}
+
+async function StaffGetSkill(request, response){
+
+    var skills = await StaffSkillRepo.getOneStaffSkills(request.params.staffID);
+
+    response.send(JSON.stringify(skills));
+    console.log('[',request.ip,'] FETCHED skills of Staff :', request.params.staffID);
 }
 
 async function StaffShowAction(request, response) {
     // response.send("SHOW ACTION");
     var oneStaff = await StaffRepo.getOneStaff(request.params.staffID);
 
-    response.send(oneStaff);
+    response.send(JSON.stringify(oneStaff));
+    console.log('[',request.ip,'] FETCHED Staff :', request.params.staffID);
 }
+
 async function StaffEditAction(request, response) {
     // response.send("EDIT ACTION");
     var brands = await StaffRepo.getAllStaff();
@@ -90,12 +86,14 @@ async function StaffEditAction(request, response) {
     else
         var Staff = StaffRepo.getBlankStaff();
 
-    response.send(Staff);
+    response.send(JSON.stringify(Staff));
 }
+
 async function StaffDelAction(request, response) {
     var numRows = await StaffRepo.delOneStaff(request.params.staffID);
-    request.session.flashMessage = "ROWS DELETED: "+numRows;
+    console.log('[',request.ip,'] DELETED Staff :', request.params.staffID);
 }
+
 async function StaffUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var staffID = request.params.staffID;
@@ -110,7 +108,8 @@ async function StaffUpdateAction(request, response) {
             request.body.mdp,
             request.body.isAdmin);
         
-        response.send(staffID);
+        response.send(JSON.stringify(staffID));
+        console.log('[',request.ip,'] ADDED Staff :', staffID);
     }else{
         var available = request.body.available === undefined ? 0 : 1; 
         var numRows = await StaffRepo.editOneStaff(request.body.name, 
@@ -123,7 +122,7 @@ async function StaffUpdateAction(request, response) {
             request.body.mdp,
             request.body.isAdmin);
 
-        request.session.flashMessage = "ROWS UPDATED: "+numRows;
+        console.log('[',request.ip,'] EDITED Staff :', request.params.staffID);
     } 
 
     

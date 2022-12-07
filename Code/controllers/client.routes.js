@@ -13,36 +13,37 @@ router.post('/update/:clientID', clientUpdateAction);
 
 function clientRootAction(request, response) {
     //response.send("ROOT ACTION");
-    response.redirect("/client/list");
+    response.redirect("/toudoomapi/client/list");
 }
 async function clientListAction(request, response) {
-    // response.send("LIST ACTION");
-    var client = await clientRepo.getAllClient();
-    // console.log(client);
 
+    var client = await clientRepo.getAllClient();
+    console.log('[',request.ip,'] FETCHED all clients');
     
-    response.render(client);
+    response.send(JSON.stringify(client));
 }
 async function clientShowAction(request, response) {
-    // response.send("SHOW ACTION");
+
     var oneclient = await clientRepo.getOneClient(request.params.clientID);
-    response.send(oneclient);
+    response.send(JSON.stringify(oneclient));
+    console.log('[',request.ip,'] FETCHED Client : ', request.params.clientID);
 }
 async function clientEditAction(request, response) {
-    // response.send("EDIT ACTION");
-    var brands = await clientRepo.getAllClient();
+
     var clientID = request.params.clientID;
     if (clientID!== null)
         var client = await clientRepo.getOneClient(clientID);
     else
         var client = clientRepo.getBlankClient();
-    response.send(client);
+    response.send(JSON.stringify(client));
+    console.log('[',request.ip,'] EDITED Client : ', request.params.clientID);
+
 }
 async function clientDelAction(request, response) {
-    // response.send("DEL ACTION");
-    // TODO: remove extras for car, unless the car cannot be removed!!!
+
     var numRows = await clientRepo.delOneClient(request.params.clientID);
-    request.session.flashMessage = "ROWS DELETED: "+numRows;
+    
+    console.log('[',request.ip,'] DELETED Client : ', request.params.clientID);
 
 }
 
@@ -55,13 +56,14 @@ async function clientUpdateAction(request, response) {
             request.body.email);
 
         response.send(clientID);
+        console.log('[',request.ip,'] ADDED Client : ', clientID);
     }else{
         var numRows = await clientRepo.editOneClient(clientID, 
             request.body.name, 
             request.body.number,  
             request.body.email);
     
-        request.session.flashMessage = "ROWS UPDATED: "+numRows;
+            console.log('[',request.ip,'] EDITED Client : ', request.params.clientID);
     }
     
 }
