@@ -10,7 +10,7 @@
           </div>
           <div class="menu">
             <img
-            v-bind:src="require('./asset/image 1.png')"
+            v-bind:src="require('./asset/logo.png')"
               alt="logo"
               class="logo"
             />
