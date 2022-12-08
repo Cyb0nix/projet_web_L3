@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 const skillsRepo = require("../utils/skills.repository")
 
-router.get('/', skillsRootAction);
-router.get('/list', skillsListAction);
-router.get('/show/:skillID', skillsShowAction);
-router.get('/del/:skillID', skillsDelAction);
-router.post('/update/:skillID', skillsUpdateAction);
+router.get('/', auth.checkAuthentication("USER"), skillsRootAction);
+router.get('/list', auth.checkAuthentication("USER"), skillsListAction);
+router.get('/show/:skillID', auth.checkAuthentication("USER"), skillsShowAction);
+router.get('/del/:skillID', auth.checkAuthentication("ADMIN"), skillsDelAction);
+router.post('/update/:skillID', auth.checkAuthentication("ADMIN"), skillsUpdateAction);
 
 
 function skillsRootAction(request, response) {

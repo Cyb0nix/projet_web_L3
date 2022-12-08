@@ -5,18 +5,18 @@ const projectRepo = require('../utils/project.repository');
 const assignementRepo = require('../utils/assigments.repository');
 const equipmentRepo = require('../utils/equipmentused.repository');
 
-router.get('/', projectRootAction);
-router.get('/list', projectListAction);
-router.get('/show/:projectID', projectShowAction);
-router.get('/del/:projectID', projectDelAction);
-router.get('/edit/:projectID', projectEditAction);
-router.post('/update/:projectID', projectUpdateAction);
-router.get('/staffList/:projectID',projectStaffListAction);
-router.post('/addStaff/:projectID',projectAddStaffAction);
-router.get('/delStaff/:projectID', projectDelStaffAction);
-router.get('/equipmentList/:projectID',projectEquipmentListAction);
-router.post('/addEquipment/:projectID',projectAddEquipmentAction);
-router.get('/delEquipment/:projectID',projectDelEquipmentAction);
+router.get('/', auth.checkAuthentication("USER"), projectRootAction);
+router.get('/list', auth.checkAuthentication("USER"), projectListAction);
+router.get('/show/:projectID', auth.checkAuthentication("USER"), projectShowAction);
+router.get('/del/:projectID', auth.checkAuthentication("ADMIN"), projectDelAction);
+router.get('/edit/:projectID', auth.checkAuthentication("USER"), projectEditAction);
+router.post('/update/:projectID', auth.checkAuthentication("USER"), projectUpdateAction);
+router.get('/staffList/:projectID', auth.checkAuthentication("USER"), projectStaffListAction);
+router.post('/addStaff/:projectID', auth.checkAuthentication("USER"), projectAddStaffAction);
+router.get('/delStaff/:projectID', auth.checkAuthentication("USER"), projectDelStaffAction);
+router.get('/equipmentList/:projectID', auth.checkAuthentication("USER"),projectEquipmentListAction);
+router.post('/addEquipment/:projectID', auth.checkAuthentication("USER"),projectAddEquipmentAction);
+router.get('/delEquipment/:projectID', auth.checkAuthentication("ADMIN"), projectDelEquipmentAction);
 
 
 

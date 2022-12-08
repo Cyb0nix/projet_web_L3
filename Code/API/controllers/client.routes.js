@@ -3,12 +3,12 @@ const express = require('express');
 const router = express.Router();
 const clientRepo = require('../utils/clients.repository');
 
-router.get('/', clientRootAction);
-router.get('/list', clientListAction);
-router.get('/show/:clientID', clientShowAction);
-router.get('/del/:clientID', clientDelAction);
-router.get('/edit/:clientID', clientEditAction);
-router.post('/update/:clientID', clientUpdateAction);
+router.get('/', auth.checkAuthentication("USER"), clientRootAction);
+router.get('/list', auth.checkAuthentication("USER"), clientListAction);
+router.get('/show/:clientID', auth.checkAuthentication("USER"), clientShowAction);
+router.get('/del/:clientID', auth.checkAuthentication("ADMIN"), clientDelAction);
+router.get('/edit/:clientID', auth.checkAuthentication("ADMIN"), clientEditAction);
+router.post('/update/:clientID', auth.checkAuthentication("ADMIN"), clientUpdateAction);
 
 
 function clientRootAction(request, response) {
