@@ -37,16 +37,7 @@ export default {
 </script>
 
 <style scoped>
-.pagemenu {
-  top: 11%;
-  left: 0px;
-  width: 230px;
-  height: 89%;
-  display: flex;
-  position: absolute;
-  border-radius: 0px 5px 0px 0px;
-  background-color: rgba(17, 12, 54, 1);
-}
+
 
 @media only screen and (max-width: 1300px){
   .pagemenu{
@@ -62,7 +53,7 @@ export default {
   display: flex;
   position: absolute;
   border-radius: 0px 0px 0px 0px;
-  background-color: rgba(17, 12, 53, 0.949999988079071);
+  background-color: rgba(17, 12, 53, 0.95);
 }
 
 .image1 {
@@ -79,7 +70,15 @@ export default {
       display: none;
   }
 }
-
+.text {
+  top: 15%;
+  left: 6%;
+  color: #D82367;
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+  background-color:rgba(17, 12, 53, 0.95);
+}
 .all-case-project {
   top: 106px;
   left: 18%;
@@ -159,10 +158,10 @@ export default {
 }
 
 .frame {
-  top: 5.5%;
+  top: 3%;
   left: 2.5%;
   width: 5%;
-  height: 20px;
+  height: 25px;
   position: absolute;
 }
 
