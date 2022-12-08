@@ -67,9 +67,9 @@ module.exports = {
     async addOneStaff(name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO staff (staffID, name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, 0)"; // TODO: named parameters? :something
+            let sql = "INSERT INTO staff (staffID, name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, now(), ?, ?, 0)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [name,discordID,email,phone,role,joinDate,isFormed,mdp,isAdmin]);
+                        [name,discordID,email,phone,role,isFormed,mdp,isAdmin]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
