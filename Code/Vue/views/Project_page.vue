@@ -2,6 +2,9 @@
     
   <div class="body">
       <div class="back">
+        <div class="pagemenu">
+          <span class="text"><span>Projects</span></span>
+        </div>
         <div class="all-case-project">
           <div class="case-equipement">
             <span class="text14"><span>EQUIPEMENT</span></span>
@@ -44,8 +47,7 @@ export default {
   height: 89%;
   display: flex;
   position: absolute;
-  border-radius: 0px 5px 0px 0px;
-  background-color: rgba(17, 12, 54, 1);
+  
 }
 
 @media only screen and (max-width: 1300px){
@@ -62,7 +64,7 @@ export default {
   display: flex;
   position: absolute;
   border-radius: 0px 0px 0px 0px;
-  background-color: rgba(17, 12, 53, 0.949999988079071);
+  background-color: rgba(17, 12, 53, 0.95);
 }
 
 .image1 {
@@ -79,7 +81,15 @@ export default {
       display: none;
   }
 }
-
+.text {
+  top: 15%;
+  left: 6%;
+  color: #D82367;
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+  background-color:rgba(17, 12, 53, 0.95);
+}
 .all-case-project {
   top: 106px;
   left: 18%;

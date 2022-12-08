@@ -1,26 +1,26 @@
 
 <template>
   <div id="app">
-    <img v-bind:src="require('./asset/Back.png')" alt="background" class="Back"/>
+    <img v-bind:src="require('./views/image/Back.png')" alt="background" class="back"/>
     <div class="pagemenu">
-            <span class="txtProjects"><span>Projects</span></span>
-            <span class="txtStaffs"><span>Staffs</span></span>
-            <span class="txtEquipement"><span>Equipment</span></span>
-            <span class="txtMENU"><span>MENU</span></span>
+            <span class="text"><span>Projects</span></span>
+            <span class="text02"><span>Staffs</span></span>
+            <span class="text04"><span>Equipment</span></span>
+            <span class="text06"><span>MENU</span></span>
           </div>
           <div class="menu">
             <img
-            v-bind:src="require('./asset/logo.png')"
+            v-bind:src="require('./views/image/image 1.png')"
               alt="logo"
               class="logo"
             />
           </div>
           <div class="navTab">
-            <span class="txtVOD"><span>VOD</span></span>
-            <span class="txtEvent"><span>Event</span></span>
-            <span class="txtHome"><span>Home</span></span>
+            <span class="text08"><span>VOD</span></span>
+            <span class="text10"><span>Event</span></span>
+            <span class="text12"><span>Home</span></span>
             <img
-            v-bind:src="require('./asset/Ellipse 1.png')"
+            v-bind:src="require('./views/image/Ellipse 1.png')"
               alt="pp"
               class="pp"/>
     </div>
@@ -28,19 +28,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App'
-}
-</script>
-
 <style scoped>
 .body {
   width: 95%;
   height: 100%;
 }
 
-.Back {
+.back {
   width: 100%;
   height: 721px;
   color: #0C0923;
@@ -69,7 +63,7 @@ export default {
   height: 75px;
   display: flex;
   position: absolute;
-  background-color: rgba(17, 12, 53, 0.95);
+  background-color: rgba(17, 12, 53, 0.949999988079071);
 }
 
 .logo {
@@ -103,7 +97,7 @@ export default {
   }
 }
 
-.txtProjects {
+.text {
   top: 15%;
   left: 6%;
   color: rgba(255, 255, 255, 1);
@@ -111,11 +105,11 @@ export default {
   font-size: 20px;
   font-family: NOMA;
 }
-.txtProjects :hover{
+.text :hover{
   color: #D82367;
 }
 
-.txtStaffs {
+.text02 {
   top: 20%;
   left: 6%;
   color: rgba(255, 255, 255, 1);
@@ -124,10 +118,10 @@ export default {
   font-family: NOMA;
 }
 
-.txtStaffs :hover{
+.text02 :hover{
   color: #D82367;
 }
-.txtEquipement {
+.text04 {
   top: 25%;
   left: 6%;
   color: rgba(255, 255, 255, 1);
@@ -136,10 +130,10 @@ export default {
   font-family: NOMA;
 }
 
-.txtEquipement :hover{
+.text04 :hover{
   color: #D82367;
 }
-.txtMENU {
+.text06 {
   top: 5%;
   left: 6%;
   color: #D82367;
@@ -148,11 +142,11 @@ export default {
   font-family: NOMA;
 }
 
-.txtMENU :hover{
+.text06 :hover{
   color: #ffffff;
 }
 
-.txtVOD {
+.text08 {
   top: 21%;
   left: 45%;
   color: rgba(255, 255, 255, 1);
@@ -161,7 +155,7 @@ export default {
   font-family: NOMA;
 }
 
-.txtEvent {
+.text10 {
   top: 21%;
   left: -15%;
   color: rgba(255, 255, 255, 1);
@@ -170,7 +164,7 @@ export default {
   font-family: NOMA;
 }
 
-.txtHome {
+.text12 {
   top: 21%;
   left: -85%;
   color: #D82367;
