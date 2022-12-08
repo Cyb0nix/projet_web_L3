@@ -5,17 +5,17 @@ const StaffRepo = require('../utils/staff.repository');
 const AssigmentRepo = require('../utils/assigments.repository')
 const StaffSkillRepo =require('../utils/staffskills.repository')
 
-router.get('/', StaffRootAction);
-router.get('/list', StaffListAction);
-router.get('/show/:staffID', StaffShowAction);
+router.get('/', auth.checkAuthentication("USER"), StaffRootAction);
+router.get('/list', auth.checkAuthentication("USER"), StaffListAction);
+router.get('/show/:staffID', auth.checkAuthentication("USER"), StaffShowAction);
 router.get('/del/:staffID', StaffDelAction);
-router.get('/edit/:staffID', StaffEditAction);
-router.post('/update/:staffID', StaffUpdateAction);
-router.get('/formed',StaffFormed);
-router.get('/projects/:staffID',StaffProjects);
-router.post('/addSkill/:staffID',StaffAddSkill);
-router.get('/delSkill/:staffID',StaffDelSkill);
-router.get('/getSkill/:staffID',StaffGetSkill);
+router.get('/edit/:staffID', auth.checkAuthentication("USER"), StaffEditAction);
+router.post('/update/:staffID', auth.checkAuthentication("USER"), StaffUpdateAction);
+router.get('/formed', auth.checkAuthentication("USER"), StaffFormed);
+router.get('/projects/:staffID', auth.checkAuthentication("USER"), StaffProjects);
+router.post('/addSkill/:staffID', auth.checkAuthentication("USER"), StaffAddSkill);
+router.get('/delSkill/:staffID', auth.checkAuthentication("USER"), StaffDelSkill);
+router.get('/getSkill/:staffID', auth.checkAuthentication("USER"), StaffGetSkill);
 
 
 

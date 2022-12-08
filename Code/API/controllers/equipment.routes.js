@@ -3,12 +3,12 @@ const express = require('express');
 const router = express.Router();
 const equipmentRepo = require('../utils/equipment.repository');
 
-router.get('/', equipmentRootAction);
-router.get('/list', equipmentListAction);
-router.get('/show/:equipmentID', equipmentShowAction);
-router.get('/del/:equipmentID', equipmentDelAction);
-router.get('/edit/:equipmentID', equipmentEditAction);
-router.post('/update/:equipmentID', equipmentUpdateAction);
+router.get('/', auth.checkAuthentication("USER"), equipmentRootAction);
+router.get('/list', auth.checkAuthentication("USER"), equipmentListAction);
+router.get('/show/:equipmentID', auth.checkAuthentication("USER"), equipmentShowAction);
+router.get('/del/:equipmentID', auth.checkAuthentication("ADMIN"), equipmentDelAction);
+router.get('/edit/:equipmentID', auth.checkAuthentication("USER"), equipmentEditAction);
+router.post('/update/:equipmentID', auth.checkAuthentication("USER"), equipmentUpdateAction);
 
 
 function equipmentRootAction(request, response) {

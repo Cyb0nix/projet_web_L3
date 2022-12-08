@@ -28,8 +28,8 @@ app.use(session({
     resave: false
 }));
 
-// const auth = require("./utils/users.auth");
-// auth.initialization(app);
+const auth = require("./utils/users.auth");
+auth.initialization(app);
 
 
 
@@ -38,4 +38,4 @@ app.use("/toudoomapi/project", require("./controllers/project.routes"));
 app.use("/toudoomapi/equipement", require("./controllers/equipment.routes"));
 app.use("/toudoomapi/client", require("./controllers/client.routes"));
 app.use("/toudoomapi/staff", require("./controllers/staff.routes"));
-// app.use("/auth", require("./controllers/auth.route"));
+app.use("/auth", require("./controllers/auth.route"));
