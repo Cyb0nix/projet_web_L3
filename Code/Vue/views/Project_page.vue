@@ -2,9 +2,6 @@
     
   <div class="body">
       <div class="back">
-        <div class="pagemenu">
-          <span class="text"><span>Projects</span></span>
-        </div>
         <div class="all-case-project">
           <div class="case-equipement">
             <span class="text14"><span>EQUIPEMENT</span></span>
@@ -40,15 +37,7 @@ export default {
 </script>
 
 <style scoped>
-.pagemenu {
-  top: 11%;
-  left: 0px;
-  width: 230px;
-  height: 89%;
-  display: flex;
-  position: absolute;
-  
-}
+
 
 @media only screen and (max-width: 1300px){
   .pagemenu{
@@ -169,10 +158,10 @@ export default {
 }
 
 .frame {
-  top: 5.5%;
+  top: 3%;
   left: 2.5%;
   width: 5%;
-  height: 20px;
+  height: 25px;
   position: absolute;
 }
 

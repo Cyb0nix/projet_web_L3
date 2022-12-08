@@ -20,7 +20,7 @@
             <span class="text10"><span>Event</span></span>
             <span class="text12"><span>Home</span></span>
             <img
-            v-bind:src="require('./views/image/Ellipse 1.png')"
+            v-bind:src="require('./views/image/PP PRO.png')"
               alt="pp"
               class="pp"/>
     </div>
@@ -97,6 +97,19 @@
   }
 }
 
+.pp {
+  display: inline-block; 
+  position: relative; 
+  width: 50px; 
+  height: 50px; 
+  overflow: hidden; 
+  border-radius: 50%;
+}
+.pp img { 
+  width: auto;
+  height: 100%;
+  margin-left: -50px;
+}
 .text {
   top: 15%;
   left: 6%;
@@ -138,7 +151,7 @@
   left: 6%;
   color: #D82367;
   position: absolute;
-  font-size: 20px;
+  font-size: 30px;
   font-family: NOMA;
 }
 
@@ -154,7 +167,9 @@
   font-size: 24px;
   font-family: NOMA;
 }
-
+.text08 :hover{
+  color: #D82367;
+}
 .text10 {
   top: 21%;
   left: -15%;
@@ -162,6 +177,10 @@
   position: relative;
   font-size: 24px;
   font-family: NOMA;
+}
+
+.text10 :hover{
+  color: #D82367;
 }
 
 .text12 {
@@ -173,4 +192,7 @@
   font-family: NOMA;  
 }
 
+.text12 :hover{
+  color: #FFFFFF;
+}
 </style>
