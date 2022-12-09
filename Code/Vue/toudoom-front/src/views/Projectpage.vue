@@ -4,7 +4,7 @@ import NavbarVue from "../components/Navbar.vue";
 
 <template> 
   <div class="body">
-      <img v-bind:src="require('./views/image/Back.png')" alt="background" class="back"/>
+      <img v-bind:src="require('@/assets/image/Back.png')" alt="background" class="back"/>
       <div class="back">
         <NavbarVue />
         <div class="pagemenu">
