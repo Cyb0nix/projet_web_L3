@@ -68,7 +68,7 @@ import NavbarVue from "../components/Navbar.vue";
   </div>
 </template>
 
-<style>
+<style scoped>
 .pagemenu {
   left: 0px;
   width: 230px;
@@ -85,16 +85,6 @@ import NavbarVue from "../components/Navbar.vue";
   }
 }
 
-.menu {
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 75px;
-  display: flex;
-  position: absolute;
-  border-radius: 0px 0px 0px 0px;
-  background-color: rgba(17, 12, 53, 0.95);
-}
 
 .back {
   width: 100%;
