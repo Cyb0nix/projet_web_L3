@@ -17,7 +17,7 @@ import NavbarVue from "../components/Navbar.vue";
             <span class="text08"><span>Logout</span></span>
         </div>
         <div class="all-case-project">
-          <div class="edit-button">
+          <div class="add-button">
           <span class="text20"><span>ADD</span></span>
           <img src="@/assets/image/+.svg" alt="+" class="plus" />
         </div>
@@ -144,7 +144,7 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-.edit-button {
+.add-button {
   top: 1.5%;
   right: -25%;
   width: 90px;
