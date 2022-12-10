@@ -36,8 +36,8 @@
 
 <style>
 nav {
-  background-color: #110c35;
-  opacity: 95;
+  background: rgba(17, 12, 53, 0.95);
+  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 li {
