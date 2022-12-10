@@ -5,65 +5,49 @@ import NavbarVue from "../components/Navbar.vue";
 <template>
   <div style="background-color: #0C0923;">
     <NavbarVue />
-    <div class="back">
-      <div class="pagemenu">
-        <span class="text"><span>Projects</span></span>
-        <span class="text02"><span>Staffs</span></span>
-        <span class="text04"><span>Equipment</span></span>
-        <span class="text06"><span>MENU</span></span>
-      </div>
-      <div class="navTab">
+      <div class="back">
+        <NavbarVue />
+        <div class="pagemenu">
+            <span class="text"><span>Projects</span></span>
+            <span class="text02"><span>Staffs</span></span>
+            <span class="text04"><span>Equipment</span></span>
+            <span class="text06"><span>MENU</span></span>
+        </div>
+        <div class="navTab">
             <span class="text08"><span>Logout</span></span>
         </div>
-      <div class="all-case-project">
-        <div class="case-equipement">
-          <span class="text14"><span>EQUIPEMENT</span></span>
-          <span class="text23"
-            ><span
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
-              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus
-              voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore
-              ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor
-              sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error
-              distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi
-              blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio
-              hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis
-              soluta maiores illum, ab velit.</span
-            ></span
-          >
-        </div>
-        <div class="case-staff">
-          <span class="text16"><span>STAFF</span></span>
-          <span class="text21">
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
-              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span>
-            </span>
-          <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
-        </div>
-        <div class="case-information">
-          <span class="text18"><span>INFORMATION</span></span>
-          <span class="text19">
-            <span>
-              <ul>
-                <li>Name :</li>
-                <li>Type :</li>
-                <li>Client :</li>
-                <li>Start Date :</li>
-                <li>End Date :</li>
-                <li>Benefits :</li>
-                <li>State :</li>
-              </ul>
-            </span>
-          </span>
-        </div>
-        <div class="edit-button">
-          <span class="text20"><span>EDIT</span></span>
-          <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
+        <div class="all-case-project">
+          <div class="case-equipement">
+            <img src="./image/Vector.svg" alt="Icon_staff" class="editimg" />
+            <span class="text14"><span>EQUIPEMENT</span></span>
+            <span class="text23"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span></span>
+          </div>
+          <div class="case-staff">
+            <span class="text16"><span>STAFF</span></span>
+            <img src="./image/Vector.svg" alt="Icon_staff" class="editimg" />
+            <span class="text21"><span>Lastname Firstname Role</span></span>
+            <img
+            v-bind:src="require('./image/Frame.png')"
+              alt="Icon_staff"
+              class="frame"
+            />
+          </div>
+          <div class="case-information">
+            <span class="text18"><span>INFORMATION</span></span>
+            <img src="./image/Vector.svg" alt="Icon_staff" class="editimg" />
+            <span class="text19"><span><ul>
+                                        <li>Name :</li>
+                                        <li>Type :</li>
+                                        <li>CLient :</li>
+                                        <li>Start Date :</li>
+                                        <li>End Date :</li>
+                                        <li>Benefits :</li>
+                                        <li>State :</li>
+                                      </ul></span></span>
+          </div>
+          <div class="save-button">
+          <span class="text20"><span>SAVE</span></span>
+          <img src="./image/save.svg" alt="Icon_staff" class="saveimg" />
         </div>
         <span class="text22"><span>PROJECT</span></span>
       </div>
@@ -92,7 +76,6 @@ import NavbarVue from "../components/Navbar.vue";
   font-size: 24px;
   font-family: NOMA;
 }
-
 .pagemenu {
   left: 0px;
   width: 230px;
@@ -108,7 +91,6 @@ import NavbarVue from "../components/Navbar.vue";
     display: none;
   }
 }
-
 
 .back {
   width: 100%;
@@ -205,12 +187,6 @@ import NavbarVue from "../components/Navbar.vue";
 
 .text18 :hover {
   color: #d82367;
-}
-
-@media only screen and (max-width: 500px) {
-  .text18 {
-    left: 10.5%;
-  }
 }
 
 .text19 {
@@ -359,7 +335,7 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-.edit-button {
+.save-button {
   top: 1.5%;
   right: -25%;
   width: 90px;
@@ -370,17 +346,24 @@ import NavbarVue from "../components/Navbar.vue";
   background-color: rgba(17, 12, 54, 1);
 }
 
-.editimg {
-  top: 28%;
-  right: 17%;
+.saveimg {
+  top: 23.5%;
+  right: 16%;
   width: 15%;
   height: auto;
   position: absolute;
 }
 
+.editimg {
+  top: 5.5%;
+  right: 15px;
+  width: 15px;
+  height: auto;
+  position: absolute;
+}
 .text20 {
   top: 17%;
-  left: 19%;
+  left: 14%;
   color: rgba(255, 255, 255, 1);
   width: 42px;
   height: auto;
