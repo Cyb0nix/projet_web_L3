@@ -1,7 +1,10 @@
+<script setup>
+import NavbarVue from "../components/Navbar.vue";
+</script>
 
-<template> 
-  <div class="body">
-      
+<template>
+  <div style="background-color: #0C0923;">
+    <NavbarVue />
       <div class="back">
         <NavbarVue />
         <div class="pagemenu">
