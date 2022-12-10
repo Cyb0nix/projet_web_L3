@@ -2,60 +2,80 @@
 import NavbarVue from "../components/Navbar.vue";
 </script>
 
-<template> 
-  <div class="body">
-      <img v-bind:src="require('@/assets/image/Back.png')" alt="background" class="back"/>
-      <div class="back">
-        <NavbarVue />
-        <div class="pagemenu">
-            <span class="text"><span>Projects</span></span>
-            <span class="text02"><span>Staffs</span></span>
-            <span class="text04"><span>Equipment</span></span>
-            <span class="text06"><span>MENU</span></span>
-        </div>
-        <div class="all-case-project">
-          <div class="case-equipement">
-            <span class="text14"><span>EQUIPEMENT</span></span>
-            <span class="text23"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span></span>
-          </div>
-          <div class="case-staff">
-            <span class="text16"><span>STAFF</span></span>
-            <span class="text21"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span></span>
-            <img
-            v-bind:src="require('@/assets/image/Frame.png')"
-              alt="Icon_staff"
-              class="frame"
-            />
-          </div>
-          <div class="case-information">
-            <span class="text18"><span>INFORMATION</span></span>
-            <span class="text19"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span></span>
-          </div>
-          <div class="edit-button">
-            <span class="text20"><span>EDIT</span></span>
-          </div>
-          <span class="text22"><span>PROJECT</span></span>
-        </div>
+<template>
+  <div style="background-color: #0C0923;">
+    <NavbarVue />
+    <div class="back">
+      <div class="pagemenu">
+        <span class="text"><span>Projects</span></span>
+        <span class="text02"><span>Staffs</span></span>
+        <span class="text04"><span>Equipment</span></span>
+        <span class="text06"><span>MENU</span></span>
       </div>
+      <div class="all-case-project">
+        <div class="case-equipement">
+          <span class="text14"><span>EQUIPEMENT</span></span>
+          <span class="text23"
+            ><span
+              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
+              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
+              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem
+              ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus
+              voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore
+              ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor
+              sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error
+              distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi
+              blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet,
+              consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio
+              hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis
+              soluta maiores illum, ab velit.</span
+            ></span
+          >
+        </div>
+        <div class="case-staff">
+          <span class="text16"><span>STAFF</span></span>
+          <span class="text21"
+            ><span
+              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
+              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
+              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span
+            ></span
+          >
+          <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
+        </div>
+        <div class="case-information">
+          <span class="text18"><span>INFORMATION</span></span>
+          <span class="text19"
+            ><span
+              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
+              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
+              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span
+            ></span
+          >
+        </div>
+        <div class="edit-button">
+          <span class="text20"><span>EDIT</span></span>
+        </div>
+        <span class="text22"><span>PROJECT</span></span>
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
-
 .pagemenu {
-  top: 11%;
   left: 0px;
   width: 230px;
-  height: 89%;
+  height: 100vh;
   display: flex;
   position: absolute;
   border-radius: 0px 5px 0px 0px;
   background-color: rgba(17, 12, 54, 1);
 }
 
-@media only screen and (max-width: 1300px){
-  .pagemenu{
-      display: none;
+@media only screen and (max-width: 1300px) {
+  .pagemenu {
+    display: none;
   }
 }
 
@@ -73,18 +93,18 @@ import NavbarVue from "../components/Navbar.vue";
 .back {
   width: 100%;
   height: 721px;
-  color: #0C0923;
+  color: #0c0923;
 }
 
 .text {
   top: 15%;
   left: 6%;
-  color: #D82367;
+  color: #d82367;
   position: absolute;
   font-size: 20px;
   font-family: NOMA;
 }
-.text :hover{
+.text :hover {
   color: #ffffff;
 }
 
@@ -97,8 +117,8 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-.text02 :hover{
-  color: #D82367;
+.text02 :hover {
+  color: #d82367;
 }
 .text04 {
   top: 25%;
@@ -109,19 +129,19 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-.text04 :hover{
-  color: #D82367;
+.text04 :hover {
+  color: #d82367;
 }
 .text06 {
   top: 5%;
   left: 6%;
-  color: #D82367;
+  color: #d82367;
   position: absolute;
   font-size: 30px;
   font-family: NOMA;
 }
 
-.text06 :hover{
+.text06 :hover {
   color: #ffffff;
 }
 .all-case-project {
@@ -135,9 +155,9 @@ import NavbarVue from "../components/Navbar.vue";
   background-color: transparent;
 }
 
-@media only screen and (max-width: 1300px){
-  .all-case-project{
-      margin-left: -8%;
+@media only screen and (max-width: 1300px) {
+  .all-case-project {
+    margin-left: -8%;
   }
 }
 
@@ -163,13 +183,13 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-.text18 :hover{
-  color: #D82367;
+.text18 :hover {
+  color: #d82367;
 }
 
-@media only screen and (max-width:500px){
-  .text18{
-      left: 10.5%;
+@media only screen and (max-width: 500px) {
+  .text18 {
+    left: 10.5%;
   }
 }
 
@@ -180,7 +200,7 @@ import NavbarVue from "../components/Navbar.vue";
   max-height: 150px;
   margin-right: 8%;
   margin-left: 3%;
-  color: rgb(255, 255, 255);   
+  color: rgb(255, 255, 255);
   position: relative;
   font-size: 12px;
   font-family: NOMA;
@@ -210,13 +230,13 @@ import NavbarVue from "../components/Navbar.vue";
   position: absolute;
 }
 
-@media only screen and (max-width:1300px){
-  .frame{
-      display: none;
+@media only screen and (max-width: 1300px) {
+  .frame {
+    display: none;
   }
 }
 
-.text16{
+.text16 {
   top: 3%;
   left: 8%;
   color: rgb(255, 255, 255);
@@ -227,20 +247,20 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-@media only screen and (max-width:1300px){
-  .text16{
-      left: 5%;
+@media only screen and (max-width: 1300px) {
+  .text16 {
+    left: 5%;
   }
 }
 
-@media only screen and (max-width:500px){
-  .text16{
-      left: 8%;
+@media only screen and (max-width: 500px) {
+  .text16 {
+    left: 8%;
   }
 }
 
-.text16 :hover{
-  color: #D82367;
+.text16 :hover {
+  color: #d82367;
 }
 
 .text23 {
@@ -250,7 +270,7 @@ import NavbarVue from "../components/Navbar.vue";
   max-height: 192px;
   margin-right: 6%;
   margin-left: 0;
-  color: rgb(255, 255, 255);   
+  color: rgb(255, 255, 255);
   position: relative;
   font-size: 12px;
   font-family: NOMA;
@@ -266,7 +286,7 @@ import NavbarVue from "../components/Navbar.vue";
   width: 125%;
   height: 260px;
   display: flex;
-  position: absolute;    
+  position: absolute;
   border-radius: 15px 15px 15px 15px;
   background-color: rgba(17, 12, 54, 1);
 }
@@ -282,13 +302,13 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-.text14 :hover{
-  color: #D82367;
+.text14 :hover {
+  color: #d82367;
 }
 
-@media only screen and (max-width:500px){
-  .text14{
-      left: 4%;
+@media only screen and (max-width: 500px) {
+  .text14 {
+    left: 4%;
   }
 }
 
@@ -299,7 +319,7 @@ import NavbarVue from "../components/Navbar.vue";
   max-height: 150px;
   margin-right: 8%;
   margin-left: 3%;
-  color: rgb(255, 255, 255);   
+  color: rgb(255, 255, 255);
   position: relative;
   font-size: 12px;
   font-family: NOMA;
@@ -316,7 +336,6 @@ import NavbarVue from "../components/Navbar.vue";
   position: absolute;
   font-size: 32px;
   font-family: NOMA;
-  
 }
 
 .edit-button {
@@ -330,17 +349,17 @@ import NavbarVue from "../components/Navbar.vue";
   background-color: rgba(17, 12, 54, 1);
 }
 
-@media only screen and (max-width:1500px){
-  .edit-button{
-      display: none;
+@media only screen and (max-width: 1500px) {
+  .edit-button {
+    display: none;
   }
 }
-@media only screen and (max-width:600px){
-  .edit-button{
-      top: -15%;
-      left: -7%;
-      display: block;
-      background-color: #0C0923;
+@media only screen and (max-width: 600px) {
+  .edit-button {
+    top: -15%;
+    left: -7%;
+    display: block;
+    background-color: #0c0923;
   }
 }
 .text20 {
@@ -354,7 +373,7 @@ import NavbarVue from "../components/Navbar.vue";
   font-family: NOMA;
 }
 
-.text20 :hover{
-  color: #D82367;
+.text20 :hover {
+  color: #d82367;
 }
 </style>
