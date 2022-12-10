@@ -18,7 +18,7 @@
           <span class="text20"><span>ADD</span></span>
           <img src="@/assets/image/+.svg" alt="+" class="plus" />
         </div>
-        <span class="text22"><span>PROJECT</span></span>
+        <span class="text22"><span>PROJECTS</span></span>
       </div>
     </div>
   </div>
