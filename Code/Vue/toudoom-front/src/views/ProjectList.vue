@@ -16,7 +16,7 @@
         <div class="all-case-project">
           <div class="edit-button">
           <span class="text20"><span>ADD</span></span>
-          <img src="./image/+.svg" alt="+" class="plus" />
+          <img src="@/assets/image/+.svg" alt="+" class="plus" />
         </div>
         <span class="text22"><span>PROJECT</span></span>
       </div>
