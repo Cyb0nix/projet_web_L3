@@ -99,7 +99,6 @@ import NavbarVue from "../components/Navbar.vue";
   height: 100vh;
   display: flex;
   position: absolute;
-  border-radius: 0px 5px 0px 0px;
   background-color: rgba(17, 12, 54, 1);
 }
 
