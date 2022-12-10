@@ -18,23 +18,19 @@ import NavbarVue from "../components/Navbar.vue";
         </div>
         <div class="all-case-project">
           <div class="case-equipement">
-            <img src="./image/Vector.svg" alt="Icon_staff" class="editimg" />
+            <img src="@/assets/image/Vector.svg" alt="Icon_staff" class="editimg" />
             <span class="text14"><span>EQUIPEMENT</span></span>
             <span class="text23"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span></span>
           </div>
           <div class="case-staff">
             <span class="text16"><span>STAFF</span></span>
-            <img src="./image/Vector.svg" alt="Icon_staff" class="editimg" />
+            <img src="@/assets/image/Vector.svg" alt="Icon_staff" class="editimg" />
             <span class="text21"><span>Lastname Firstname Role</span></span>
-            <img
-            v-bind:src="require('./image/Frame.png')"
-              alt="Icon_staff"
-              class="frame"
-            />
+            <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
           </div>
           <div class="case-information">
             <span class="text18"><span>INFORMATION</span></span>
-            <img src="./image/Vector.svg" alt="Icon_staff" class="editimg" />
+            <img src="@/assets/image/Vector.svg" alt="Icon_staff" class="editimg" />
             <span class="text19"><span><ul>
                                         <li>Name :</li>
                                         <li>Type :</li>
@@ -47,7 +43,7 @@ import NavbarVue from "../components/Navbar.vue";
           </div>
           <div class="save-button">
           <span class="text20"><span>SAVE</span></span>
-          <img src="./image/save.svg" alt="Icon_staff" class="saveimg" />
+          <img src="@/assets/image/save.svg" alt="Icon_staff" class="saveimg" />
         </div>
         <span class="text22"><span>PROJECT</span></span>
       </div>
