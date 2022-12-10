@@ -34,27 +34,33 @@ import NavbarVue from "../components/Navbar.vue";
         </div>
         <div class="case-staff">
           <span class="text16"><span>STAFF</span></span>
-          <span class="text21"
-            ><span
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
+          <span class="text21">
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
               temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span
-            ></span
-          >
+              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span>
+            </span>
           <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
         </div>
         <div class="case-information">
           <span class="text18"><span>INFORMATION</span></span>
-          <span class="text19"
-            ><span
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
-              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span
-            ></span
-          >
+          <span class="text19">
+            <span>
+              <ul>
+                <li>Name :</li>
+                <li>Type :</li>
+                <li>Client :</li>
+                <li>Start Date :</li>
+                <li>End Date :</li>
+                <li>Benefits :</li>
+                <li>State :</li>
+              </ul>
+            </span>
+          </span>
         </div>
         <div class="edit-button">
           <span class="text20"><span>EDIT</span></span>
+          <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
         </div>
         <span class="text22"><span>PROJECT</span></span>
       </div>
@@ -208,6 +214,7 @@ import NavbarVue from "../components/Navbar.vue";
   display: -webkit-box;
   -webkit-line-clamp: 15;
   -webkit-box-orient: vertical;
+  line-height: 180%;
 }
 
 .case-staff {
@@ -340,8 +347,8 @@ import NavbarVue from "../components/Navbar.vue";
 
 .edit-button {
   top: 1.5%;
-  left: 17%;
-  width: 70px;
+  right: -25%;
+  width: 90px;
   height: 32px;
   display: block;
   position: absolute;
@@ -349,22 +356,17 @@ import NavbarVue from "../components/Navbar.vue";
   background-color: rgba(17, 12, 54, 1);
 }
 
-@media only screen and (max-width: 1500px) {
-  .edit-button {
-    display: none;
-  }
+.editimg {
+  top: 28%;
+  right: 17%;
+  width: 15%;
+  height: auto;
+  position: absolute;
 }
-@media only screen and (max-width: 600px) {
-  .edit-button {
-    top: -15%;
-    left: -7%;
-    display: block;
-    background-color: #0c0923;
-  }
-}
+
 .text20 {
-  top: 14%;
-  left: 25%;
+  top: 17%;
+  left: 19%;
   color: rgba(255, 255, 255, 1);
   width: 42px;
   height: auto;
