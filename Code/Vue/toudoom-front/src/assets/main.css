@@ -1,4 +1,23 @@
 @font-face {
     font-family:"Toudoom";
     src: url("@/assets/fonts/NOMARegular.ttf");
+    
+}
+
+@font-face {
+    font-family:"Toudoom-classic";
+    src: url("@/assets/fonts/RedHatText-Regular.ttf");
+    
+}
+
+
+
+h2{
+    color: white;
+    font-family: "NOMA";
+}
+
+p{
+    color: white;
+    font-family: 'Toudoom-classic';
 }
