@@ -32,22 +32,22 @@ const router = createRouter({
       component: ProjectList
     },
     {
-      path: '/Equipment',
+      path: '/admin/Equipment',
       name: 'Equipment',
       component: EquipmentPage
     },
     {
-      path: '/EquipmentEdit',
+      path: '/admin/EquipmentEdit',
       name: 'EquipmentEdit',
       component: EquipmentEdit
     },
     {
-      path: '/EquipmentList',
+      path: '/admin/EquipmentList',
       name: 'EquipmentList',
       component: EquipmentList
     },
     {
-      path: '/login',
+      path: '/admin/login',
       name: 'login',
       component: LoginView
     }
