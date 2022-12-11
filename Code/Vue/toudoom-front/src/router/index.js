@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Projectpage from '../views/Projectpage.vue'
 import ProjectEdit from '../views/ProjectEdit.vue'
 import ProjectList from '../views/ProjectList.vue'
+import LoginView from '../views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,19 +14,24 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/project',
+      path: '/admin/project',
       name: 'project',
       component: Projectpage
     },
     {
-      path: '/projectEdit',
+      path: '/admin/projectEdit',
       name: 'projectEdit',
       component: ProjectEdit
     },
     {
-      path: '/projectList',
+      path: '/admin/projectList',
       name: 'projectList',
       component: ProjectList
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView
     }
   ]
 })
