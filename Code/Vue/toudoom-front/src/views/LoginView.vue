@@ -8,16 +8,17 @@ import NavbarVue from "../components/Navbar.vue";
     <div class="center-correct">
       <div class="login-background">
         <h2>login</h2>
-        <form action="">
+        <form style="text-align: start">
           <label for="basic-url" class="form-label">Username</label>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default">@</span>
             <input
-                id="username"
+              id="username"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
+              v-model="user.username"
             />
           </div>
           <label for="basic-url" class="form-label">Password</label>
@@ -37,11 +38,26 @@ import NavbarVue from "../components/Navbar.vue";
                 /></svg
             ></span>
             <input
-            id="password"
+              id="password"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
+              v-model="user.password"
+            />
+          </div>
+
+          <div style="text-align: end; padding-top: 5%">
+            <input
+              class="btn btn-primary"
+              style="
+                background-color: #d82367;
+                border-color: #d82367;
+                font-family: 'toudoom-classic';
+              "
+              type="button"
+              value="Login"
+              @click="login()"
             />
           </div>
         </form>
@@ -50,7 +66,36 @@ import NavbarVue from "../components/Navbar.vue";
   </div>
 </template>
 
+<script>
+export default {
+  name: "Login",
+  data() {
+    return {
+      user: {
+        username: null,
+        password: null,
+      },
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        
+        let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/auth/login",this.user);
+        console.log(loginResponse);
+
+      } catch (error) {
+        
+      }
+    },
+  },
+
+  created() {},
+};
+</script>
+
 <style>
+
 label {
   color: white;
   font-family: "toudoom-classic";
@@ -73,7 +118,7 @@ label {
   position: absolute;
   text-align: center;
   width: 490px;
-  height: 400px;
+  height: 320px;
   background: #110c36;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;

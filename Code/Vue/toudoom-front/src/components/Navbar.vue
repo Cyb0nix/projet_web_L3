@@ -4,7 +4,7 @@
     style="background-color: #110c35; opacity: 95"
   >
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img
           src="@/assets/image/logo.svg"
           alt="Toudoom"

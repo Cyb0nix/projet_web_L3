@@ -29,7 +29,8 @@ async function userAction(request, response) {
 // }
 
 async function loginPostAction(request, response) {
-  areValid = await userRepo.areValidCredentials(request.body.username, request.body.userPass);
+  console.log(request.body.username, request.body.password);
+  areValid = await userRepo.areValidCredentials(request.body.username, request.body.password);
 
   if (areValid) {
     user = await userRepo.getOneUser(request.body.username);

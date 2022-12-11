@@ -28,7 +28,7 @@ module.exports = {
       const [rows, fields] = await conn.execute(sql, [username, password]);
       conn.release();
 
-      if (rows.length == 1 && rows[0].user_name === username) {
+      if (rows.length == 1 && rows[0].username === username) {
         return true;
       } else {
         return false;
