@@ -29,23 +29,23 @@ async function userAction(request, response) {
 // }
 
 async function loginPostAction(request, response) {
-  console.log(request.body.username, request.body.password);
   areValid = await userRepo.areValidCredentials(request.body.username, request.body.password);
 
   if (areValid) {
     user = await userRepo.getOneUser(request.body.username);
     request.login(user, function (err) { 
-        if (err) { console.log("ERROR"); console.log(err); return next(err); }
-
-        if (request.user.userRole === "ADMIN") {
-            return response.redirect("/auth/admin");
-        } else {
-            return response.redirect("/auth/user");
+        if (err) { console.log("ERROR"); console.log(err);}
+        
+        if(request.isAuthenticated()){
+          return response.send(JSON.stringify(user));
+        }else{
+          return response.send("failed");
         }
+        
+        
     });
   } else {
     response.send("Invalid credentials provided");
-    // TODO redirect/normal error message
   }
 }
 
