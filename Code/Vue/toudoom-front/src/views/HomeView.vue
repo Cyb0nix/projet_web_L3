@@ -66,7 +66,7 @@ import Footer from '../components/Footer.vue';
         </div>
       </div>
     </div>
-    <div class="classique" id="vod" style="background-image: url('')">
+    <div class="classique" id="vod">
       <img src="@/assets/image/bg_2.png" class="bg-image" alt="">
       <div class="container" style="margin-top: -98vh; width: 100vw;">
         <div class="row" style="padding: 2%">
@@ -186,8 +186,8 @@ body{
 .bg-image {
   width: 100%;
   height: 102vh;
-  object-fit: cover;
-  object-position: center;
   background: url(@/assets/image/bg_2.png);
+    background-size: cover;
+    background-position: center;
 }
 </style>
