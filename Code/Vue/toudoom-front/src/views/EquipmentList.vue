@@ -17,14 +17,13 @@
           <span class="text20"><span>ADD</span></span>
           <img src="@/assets/image/+.svg" alt="+" class="plus" />
         </div>
-        <span class="text22"><span>PROJECTS</span></span>
+        <span class="text22"><span>EQUIPMENTS</span></span>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 .pagemenu {
   left: 0px;
   width: 230px;
@@ -49,13 +48,13 @@
 .text {
   top: 15%;
   left: 6%;
-  color: #d82367;
+  color: #ffffff;
   position: absolute;
   font-size: 20px;
   font-family: NOMA;
 }
 .text :hover {
-  color: #ffffff;
+  color: #d82367;
 }
 
 .text02 {
@@ -73,15 +72,16 @@
 .text04 {
   top: 25%;
   left: 6%;
-  color: rgba(255, 255, 255, 1);
+  color: #d82367;
   position: absolute;
   font-size: 20px;
   font-family: NOMA;
 }
 
 .text04 :hover {
-  color: #d82367;
+  color: #ffffff;
 }
+
 .text06 {
   top: 5%;
   left: 6%;

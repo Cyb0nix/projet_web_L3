@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Projectpage from '../views/Projectpage.vue'
+import ProjectPage from '../views/ProjectPage.vue'
 import ProjectEdit from '../views/ProjectEdit.vue'
 import ProjectList from '../views/ProjectList.vue'
+import EquipmentPage from '../views/EquipmentPage.vue'
+import EquipmentEdit from '../views/EquipmentEdit.vue'
+import EquipmentList from '../views/EquipmentList.vue'
 import LoginView from '../views/LoginView.vue'
 
 const router = createRouter({
@@ -16,7 +19,7 @@ const router = createRouter({
     {
       path: '/admin/project',
       name: 'project',
-      component: Projectpage
+      component: ProjectPage
     },
     {
       path: '/admin/projectEdit',
@@ -27,6 +30,21 @@ const router = createRouter({
       path: '/admin/projectList',
       name: 'projectList',
       component: ProjectList
+    },
+    {
+      path: '/Equipment',
+      name: 'Equipment',
+      component: EquipmentPage
+    },
+    {
+      path: '/EquipmentEdit',
+      name: 'EquipmentEdit',
+      component: EquipmentEdit
+    },
+    {
+      path: '/EquipmentList',
+      name: 'EquipmentList',
+      component: EquipmentList
     },
     {
       path: '/login',

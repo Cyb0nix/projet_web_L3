@@ -14,47 +14,18 @@
       </div>
       <div class="all-case-project">
         <div class="case-equipement">
-          <span class="text14"><span>EQUIPEMENT</span></span>
-          <span class="text23"
-            ><span
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
-              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus
-              voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore
-              ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor
-              sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error
-              distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi
-              blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio
-              hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis
-              soluta maiores illum, ab velit.</span
-            ></span
-          >
-        </div>
-        <div class="case-staff">
-          <span class="text16"><span>STAFF</span></span>
-          <span class="text21">
+          <span class="text14"><span>Project History</span></span>
+          <span class="text23">
             <span>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
-              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span>
+                Text..
             </span>
-          <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
+          </span>
         </div>
         <div class="case-information">
           <span class="text18"><span>INFORMATION</span></span>
           <span class="text19">
             <span>
-              <ul>
-                <li>Name :</li>
-                <li>Type :</li>
-                <li>Client :</li>
-                <li>Start Date :</li>
-                <li>End Date :</li>
-                <li>Benefits :</li>
-                <li>State :</li>
-              </ul>
+              Text.
             </span>
           </span>
         </div>
@@ -62,7 +33,7 @@
           <span class="text20"><span>EDIT</span></span>
           <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
         </div>
-        <span class="text22"><span>PROJECT</span></span>
+        <span class="text22"><span>EQUIPMENT</span></span>
       </div>
     </div>
   </div>
@@ -95,13 +66,13 @@
 .text {
   top: 15%;
   left: 6%;
-  color: #d82367;
+  color: #ffffff;
   position: absolute;
   font-size: 20px;
   font-family: NOMA;
 }
 .text :hover {
-  color: #ffffff;
+  color: #d82367;
 }
 
 .text02 {
@@ -119,14 +90,14 @@
 .text04 {
   top: 25%;
   left: 6%;
-  color: rgba(255, 255, 255, 1);
+  color: #d82367;
   position: absolute;
   font-size: 20px;
   font-family: NOMA;
 }
 
 .text04 :hover {
-  color: #d82367;
+  color: #ffffff;
 }
 .text06 {
   top: 5%;
@@ -160,7 +131,7 @@
 .case-information {
   top: 10%;
   left: 0px;
-  width: 60%;
+  width: 125%;
   height: 216px;
   display: flex;
   position: absolute;
@@ -207,58 +178,6 @@
   line-height: 180%;
 }
 
-.case-staff {
-  top: 10%;
-  left: 65%;
-  width: 60%;
-  height: 216px;
-  display: flex;
-  padding: 0;
-  position: absolute;
-  border-radius: 15px 15px 15px 15px;
-  background-color: rgba(17, 12, 54, 1);
-}
-
-.frame {
-  top: 3%;
-  left: 2.5%;
-  width: 5%;
-  height: 25px;
-  position: absolute;
-}
-
-@media only screen and (max-width: 1300px) {
-  .frame {
-    display: none;
-  }
-}
-
-.text16 {
-  top: 3%;
-  left: 8%;
-  color: rgb(255, 255, 255);
-  width: 100%;
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  font-family: NOMA;
-}
-
-@media only screen and (max-width: 1300px) {
-  .text16 {
-    left: 5%;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .text16 {
-    left: 8%;
-  }
-}
-
-.text16 :hover {
-  color: #d82367;
-}
 
 .text23 {
   top: 20%;
@@ -307,23 +226,6 @@
   .text14 {
     left: 4%;
   }
-}
-
-.text21 {
-  top: 20%;
-  left: 3%;
-  max-width: 500px;
-  max-height: 150px;
-  margin-right: 8%;
-  margin-left: 3%;
-  color: rgb(255, 255, 255);
-  position: relative;
-  font-size: 12px;
-  font-family: NOMA;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 15;
-  -webkit-box-orient: vertical;
 }
 
 .text22 {
