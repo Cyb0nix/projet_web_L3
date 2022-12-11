@@ -4,6 +4,7 @@ const router = express.Router();
 const StaffRepo = require('../utils/staff.repository');
 const AssigmentRepo = require('../utils/assigments.repository')
 const StaffSkillRepo =require('../utils/staffskills.repository')
+const auth = require("../utils/users.auth");
 
 router.get('/', auth.checkAuthentication("USER"), StaffRootAction);
 router.get('/list', auth.checkAuthentication("USER"), StaffListAction);

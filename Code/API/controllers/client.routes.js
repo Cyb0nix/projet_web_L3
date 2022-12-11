@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const clientRepo = require('../utils/clients.repository');
+const auth = require("../utils/users.auth");
 
 router.get('/', auth.checkAuthentication("USER"), clientRootAction);
 router.get('/list', auth.checkAuthentication("USER"), clientListAction);

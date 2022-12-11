@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const skillsRepo = require("../utils/skills.repository")
+const auth = require("../utils/users.auth");
 
 router.get('/', auth.checkAuthentication("USER"), skillsRootAction);
 router.get('/list', auth.checkAuthentication("USER"), skillsListAction);

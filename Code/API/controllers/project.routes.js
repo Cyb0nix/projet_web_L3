@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const projectRepo = require('../utils/project.repository');
 const assignementRepo = require('../utils/assigments.repository');
+const auth = require("../utils/users.auth");
 const equipmentRepo = require('../utils/equipmentused.repository');
 
 router.get('/', auth.checkAuthentication("USER"), projectRootAction);
