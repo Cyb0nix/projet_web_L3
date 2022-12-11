@@ -24,7 +24,6 @@ import NavbarVue from "../components/Navbar.vue";
 </template>
 
 <style scoped>
-
 .pagemenu {
   left: 0px;
   width: 230px;

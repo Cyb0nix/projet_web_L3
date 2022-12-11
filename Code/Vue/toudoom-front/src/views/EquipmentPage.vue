@@ -17,7 +17,7 @@ import NavbarVue from "../components/Navbar.vue";
           <span class="text14"><span>Project History</span></span>
           <span class="text23">
             <span>
-                Text.
+                Text..
             </span>
           </span>
         </div>
