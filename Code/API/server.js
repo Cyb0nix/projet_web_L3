@@ -5,7 +5,7 @@ dotenv.config();
 const express = require('express');
 var cors = require('cors')
 const app = express();
-// app.use(cors())
+app.use(cors())
 
 app.listen(process.env.WEB_PORT, function () {
     console.log('CORS-enabled web server listening on port ',process.env.WEB_PORT);
@@ -38,4 +38,4 @@ app.use("/toudoomapi/project", require("./controllers/project.routes"));
 app.use("/toudoomapi/equipement", require("./controllers/equipment.routes"));
 app.use("/toudoomapi/client", require("./controllers/client.routes"));
 app.use("/toudoomapi/staff", require("./controllers/staff.routes"));
-app.use("/auth", require("./controllers/auth.route"));
+app.use("/toudoomapi/auth", require("./controllers/auth.routes"));
