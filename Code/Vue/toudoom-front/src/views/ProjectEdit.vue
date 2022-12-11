@@ -6,7 +6,6 @@ import NavbarVue from "../components/Navbar.vue";
   <div style="background-color: #0C0923;">
     <NavbarVue />
       <div class="back">
-        <NavbarVue />
         <div class="pagemenu">
             <span class="text"><span>Projects</span></span>
             <span class="text02"><span>Staffs</span></span>
