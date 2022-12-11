@@ -4,17 +4,13 @@ import NavbarVue from "../components/Navbar.vue";
 
 <template>
   <div style="background-color: #0C0923;">
-    <NavbarVue />
+      <NavbarVue />
       <div class="back">
-        <NavbarVue />
         <div class="pagemenu">
             <span class="text"><span>Projects</span></span>
             <span class="text02"><span>Staffs</span></span>
             <span class="text04"><span>Equipment</span></span>
             <span class="text06"><span>MENU</span></span>
-        </div>
-        <div class="navTab">
-            <span class="text08"><span>Logout</span></span>
         </div>
         <div class="all-case-project">
           <div class="add-button">
@@ -29,25 +25,6 @@ import NavbarVue from "../components/Navbar.vue";
 
 <style scoped>
 
-.navTab {
-  top: 1.7%;
-  right: 1%;
-  height: 50px;
-  display: flex;
-  padding: 0;
-  position: absolute; 
-  background-color: rgba(17, 12, 54, 1);
-  
-}
-
-.text08 {
-  top: 21%;
-  left: -10%;
-  color: rgba(255, 255, 255, 1);
-  position: relative;
-  font-size: 24px;
-  font-family: NOMA;
-}
 .pagemenu {
   left: 0px;
   width: 230px;
