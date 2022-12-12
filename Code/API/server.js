@@ -5,7 +5,14 @@ dotenv.config();
 const express = require('express');
 var cors = require('cors')
 const app = express();
-app.use(cors())
+
+var corsOptions = {
+    origin: 'http://127.0.0.1:5173',
+    credentials: true
+    
+  }
+
+app.use(cors(corsOptions))
 
 app.listen(process.env.WEB_PORT, function () {
     console.log('CORS-enabled web server listening on port ',process.env.WEB_PORT);
@@ -24,8 +31,11 @@ const session = require("express-session");
 app.use(session({
     secret: "SecretRandomStringDskghadslkghdlkghdghaksdghdksh",
     saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day in msec
+    cookie: { 
+        sameSite: 'none',
+        maxAge: 1000 * 60 * 60 * 24}, // 1 day in msec
     resave: false
+    
 }));
 
 const auth = require("./utils/users.auth");
