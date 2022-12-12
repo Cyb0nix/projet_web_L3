@@ -13,10 +13,10 @@
             <span class="text06"><span>MENU</span></span>
         </div>
         <div class="all-case-project">
-          <div class="add-button">
-          <span class="text20"><span>ADD</span></span>
-          <img src="@/assets/image/+.svg" alt="+" class="plus" />
-        </div>
+          <button type="button" class="add-button">
+            <span class="text20"><span>ADD</span></span>
+            <img src="@/assets/image/+.svg" alt="+" class="plus" />
+          </button>
         <span class="text22"><span>EQUIPMENTS</span></span>
       </div>
     </div>

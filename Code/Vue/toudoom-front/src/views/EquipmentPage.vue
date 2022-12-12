@@ -29,10 +29,10 @@
             </span>
           </span>
         </div>
-        <div class="edit-button">
+        <button type="button" class="edit-button">
           <span class="text20"><span>EDIT</span></span>
           <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-        </div>
+        </button>
         <span class="text22"><span>EQUIPMENT</span></span>
       </div>
     </div>
@@ -265,6 +265,7 @@
   position: absolute;
   font-size: 16px;
   font-family: NOMA;
+  vertical-align: center;
 }
 
 .text20 :hover {

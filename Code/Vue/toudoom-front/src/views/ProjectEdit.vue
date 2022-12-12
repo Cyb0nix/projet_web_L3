@@ -37,10 +37,10 @@
                                         <li>State :</li>
                                       </ul></span></span>
           </div>
-          <div class="save-button">
-          <span class="text20"><span>SAVE</span></span>
-          <img src="@/assets/image/save.svg" alt="Icon_save" class="saveimg" />
-        </div>
+          <button type="button" class="save-button">
+            <span class="text20"><span>SAVE</span></span>
+            <img src="@/assets/image/save.svg" alt="Icon_save" class="saveimg" />
+          </button>
         <span class="text22"><span>PROJECT</span></span>
       </div>
     </div>
@@ -342,6 +342,7 @@
   position: absolute;
   font-size: 16px;
   font-family: NOMA;
+  vertical-align: center;
 }
 
 .text20 :hover {
