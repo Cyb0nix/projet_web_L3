@@ -43,10 +43,7 @@ import Footer from '../components/Footer.vue';
           </li>
           <li class="nav-item">
             
-            <router-link to="/login" class="nav-link active">Login<span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-  <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-</svg></span></router-link>
+            <input type="button" style="background-color: #110c35; border:0px;" @click="login()" class="nav-link active" value="Login">
           </li>
         </ul>
       </div>
@@ -61,9 +58,9 @@ import Footer from '../components/Footer.vue';
     <div class="classique" id="live" style="margin-top: -2vh">
       <div style="padding-left: 20%; padding-right: 20%; padding-top: 19vh">
         <div class="ratio ratio-16x9">
-          <iframe
-            src="https://www.youtube.com/embed/-lXaAgf7f8I?start=0&autoplay=1&loop=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3&fs=0&color=white&controls=0&playlist=-lXaAgf7f8I&vq=hd1080"
-          ></iframe>
+          <!-- <iframe
+            src="https://www.youtube.com/embed/-lXaAgf7f8I?start=0&autoplay=O&loop=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3&fs=0&color=white&controls=0&playlist=-lXaAgf7f8I&vq=hd1080"
+          ></iframe> -->
         </div>
       </div>
     </div>
@@ -134,6 +131,41 @@ import Footer from '../components/Footer.vue';
     <Footer/>
   </div>
 </template>
+
+<script>
+export default {
+  name: "Home",
+  data() {
+    return {
+      isAuth : false
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        
+        let auth = await this.$http.get("http://localhost:9000/toudoomapi/auth/protected");
+
+        this.isAuth = auth.data
+
+        console.log(this.isAuth);
+         
+        if (this.isAuth) {
+        
+          this.$router.push({ name: 'projectList'});
+
+        } else {
+          this.$router.push({ name: 'login'});
+        }
+
+      } catch (error) {
+      }
+    },
+  },
+
+  created() {},
+};
+</script>
 
 <style>
 html {

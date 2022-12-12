@@ -26,13 +26,37 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <input type="button" style="background-color: #110c35; border:0px;" @click="logout()" class="nav-link active" value="Logout">
           </li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  name: "Navbar",
+  data() {
+  },
+  methods: {
+    async logout() {
+      try {
+        // console.log("test");
+        // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        // console.log(logoutResponse);
+        this.$router.push({ name: 'home'});
+        
+
+      } catch (error) {
+        
+      }
+    },
+  },
+
+  created() {},
+};
+</script>
 
 <style>
 nav {
