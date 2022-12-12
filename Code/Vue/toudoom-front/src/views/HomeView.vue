@@ -15,7 +15,7 @@ import Footer from '../components/Footer.vue';
         <img
           src="@/assets/image/logo.svg"
           alt="Toudoom"
-          width="40%"
+          width="130"
           style="margin: -8px; margin-left: 1px"
         />
       </a>
