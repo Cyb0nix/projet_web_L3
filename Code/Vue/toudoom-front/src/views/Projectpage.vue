@@ -1,128 +1,112 @@
-<script setup>
-  import NavbarVue from "../components/Navbar.vue";
-</script>
+<script setup></script>
 
 <template>
   <div style="background-color: #0C0923;">
-    
     <div class="back">
-      <div style="background-color: #0C0923;">
-        <!-- SideBar -->
-          <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height:100vh; background-color:#110C36;">
-          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-            <span class="fs-4"><img src="@/assets/image/logo.svg" alt="" width="85%"></span>
-          </a>
-          <hr>
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item" style="--bs-nav-pills-link-active-bg: #D82367;">
-              <a href="#" class="nav-link active" aria-current="page">
-                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                Project
+        <div class="row" style="--bs-gutter-x: 0">
+          <div class="col-md-auto">
+            <!-- SideBar -->
+            <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100vh; background-color: #110c36">
+              <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32">
+                  <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-4"
+                  ><img src="@/assets/image/logo.svg" alt="" width="150px"/>
+                </span>
               </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-                Staff
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-                Equipment
-              </a>
-            </li>
-          </ul>
-          <hr>
-          <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" width="32" height="32" class="rounded-circle me-2">
-              <strong>User</strong>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-              <li><a class="dropdown-item" href="#">New project...</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
+              <hr />
+              <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item" style="--bs-nav-pills-link-active-bg: #d82367">
+                  <a href="#" class="nav-link active" aria-current="page">
+                    <svg class="bi pe-none me-2" width="16" height="16">
+                      <use xlink:href="#home" />
+                    </svg>
+                    Project
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link text-white">
+                    <svg class="bi pe-none me-2" width="16" height="16">
+                      <use xlink:href="#speedometer2" />
+                    </svg>
+                    Staff
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="nav-link text-white">
+                    <svg class="bi pe-none me-2" width="16" height="16">
+                      <use xlink:href="#table" />
+                    </svg>
+                    Equipment
+                  </a>
+                </li>
+              </ul>
+              <hr />
+              <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt=""
+                    width="32"
+                    height="32"
+                    class="rounded-circle me-2"
+                  />
+                  <strong>User</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="--bs-dropdown-bg: #d82367">
+                  <li><a class="dropdown-item" href="#">New project...</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" @click="logout()">Sign out</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-9">
+            <h2 class="p-3">Project</h2>
+            <div class="all-case-project">
+              <div class="case-equipement">
+                <span class="text14"><span>EQUIPEMENT</span></span>
+                <span class="text23"><span>Txt.</span></span>
+              </div>
+              <div class="case-staff">
+                <span class="text16"><span>STAFF</span></span>
+                <span class="text21">
+                  <span>
+                    Txt.</span>
+                  </span>
+                <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
+              </div>
+              <div class="case-information">
+                <span class="text18"><span>INFORMATION</span></span>
+                <span class="text19">
+                  <span>
+                    <ul>
+                      <li>Name :</li>
+                      <li>Type :</li>
+                      <li>Client :</li>
+                      <li>Start Date :</li>
+                      <li>End Date :</li>
+                      <li>Benefits :</li>
+                      <li>State :</li>
+                    </ul>
+                  </span>
+                </span>
+              </div>
+              <button type="button" class="edit-button">
+                <span class="text20"><span>EDIT</span></span>
+                <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="all-case-project">
-        <div class="case-equipement">
-          <span class="text14"><span>EQUIPEMENT</span></span>
-          <span class="text23"
-            ><span
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
-              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus
-              voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore
-              ex quaerat modi blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor
-              sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error
-              distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi
-              blanditiis soluta maiores illum, ab velit.Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio
-              hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis
-              soluta maiores illum, ab velit.</span
-            ></span
-          >
-        </div>
-        <div class="case-staff">
-          <span class="text16"><span>STAFF</span></span>
-          <span class="text21">
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio
-              temporibus voluptas error distinctio hic quae corrupti vero doloribus optio!
-              Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.</span>
-            </span>
-          <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
-        </div>
-        <div class="case-information">
-          <span class="text18"><span>INFORMATION</span></span>
-          <span class="text19">
-            <span>
-              <ul>
-                <li>Name :</li>
-                <li>Type :</li>
-                <li>Client :</li>
-                <li>Start Date :</li>
-                <li>End Date :</li>
-                <li>Benefits :</li>
-                <li>State :</li>
-              </ul>
-            </span>
-          </span>
-        </div>
-        <button type="button" class="edit-button">
-          <span class="text20"><span>EDIT</span></span>
-          <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-        </button>
-        <span class="text22"><span>PROJECT</span></span>
-      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
-.pagemenu {
-  left: 0px;
-  width: 230px;
-  height: 100vh;
-  display: flex;
-  position: absolute;
-  background-color: rgba(17, 12, 54, 1);
-}
-
-@media only screen and (max-width: 1300px) {
-  .pagemenu {
-    display: none;
-  }
-}
-
 
 .back {
   width: 100%;
@@ -130,54 +114,6 @@
   color: #0c0923;
 }
 
-.text {
-  top: 15%;
-  left: 6%;
-  color: #d82367;
-  position: absolute;
-  font-size: 20px;
-  font-family: NOMA;
-}
-.text :hover {
-  color: #ffffff;
-}
-
-.text02 {
-  top: 20%;
-  left: 6%;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  font-size: 20px;
-  font-family: NOMA;
-}
-
-.text02 :hover {
-  color: #d82367;
-}
-.text04 {
-  top: 25%;
-  left: 6%;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  font-size: 20px;
-  font-family: NOMA;
-}
-
-.text04 :hover {
-  color: #d82367;
-}
-.text06 {
-  top: 5%;
-  left: 6%;
-  color: #d82367;
-  position: absolute;
-  font-size: 30px;
-  font-family: NOMA;
-}
-
-.text06 :hover {
-  color: #ffffff;
-}
 .all-case-project {
   top: 106px;
   left: 18%;
@@ -362,15 +298,6 @@
   display: -webkit-box;
   -webkit-line-clamp: 15;
   -webkit-box-orient: vertical;
-}
-
-.text22 {
-  top: 0%;
-  color: rgb(255, 255, 255);
-  width: 15%;
-  position: absolute;
-  font-size: 32px;
-  font-family: NOMA;
 }
 
 .edit-button {
