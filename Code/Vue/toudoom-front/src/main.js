@@ -11,7 +11,11 @@ import "bootstrap"
 
 const app = createApp(App)
 
-app.use(VueAxios, axios)
+const instance = axios.create({
+    withCredentials: true
+  })
+
+app.use(VueAxios, instance)
 app.use(router)
 
 app.mount('#app')
