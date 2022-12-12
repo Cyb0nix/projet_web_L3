@@ -4,13 +4,50 @@
 
 <template>
   <div style="background-color: #0C0923;">
-      <NavbarVue />
       <div class="back">
-        <div class="pagemenu">
-            <span class="text"><span>Projects</span></span>
-            <span class="text02"><span>Staffs</span></span>
-            <span class="text04"><span>Equipment</span></span>
-            <span class="text06"><span>MENU</span></span>
+        <div style="background-color: #0C0923;">
+          <!-- SideBar -->
+            <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height:100vh; background-color:#110C36;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+              <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+              <span class="fs-4"><img src="@/assets/image/logo.svg" alt="" width="85%"></span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item" style="--bs-nav-pills-link-active-bg: #D82367;">
+                <a href="#" class="nav-link active" aria-current="page">
+                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                  Project
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                  Staff
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link text-white">
+                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                  Equipment
+                </a>
+              </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>User</strong>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="all-case-project">
           <button type="button" class="add-button">
