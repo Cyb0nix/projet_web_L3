@@ -363,6 +363,7 @@
   position: absolute;
   font-size: 16px;
   font-family: NOMA;
+  vertical-align: center;
 }
 
 .text20 :hover {
