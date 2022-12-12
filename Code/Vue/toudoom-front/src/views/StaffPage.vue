@@ -2,8 +2,8 @@
 
 <template>
   <div style="background-color: #0C0923;">
-      <div class="back">
-        <div class="row" style="--bs-gutter-x: 0">
+    <div class="back">
+      <div class="row" style="--bs-gutter-x: 0">
           <div class="col-md-auto">
             <!-- SideBar -->
             <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100vh; background-color: #110c36">
@@ -66,43 +66,49 @@
           </div>
           <div class="col-9">
             <h2 class="p-3">Project</h2>
-              <div class="all-case-project">
-                <div class="case-equipement">
-                  <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-                  <span class="text14"><span>EQUIPEMENT</span></span>
-                  <span class="text23"><span>Txt.</span></span>
-                </div>
-                <div class="case-staff">
-                  <span class="text16"><span>STAFF</span></span>
-                  <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-                  <span class="text21"><span>Txt.</span></span>
-                  <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
-                </div>
-                <div class="case-information">
-                  <span class="text18"><span>INFORMATION</span></span>
-                  <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-                  <span class="text19"><span><ul>
-                                              <li>Name :</li>
-                                              <li>Type :</li>
-                                              <li>CLient :</li>
-                                              <li>Start Date :</li>
-                                              <li>End Date :</li>
-                                              <li>Benefits :</li>
-                                              <li>State :</li>
-                                            </ul></span></span>
-                </div>
-                <button type="button" class="save-button">
-                  <span class="text20"><span>SAVE</span></span>
-                  <img src="@/assets/image/save.svg" alt="Icon_save" class="saveimg" />
-                </button>
+            <div class="all-case-project">
+              <div class="case-equipement">
+                <span class="text14"><span>Project History</span></span>
+                <span class="text23"><span>Txt.</span></span>
+              </div>
+              <div class="case-staff">
+                <span class="text16"><span>SKILLS</span></span>
+                <span class="text21"><span>Txt.</span></span>
+                <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
+              </div>
+              <div class="case-information">
+                <span class="text18"><span>INFORMATION</span></span>
+                <span class="text19"><span>Txt.</span></span>
+              </div>
+              <button type="button" class="edit-button">
+                <span class="text20"><span>EDIT</span></span>
+                <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
+              </button>
             </div>
           </div>
         </div>
-      </div>
+    </div>
   </div>
 </template>
 
+
 <style scoped>
+
+.pagemenu {
+  left: 0px;
+  width: 230px;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  background-color: rgba(17, 12, 54, 1);
+}
+
+@media only screen and (max-width: 1300px) {
+  .pagemenu {
+    display: none;
+  }
+}
+
 
 .back {
   width: 100%;
@@ -110,7 +116,55 @@
   color: #0c0923;
 }
 
-.all-case-project {
+.text {
+  top: 15%;
+  left: 6%;
+  color: #d82367;
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+}
+.text :hover {
+  color: #ffffff;
+}
+
+.text02 {
+  top: 20%;
+  left: 6%;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+}
+
+.text02 :hover {
+  color: #d82367;
+}
+.text04 {
+  top: 25%;
+  left: 6%;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+}
+
+.text04 :hover {
+  color: #d82367;
+}
+.text06 {
+  top: 5%;
+  left: 6%;
+  color: #d82367;
+  position: absolute;
+  font-size: 30px;
+  font-family: NOMA;
+}
+
+.text06 :hover {
+  color: #ffffff;
+}
+.all-case-staff {
   top: 106px;
   left: 18%;
   width: 63%;
@@ -122,7 +176,7 @@
 }
 
 @media only screen and (max-width: 1300px) {
-  .all-case-project {
+  .all-case-staff {
     margin-left: -8%;
   }
 }
@@ -153,6 +207,12 @@
   color: #d82367;
 }
 
+@media only screen and (max-width: 500px) {
+  .text18 {
+    left: 10.5%;
+  }
+}
+
 .text19 {
   top: 20%;
   left: 3%;
@@ -171,7 +231,7 @@
   line-height: 180%;
 }
 
-.case-staff {
+.case-skills {
   top: 10%;
   left: 65%;
   width: 60%;
@@ -241,7 +301,7 @@
   -webkit-box-orient: vertical;
 }
 
-.case-equipement {
+.case-project {
   top: 55%;
   left: 0px;
   width: 125%;
@@ -290,7 +350,16 @@
   -webkit-box-orient: vertical;
 }
 
-.save-button {
+.text22 {
+  top: 0%;
+  color: rgb(255, 255, 255);
+  width: 15%;
+  position: absolute;
+  font-size: 32px;
+  font-family: NOMA;
+}
+
+.edit-button {
   top: 1.5%;
   right: -25%;
   width: 90px;
@@ -301,24 +370,17 @@
   background-color: rgba(17, 12, 54, 1);
 }
 
-.saveimg {
-  top: 23.5%;
-  right: 16%;
+.editimg {
+  top: 28%;
+  right: 17%;
   width: 15%;
   height: auto;
   position: absolute;
 }
 
-.editimg {
-  top: 5.5%;
-  right: 15px;
-  width: 15px;
-  height: auto;
-  position: absolute;
-}
 .text20 {
   top: 17%;
-  left: 14%;
+  left: 19%;
   color: rgba(255, 255, 255, 1);
   width: 42px;
   height: auto;

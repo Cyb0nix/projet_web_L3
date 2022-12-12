@@ -1,9 +1,9 @@
 <script setup></script>
 
 <template>
-  <div style="background-color: #0C0923;">
-      <div class="back">
-        <div class="row" style="--bs-gutter-x: 0">
+  <div style="background-color: #0C0923;">  
+    <div class="back">
+      <div class="row" style="--bs-gutter-x: 0">
           <div class="col-md-auto">
             <!-- SideBar -->
             <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100vh; background-color: #110c36">
@@ -15,7 +15,7 @@
                   ><img src="@/assets/image/logo.svg" alt="" width="150px"/>
                 </span>
               </a>
-              <hr/>
+              <hr />
               <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item" style="--bs-nav-pills-link-active-bg: #d82367">
                   <a href="#" class="nav-link active" aria-current="page">
@@ -65,20 +65,34 @@
             </div>
           </div>
           <div class="col-9">
-            <h2 class="p-3">Equipments</h2>
+            <h2 class="p-3">Staffs</h2>
             <div class="all-case-project">
-              <button type="button" class="add-button">
+              <div class="add-button">
                 <span class="text20"><span>ADD</span></span>
                 <img src="@/assets/image/+.svg" alt="+" class="plus" />
-              </button>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+      </div>      
+    </div>
   </div>
 </template>
 
 <style scoped>
+.pagemenu {
+  left: 0px;
+  width: 230px;
+  height: 100vh;
+  display: flex;
+  position: absolute;
+  background-color: rgba(17, 12, 54, 1);
+}
+
+@media only screen and (max-width: 1300px) {
+  .pagemenu {
+    display: none;
+  }
+}
 
 .back {
   width: 100%;
@@ -86,7 +100,56 @@
   color: #0c0923;
 }
 
-.all-case-project {
+.text {
+  top: 15%;
+  left: 6%;
+  color: #ffffff;
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+}
+.text :hover {
+  color: #d82367;
+}
+
+.text02 {
+  top: 20%;
+  left: 6%;
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+}
+
+.text02 :hover {
+  color: #d82367;
+}
+.text04 {
+  top: 25%;
+  left: 6%;
+  color: #d82367;
+  position: absolute;
+  font-size: 20px;
+  font-family: NOMA;
+}
+
+.text04 :hover {
+  color: #ffffff;
+}
+
+.text06 {
+  top: 5%;
+  left: 6%;
+  color: #d82367;
+  position: absolute;
+  font-size: 30px;
+  font-family: NOMA;
+}
+
+.text06 :hover {
+  color: #ffffff;
+}
+.all-case-staff {
   top: 106px;
   left: 18%;
   width: 63%;
@@ -98,9 +161,18 @@
 }
 
 @media only screen and (max-width: 1300px) {
-  .all-case-project {
+  .all-case-staff {
     margin-left: -8%;
   }
+}
+
+.text22 {
+  top: 0%;
+  color: rgb(255, 255, 255);
+  width: 15%;
+  position: absolute;
+  font-size: 32px;
+  font-family: NOMA;
 }
 
 .add-button {
