@@ -27,7 +27,7 @@ function projectRootAction(request, response) {
 
 async function projectListAction(request, response) {
 
-    var project = await projectRepo.getAllproject();
+    var project = await projectRepo.getAllProject();
     
     response.send(JSON.stringify(project));
     console.log('[',request.ip,'] FETCHED All projects ');

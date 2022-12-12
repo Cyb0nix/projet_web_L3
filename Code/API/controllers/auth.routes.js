@@ -9,6 +9,7 @@ router.get("/admin", auth.checkAuthentication("ADMIN"), userAction);
 
 router.post("/login", loginPostAction);
 router.get("/logout", logoutAction);
+router.get("/protected",protectedAction);
 
 async function userAction(request, response) {
   let userData = await userRepo.getOneUser(request.user.username);
@@ -16,17 +17,13 @@ async function userAction(request, response) {
   response.send(userJson);
 }
 
-// async function protectedGetAction(request, response) {
-//   if (request.isAuthenticated()) {
-//     if (request.user.userRole === "ADMIN") {
-//       response.redirect("/auth/admin");
-//     } else {
-//       response.redirect("/auth/user");
-//     }
-//   } else {
-//       response.redirect("/auth");
-//   }
-// }
+async function protectedAction(request, response) {
+  if (request.isAuthenticated()) {
+    response.send(true)
+  } else {
+      response.send(false)
+  }
+}
 
 async function loginPostAction(request, response) {
   areValid = await userRepo.areValidCredentials(request.body.username, request.body.password);
@@ -52,7 +49,7 @@ async function loginPostAction(request, response) {
 function logoutAction(request, response) {
     request.logout(function(err) {
         if (err) { return next(err); }
-        response.redirect('/auth');
+        response.send("Logged out")
     });
 }
 
