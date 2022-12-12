@@ -39,7 +39,7 @@ import NavbarVue from "../components/Navbar.vue";
             ></span>
             <input
               id="password"
-              type="text"
+              type="password"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
@@ -81,11 +81,12 @@ export default {
     async login() {
       try {
         
-        let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/auth/login",this.user);
-        console.log(loginResponse);
+          let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/auth/login",this.user);
+          console.log(loginResponse);
+          this.$router.push({ name: 'projectList'});
+        
 
       } catch (error) {
-        
       }
     },
   },
@@ -112,6 +113,11 @@ label {
   background-position: center;
   height: 100vh;
 }
+
+.form-control:focus {
+    border-color: #D82367;
+    box-shadow: 0 0 0 0.2rem    rgba(40, 167, 69, 0.25);
+} 
 
 .login-background {
   padding: 1%;
