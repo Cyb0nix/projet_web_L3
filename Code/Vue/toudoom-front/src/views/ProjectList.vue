@@ -159,20 +159,18 @@ export default {
 .data:hover {
     color: #d82367;
     background-color: rgba(255, 255, 255, 0.05);
-  }
+}
 
-  .add{
+.add{
     margin-right: 5%; 
     margin-top: 0.6%; 
     background-color: #d82367; 
     border-color: #d82367;
-  }
+}
 
-  .add:hover{
+.add:hover{
     background-color: #d823686e;
     border-color: #d823686e;
-  }
-.azer:hover {
-  background-color: rgba(255, 255, 255, 0.05);
 }
+
 </style>
