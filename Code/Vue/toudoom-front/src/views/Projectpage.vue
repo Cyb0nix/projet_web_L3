@@ -58,10 +58,10 @@
             </span>
           </span>
         </div>
-        <div class="edit-button">
+        <button type="button" class="edit-button">
           <span class="text20"><span>EDIT</span></span>
           <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-        </div>
+        </button>
         <span class="text22"><span>PROJECT</span></span>
       </div>
     </div>
