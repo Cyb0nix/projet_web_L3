@@ -109,7 +109,7 @@
                     <div class="col" style="font-family: NOMA">
                       <div class="row">
                         <div class="col-1" style="margin-left: 0%; margin-top: 0.6%;">
-                          <img src="@/assets/image/Frame.svg" alt="Icon_edit" class="editimg" />
+                          <img src="@/assets/image/Frame.svg" alt="Icon_staff" class="staffimg" />
                         </div>
                         <div class="col" style="font-size: 20px; margin-left: -2.5%;">STAFF</div>
                       </div>
