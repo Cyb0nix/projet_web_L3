@@ -86,13 +86,14 @@
                 <th scope="col">Is Formed</th>
               </tr>
               <tr class="data" v-for="s of staff" v-bind:key="p.staffID" @click="openStaff()">
-                <td>{{ p.staffID }}</td>
-                <td>{{ p.name }}</td>
-                <td>{{ p.discordID }}</td>
-                <td>{{ p.email}}</td>
-                <td>{{ p.endingDate.split("T")[0] }}</td>
-                <td>{{ p.phone }}</td>
-                <td>{{ p.state }}</td>
+                <td>{{ s.staffID }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.discordID }}</td>
+                <td>{{ s.email}}</td>
+                <td>{{ s.phone }}</td>
+                <td>{{ s.role }}</td>
+                <td>{{ s.joinDate.split("T")[0] }}</td>
+                <td>{{ s.isFormed }}</td>
               </tr>
             </thead>
           </table>
