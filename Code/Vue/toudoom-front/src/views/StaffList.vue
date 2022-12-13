@@ -72,7 +72,31 @@
               <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" value="ADD">
             </div>
           </div>
-          <!-- A REMPLIR PAR ROMAIN -->
+          <div class="container" style="margin-top:1.5%; margin-right: -5%; margin-left:4%">
+          <table class="table table-striped table-hover" style="color: white">
+            <thead>
+              <tr class="2" style="font-size: 15px; font-family: NOMA">
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Discord ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Role</th>
+                <th scope="col">Joining Date</th>
+                <th scope="col">Is Formed</th>
+              </tr>
+              <tr class="data" v-for="s of staff" v-bind:key="p.staffID" @click="openStaff()">
+                <td>{{ p.staffID }}</td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.discordID }}</td>
+                <td>{{ p.email}}</td>
+                <td>{{ p.endingDate.split("T")[0] }}</td>
+                <td>{{ p.phone }}</td>
+                <td>{{ p.state }}</td>
+              </tr>
+            </thead>
+          </table>
+        </div>
         </div>
     </div>      
   </div>

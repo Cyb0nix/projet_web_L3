@@ -72,7 +72,93 @@
             <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" value="Edit">
           </div>
         </div>
-        <!-- A REMPLIR PAR ROMAIN -->
+        <div class="container" style="margin-right: -5%; margin-left:4%">
+              <table class="table table-striped table-hover" style="color: white">
+                <div class="row">
+                  <div class="col" style="background-color: #110C36; width: 48%; height: 270px; border-radius: 15px 15px 15px 15px">
+                    <div class="col" style="font-family: NOMA">
+                      <div class="row">
+                        <div class="col" style="font-size: 20px; margin-bottom: 3%;">INFORMATION</div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Name : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Discord_ID : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Email : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Phone : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Join Date : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Is Formed : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Is Admin : </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col" style="background-color: #110C36; width: 48%; border-radius: 15px 15px 15px 15px; margin-left: 3%; height: 270px;">
+                    <div class="col" style="font-family: NOMA">
+                      <div class="row">
+                        <div class="col-1" style="margin-left: 0%; margin-top: 0.6%;">
+                          <img src="@/assets/image/Frame.svg" alt="Icon_skill" class="skillimg" />
+                        </div>
+                        <div class="col" style="font-size: 20px; margin-left: -2.5%;">STAFF SKILLS</div>
+                      </div>
+                      <table class="table table-striped table-hover" style="color: white; text-align: center">
+                          <thead>
+                            <tr class="1" style="font-size: 15px">
+                              <th scope="col">SkillID</th>
+                              <th scope="col">Skill</th>
+                            </tr>
+                            <tr class="data" v-for="s of skills" v-bind:key="s.skillID" @click="openSkills()">
+                              <td>{{ s.skillID }}</td>
+                              <td>{{ s.skill }}</td>
+                            </tr>
+                          </thead>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+                  
+
+                  <div class="col" style="background-color: #110C36; width: 102%; height: 270px; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
+                    <div class="col" style="margin-left: 2%; margin-right:2%;">
+                      <div class="row">
+                        <div class="col" style="font-size: 20px">PROJECT HISTORY</div>
+                      </div>
+                        <table class="table table-striped table-hover" style="color: white;text-align: center">
+                          <thead>
+                            <tr class="2" style="font-size: 15px; font-family: NOMA">
+                              <th scope="col">ID</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">StartDate</th>
+                              <th scope="col">EndDate</th>
+                              <th scope="col">Client</th>
+                              <th scope="col">State</th>
+                            </tr>
+                            <tr class="data" v-for="e of equipment" v-bind:key="e.equipmentID" @click="openEquipment()">
+                              <td>{{ p.projectID }}</td>
+                              <td>{{ p.projectName }}</td>
+                              <td>{{ p.type }}</td>
+                              <td>{{ p.startingDate.split("T")[0]}}</td>
+                              <td>{{ p.endingDate.split("T")[0] }}</td>
+                              <td>{{ p.clientID }}</td>
+                              <td>{{ p.state }}</td>
+                            </tr>
+                          </thead>
+                        </table>
+                    </div>
+                  </div>
+              </table>
+            </div>
       </div>
     </div>
   </div>
