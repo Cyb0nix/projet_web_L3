@@ -5,7 +5,7 @@ import NavbarVue from "../components/Navbar.vue";
 <template>
   <div style="background-color: #0c0923">
     <div class="row" style="--bs-gutter-x: 0">
-      <div class="col-md-auto">
+      <div class="col-auto">
         <!-- SideBar -->
         <div
           class="d-flex flex-column flex-shrink-0 p-3"
@@ -83,10 +83,10 @@ import NavbarVue from "../components/Navbar.vue";
       <div class="col-9">
         <div class="row">
           <div class="col">
-            <h2 class="p-3">Projets</h2>
+            <h2 class="p-3" style="margin-left: 8%;">Projects</h2>
           </div>
           <div class="col p-3">
-            <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" value="Add">
+            <input type="button" class="btn btn-primary position-absolute top-1 end-0 add btn-toudoom" value="Add" data-bs-toggle="modal" data-bs-target="#projectAddModal">
           </div>
         </div>
         
@@ -118,6 +118,26 @@ import NavbarVue from "../components/Navbar.vue";
       </div>
     </div>
   </div>
+
+    <!-- Modal -->
+  <div class="modal fade" id="projectAddModal" tabindex="-1" aria-labelledby="ProjectAddModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ProjectAddModalLabel">Add a new project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-toudoom">Create Project</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
@@ -125,13 +145,24 @@ export default {
   name: "projectList",
   data() {
     return {
-      projects: []
+      projects: [],
+
+      project:{
+        "ProjectID" : null,
+            "projectName" : null,
+            "type": null,
+            "IsPaid" : null,
+            "startingDate" : null,
+            "endingDate" : null,
+            "benefits" : null,
+            "state" : null,
+            "clientID" : null
+      }
     };
   },
   methods: {
     async logout() {
       try {
-        // console.log("test");
         // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
         // console.log(logoutResponse);
         this.$router.push({ name: "home" });
@@ -164,13 +195,15 @@ export default {
 .add{
     margin-right: 5%; 
     margin-top: 0.6%; 
+  }
+
+  .btn-toudoom{
     background-color: #d82367; 
     border-color: #d82367;
 }
 
-.add:hover{
+  .btn-toudoom:hover{
     background-color: #d823686e;
     border-color: #d823686e;
-}
-
+  }
 </style>
