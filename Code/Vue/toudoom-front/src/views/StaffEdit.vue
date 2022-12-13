@@ -109,11 +109,14 @@
                   <div class="col" style="background-color: rgb(11, 8, 36); width: 48%; height: fit-content; border-radius: 15px 15px 15px 15px; margin-left: 3%; height: 270px;">
                     <div class="col" style="font-family: NOMA">
                       <div class="row">
-                        <div class="col" style="font-size: 20px">STAFF SKILLS</div>
-                        <div class="col-1" style="margin-right: -2%">
-                          <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-                        </div>
+                      <div class="col-1" style="margin-left: 0%; margin-top: 0.6%;">
+                        <img src="@/assets/image/Frame.svg" alt="Icon_edit" class="editimg" />
                       </div>
+                      <div class="col" style="font-size: 20px; margin-left: -2.5%;">STAFF SKILLS</div>
+                      <div class="col-1" style="margin-right: -2%">
+                        <img src="@/assets/image/Vector.svg" alt="Icon_skills" class="skillsimg" />
+                      </div>
+                    </div>
                       <table class="table table-striped table-hover" style="color: white; text-align: center">
                           <thead>
                             <tr class="1" style="font-size: 15px">
