@@ -6,6 +6,9 @@ import ProjectList from '../views/ProjectList.vue'
 import EquipmentPage from '../views/EquipmentPage.vue'
 import EquipmentEdit from '../views/EquipmentEdit.vue'
 import EquipmentList from '../views/EquipmentList.vue'
+import StaffPage from '../views/StaffPage.vue'
+import StaffEdit from '../views/StaffEdit.vue'
+import StaffList from '../views/StaffList.vue'
 import LoginView from '../views/LoginView.vue'
 
 const router = createRouter({
@@ -45,6 +48,21 @@ const router = createRouter({
       path: '/admin/EquipmentList',
       name: 'EquipmentList',
       component: EquipmentList
+    },
+    {
+      path: '/admin/Staff',
+      name: 'Staff',
+      component: StaffPage
+    },
+    {
+      path: '/admin/StaffEdit',
+      name: 'StaffEdit',
+      component: StaffEdit
+    },
+    {
+      path: '/admin/StaffList',
+      name: 'StaffList',
+      component: StaffList
     },
     {
       path: '/login',
