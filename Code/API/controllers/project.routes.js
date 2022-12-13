@@ -55,7 +55,7 @@ async function projectDelStaffAction(request,response){
 
 async function projectShowAction(request, response) {
 
-    var oneproject = await projectRepo.getOneproject(request.params.projectID);
+    var oneproject = await projectRepo.getOneProject(request.params.projectID);
 
     response.send(JSON.stringify(oneproject));
 
@@ -73,7 +73,7 @@ async function projectEquipmentListAction(request, response){
 
 async function projectAddEquipmentAction(request, response){
 
-    var equipmentUsedID = await equipmentRepo.addOneprojectEquipment(request.body.equipmentID,request.params.projectID);
+    var equipmentUsedID = await equipmentRepo.addOneProjectEquipment(request.body.equipmentID,request.params.projectID);
 
     response.send(JSON.stringify(equipmentUsedID));
 
@@ -83,7 +83,7 @@ async function projectAddEquipmentAction(request, response){
 
 async function projectDelEquipmentAction(request,response){
 
-    var numRows = await equipmentRepo.delOneprojectEquipment(request.body.equipmentID,request.params.projectID);
+    var numRows = await equipmentRepo.delOneProjectEquipment(request.body.equipmentID,request.params.projectID);
 
     console.log('[',request.ip,'] DELETED equipment of project : ', request.params.projectID);
 
@@ -93,40 +93,43 @@ async function projectEditAction(request, response) {
 
     var projectID = request.params.projectID;
     if (projectID!== null)
-        var project = await projectRepo.getOneproject(projectID);
+        var project = await projectRepo.getOneProject(projectID);
     else
-        var project = projectRepo.getBlankproject();
+        var project = projectRepo.getBlankProject();
 
     response.send(JSON.stringify(project));
     console.log('[',request.ip,'] EDITED project : ', request.params.projectID);
 }
 
 async function projectDelAction(request, response) {
-    var numRows = await projectRepo.delOneproject(request.params.projectID);
+    var numRows = await projectRepo.delOneProject(request.params.projectID);
     console.log('[',request.ip,'] DELETED project : ', request.params.projectID);
 }
 
 async function projectUpdateAction(request, response) {
     var projectID = request.params.projectID;
+    console.log(request.body);
+    console.log(request.params.projectID)
     if (projectID==="0"){
-        projectID = await projectRepo.addOneproject(request.body.type, 
-            request.body.isPaid, 
+        projectID = await projectRepo.addOneProject(
+            request.body.projectName,
+            request.body.type, 
             request.body.startingDate,
             request.body.endingDate,
-            request.body.storagePlace,
+            request.body.isPaid, 
             request.body.benefits,
             request.body.state,
-            request.body.clientID);
-        response.send(projectID);
+            request.body.client);
+        response.send(JSON.stringify(projectID));
         console.log('[',request.ip,'] ADDED project : ', projectID);
     }else{
         var isPaid = request.body.isPaid === undefined ? 0 : 1;
-        var numRows = await projectRepo.editOneproject(projectID, 
+        var numRows = await projectRepo.editOneProject(projectID,
+            request.body.projectName,
             request.body.type,  
             isPaid, 
             request.body.startingDate,
             request.body.endingDate,
-            request.body.storagePlace,
             request.body.benefits,
             request.body.state,
             request.body.clientID);

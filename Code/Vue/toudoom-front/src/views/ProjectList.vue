@@ -83,15 +83,23 @@ import NavbarVue from "../components/Navbar.vue";
       <div class="col-9">
         <div class="row">
           <div class="col">
-            <h2 class="p-3" style="margin-left: 8%;">Projects</h2>
+            <h2 class="p-3" style="margin-left: 8%">Projects</h2>
           </div>
           <div class="col p-3">
-            <input type="button" class="btn btn-primary position-absolute top-1 end-0 add btn-toudoom" value="Add" data-bs-toggle="modal" data-bs-target="#projectAddModal">
+            <input
+              type="button"
+              class="btn btn-primary position-absolute top-1 end-0 add btn-toudoom"
+              value="Add"
+              data-bs-toggle="modal"
+              data-bs-target="#projectAddModal"
+            />
           </div>
         </div>
-        
-        
-        <div class="container" style="margin-top:1.5%; margin-right: -5%; margin-left:4%">
+
+        <div
+          class="container"
+          style="margin-top: 1.5%; margin-right: -5%; margin-left: 4%"
+        >
           <table class="table table-striped table-hover" style="color: white">
             <thead>
               <tr class="2" style="font-size: 15px; font-family: NOMA">
@@ -103,13 +111,18 @@ import NavbarVue from "../components/Navbar.vue";
                 <th scope="col">Client</th>
                 <th scope="col">State</th>
               </tr>
-              <tr class="data" v-for="p of projects" v-bind:key="p.projectID" @click="openProject()">
+              <tr
+                class="data"
+                v-for="p of projects"
+                v-bind:key="p.projectID"
+                @click="openProject()"
+              >
                 <td>{{ p.projectID }}</td>
                 <td>{{ p.projectName }}</td>
                 <td>{{ p.type }}</td>
-                <td>{{ p.startingDate.split("T")[0]}}</td>
+                <td>{{ p.startingDate.split("T")[0] }}</td>
                 <td>{{ p.endingDate.split("T")[0] }}</td>
-                <td>{{ p.clientID }}</td>
+                <td>{{ p.client }}</td>
                 <td>{{ p.state }}</td>
               </tr>
             </thead>
@@ -119,25 +132,120 @@ import NavbarVue from "../components/Navbar.vue";
     </div>
   </div>
 
-    <!-- Modal -->
-  <div class="modal fade" id="projectAddModal" tabindex="-1" aria-labelledby="ProjectAddModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="projectAddModal"
+    tabindex="-1"
+    aria-labelledby="ProjectAddModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content" style="background-color: #0c0923;">
+      <div class="modal-content" style="background-color: #0c0923; color: white">
         <div class="modal-header">
           <h5 class="modal-title" id="ProjectAddModalLabel">Add a new project</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            style="color: #ffff; opacity: 1"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
-        <div class="modal-body">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-toudoom">Create Project</button>
-        </div>
+        <form action="">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="projectName" class="form-label">Project Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="projectName"
+                    v-model="project.projectName"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectStartingDate" class="form-label"
+                    >Starting Date</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="projectStartingDate"
+                    v-model="project.startingDate"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectClient" class="form-label">Client</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="projectClient"
+                    v-model="project.client"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="projectType" class="form-label">Type</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="projectType"
+                    v-model="project.type"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectEndingDate" class="form-label">Ending Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="projectEndingDate"
+                    v-model="project.endingDate"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectState" class="form-label">State</label>
+                  <input
+                    class="form-control"
+                    list="datalistOptions"
+                    v-model="project.state"
+                    id="projectState"
+                    placeholder="Project State"
+                    required
+                  />
+                  <datalist id="datalistOptions">
+                    <option value="Stand By" />
+                    <option value="Preparation" />
+                    <option value="Started" />
+                    <option value="Finish" />
+                    <option value="Canceled" />
+                  </datalist>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-toudoom"
+              @click="addOneProject()"
+            >
+              Create Project
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -147,23 +255,25 @@ export default {
     return {
       projects: [],
 
-      project:{
-        "ProjectID" : null,
-            "projectName" : null,
-            "type": null,
-            "IsPaid" : null,
-            "startingDate" : null,
-            "endingDate" : null,
-            "benefits" : null,
-            "state" : null,
-            "clientID" : null
-      }
+      project: {
+        projectID: null,
+        projectName: null,
+        type: null,
+        isPaid: 0,
+        startingDate: null,
+        endingDate: null,
+        benefits: 0,
+        state: null,
+        client: null,
+      },
     };
   },
   methods: {
     async logout() {
       try {
-        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        let logoutResponse = await this.$http.get(
+          "http://localhost:9000/toudoomapi/auth/logout"
+        );
         console.log(logoutResponse);
         this.$router.push({ name: "home" });
       } catch (error) {}
@@ -175,8 +285,17 @@ export default {
       console.log(this.projects);
     },
 
-    async openProject(){
+    async openProject() {},
+
+    async addOneProject(){
+      try {
+        let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/project/update/0",this.project);
+        console.log(loginResponse);
+        getAllProjects();
       
+
+      } catch (error) {
+      }
     }
   },
 
@@ -185,25 +304,37 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
 .data:hover {
-    color: #d82367;
-    background-color: rgba(255, 255, 255, 0.05);
+  color: #d82367;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-.add{
-    margin-right: 5%; 
-    margin-top: 0.6%; 
-  }
-
-  .btn-toudoom{
-    background-color: #d82367; 
-    border-color: #d82367;
+.add {
+  margin-right: 5%;
+  margin-top: 0.6%;
 }
 
-  .btn-toudoom:hover{
-    background-color: #d823686e;
-    border-color: #d823686e;
-  }
+.btn-toudoom {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #d82367;
+  --bs-btn-border-color: #d82367;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #ea095f;
+  --bs-btn-hover-border-color: #ea095f;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #d82367;
+  --bs-btn-active-border-color: #d82367;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #dd6090;
+  --bs-btn-disabled-border-color: #dd6090;
+}
+
+.close {
+  color: #fff;
+  opacity: 1;
+}
 </style>
