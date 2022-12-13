@@ -2,7 +2,7 @@
 
 <template>
   <div style="background-color: #0C0923;">
-    <div class="back">
+    
         <div class="row" style="--bs-gutter-x: 0">
           <div class="col-md-auto">
             <!-- SideBar -->
@@ -131,13 +131,13 @@
                   
 
                   <div class="col" style="background-color: rgb(11, 8, 36); width: 102%; height: 270px; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
-                    <div class="col" style="margin-left: 2%; margin-right:2%;font-family: NOMA">
+                    <div class="col" style="margin-left: 2%; margin-right:2%;">
                       <div class="row">
                         <div class="col" style="font-size: 20px">EQUIPMENT</div>
                       </div>
                         <table class="table table-striped table-hover" style="color: white;text-align: center">
                           <thead>
-                            <tr class="2" style="font-size: 15px">
+                            <tr class="2" style="font-size: 15px; font-family: NOMA">
                               <th scope="col">ID</th>
                               <th scope="col">Name</th>
                               <th scope="col">Type</th>
@@ -161,17 +161,16 @@
             </div>
           </div>
         </div>
-    </div>
   </div>
 </template>
 
 <style scoped>
-
+/* 
 .back {
   width: 100%;
   height: 721px;
   color: #0c0923;
-}
+} */
 .data:hover {
     color: #d82367;
     background-color: rgba(255, 255, 255, 0.05);

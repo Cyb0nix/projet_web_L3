@@ -94,7 +94,7 @@ import NavbarVue from "../components/Navbar.vue";
         <div class="container" style="margin-top:1.5%; margin-right: -5%; margin-left:4%">
           <table class="table table-striped table-hover" style="color: white">
             <thead>
-              <tr>
+              <tr class="2" style="font-size: 15px; font-family: NOMA">
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Type</th>
@@ -122,7 +122,7 @@ import NavbarVue from "../components/Navbar.vue";
     <!-- Modal -->
   <div class="modal fade" id="projectAddModal" tabindex="-1" aria-labelledby="ProjectAddModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: #0c0923;">
         <div class="modal-header">
           <h5 class="modal-title" id="ProjectAddModalLabel">Add a new project</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -163,8 +163,8 @@ export default {
   methods: {
     async logout() {
       try {
-        // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
-        // console.log(logoutResponse);
+        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        console.log(logoutResponse);
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
