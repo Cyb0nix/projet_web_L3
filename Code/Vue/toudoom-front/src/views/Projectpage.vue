@@ -165,6 +165,41 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "projectPage",
+  data() {
+    return {
+      equipments: []
+    };
+  },
+  methods: {
+    async logout() {
+      try {
+        // console.log("test");
+        // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        // console.log(logoutResponse);
+        this.$router.push({ name: "home" });
+      } catch (error) {}
+    },
+
+    async getAllEquipments() {
+      let list = await this.$http.get("http://localhost:9000/toudoomapi/project/page");
+      this.projects = list.data;
+      console.log(this.equipments);
+    },
+
+    async openEquipment(){
+      
+    }
+  },
+
+  created() {
+    this.getAllEquipments();
+  },
+};
+</script>
+
 <style scoped>
 
 .back {

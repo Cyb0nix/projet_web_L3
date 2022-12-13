@@ -123,6 +123,41 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "equipmentPage",
+  data() {
+    return {
+      projects: []
+    };
+  },
+  methods: {
+    async logout() {
+      try {
+        // console.log("test");
+        // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        // console.log(logoutResponse);
+        this.$router.push({ name: "home" });
+      } catch (error) {}
+    },
+
+    async getAllProjects() {
+      let list = await this.$http.get("http://localhost:9000/toudoomapi/equipment/page");
+      this.projects = list.data;
+      console.log(this.projects);
+    },
+
+    async openProject(){
+      
+    }
+  },
+
+  created() {
+    this.getAllProjects();
+  },
+};
+</script>
+
 <style scoped>
 
 .back {
