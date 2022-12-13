@@ -116,7 +116,7 @@
                       </div>
                       <div class="col" style="font-size: 20px; margin-left: -2.5%;">STAFF</div>
                       <div class="col-1" style="margin-right: -2%">
-                        <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
+                        <img src="@/assets/image/Vector.svg" alt="Icon_staff" class="staffimg" />
                       </div>
                     </div>
                     <table class="table table-striped table-hover" style="color: white; text-align: center">

@@ -2,7 +2,6 @@
 
 <template>
   <div style="background-color: #0C0923;">
-    
         <div class="row" style="--bs-gutter-x: 0">
           <div class="col-md-auto">
             <!-- SideBar -->
@@ -71,14 +70,14 @@
                 <h2 class="p-3" style="margin-left: 6%; margin-top: 5%;">Project</h2>
               </div>
               <div class="col p-3">
-                <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" style="margin-top: 1.7%; margin-right: 3.8%;" value="Edit">
+                <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" value="Edit">
               </div>
             </div>
 
             <div class="container" style="margin-right: -5%; margin-left:4%">
               <table class="table table-striped table-hover" style="color: white">
                 <div class="row">
-                  <div class="col" style="background-color: rgb(11, 8, 36); width: 48%; height: fit-content; border-radius: 15px 15px 15px 15px">
+                  <div class="col" style="background-color: #110C36; width: 48%; height: 270px; border-radius: 15px 15px 15px 15px">
                     <div class="col" style="font-family: NOMA">
                       <div class="row">
                         <div class="col" style="font-size: 20px; margin-bottom: 3%;">INFORMATION</div>
@@ -106,10 +105,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col" style="background-color: rgb(11, 8, 36); width: 48%; height: fit-content; border-radius: 15px 15px 15px 15px; margin-left: 3%; height: 270px;">
+                  <div class="col" style="background-color: #110C36; width: 48%; border-radius: 15px 15px 15px 15px; margin-left: 3%; height: 270px;">
                     <div class="col" style="font-family: NOMA">
                       <div class="row">
-                        <div class="col" style="font-size: 20px">STAFF</div>
+                        <div class="col-1" style="margin-left: 0%; margin-top: 0.6%;">
+                          <img src="@/assets/image/Frame.svg" alt="Icon_edit" class="editimg" />
+                        </div>
+                        <div class="col" style="font-size: 20px; margin-left: -2.5%;">STAFF</div>
                       </div>
                       <table class="table table-striped table-hover" style="color: white; text-align: center">
                           <thead>
@@ -130,7 +132,7 @@
                 </div>
                   
 
-                  <div class="col" style="background-color: rgb(11, 8, 36); width: 102%; height: 270px; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
+                  <div class="col" style="background-color: #110C36; width: 102%; height: 270px; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
                     <div class="col" style="margin-left: 2%; margin-right:2%;">
                       <div class="row">
                         <div class="col" style="font-size: 20px">EQUIPMENT</div>
@@ -200,20 +202,15 @@ export default {
 </script>
 
 <style scoped>
-/* 
-.back {
-  width: 100%;
-  height: 721px;
-  color: #0c0923;
-} */
+
 .data:hover {
     color: #d82367;
     background-color: rgba(255, 255, 255, 0.05);
 }
 
 .add{
-    margin-right: 5%; 
-    margin-top: 0.6%; 
+    margin-top: 1.7%; 
+    margin-right: 3.8%; 
     background-color: #d82367; 
     border-color: #d82367;
 }
