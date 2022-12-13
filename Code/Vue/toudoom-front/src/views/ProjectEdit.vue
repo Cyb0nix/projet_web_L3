@@ -2,7 +2,7 @@
 
 <template>
   <div style="background-color: #0C0923;">
-      <div class="back">
+    <div class="back">
         <div class="row" style="--bs-gutter-x: 0">
           <div class="col-md-auto">
             <!-- SideBar -->
@@ -65,40 +65,112 @@
             </div>
           </div>
           <div class="col-9">
-            <h2 class="p-3">Project</h2>
-              <div class="all-case-project">
-                <div class="case-equipement">
-                  <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-                  <span class="text14"><span>EQUIPEMENT</span></span>
-                  <span class="text23"><span>Txt.</span></span>
+
+            <div class="row">
+              <div class="col">
+                <h2 class="p-3" style="margin-left: 6%; margin-top: 5%;">Project</h2>
+              </div>
+              <div class="col p-3">
+                <input type="button" class="btn btn-primary position-absolute top-1 end-0 save" style="margin-top: 1.7%; margin-right: 3.8%;" value="SAVE">
+              </div>
+            </div>
+
+            <div class="container" style="margin-right: -5%; margin-left:4%">
+              <table class="table table-striped table-hover" style="color: white">
+                <div class="row">
+                  <div class="col" style="background-color: rgb(11, 8, 36); width: 48%; height: fit-content; border-radius: 15px 15px 15px 15px">
+                    <div class="col" style="font-family: NOMA">
+                      <div class="row">
+                        <div class="col" style="font-size: 20px; margin-bottom: 3%;">INFORMATION</div>
+                        <div class="col-1" style="margin-right: -2%">
+                          <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Name : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Type : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Client : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Start Date : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">End Date : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">State : </div>
+                      </div>
+                      <div class="row">
+                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Benefit : </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col" style="background-color: rgb(11, 8, 36); width: 48%; height: fit-content; border-radius: 15px 15px 15px 15px; margin-left: 3%; height: 270px;">
+                    <div class="col" style="font-family: NOMA">
+                      <div class="row">
+                        <div class="col" style="font-size: 20px">STAFF</div>
+                        <div class="col-1" style="margin-right: -2%">
+                          <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
+                        </div>
+                      </div>
+                      <table class="table table-striped table-hover" style="color: white; text-align: center">
+                          <thead>
+                            <tr class="1" style="font-size: 15px">
+                              <th scope="col">Last Name</th>
+                              <th scope="col">First Name</th>
+                              <th scope="col">Role</th>
+                            </tr>
+                            <tr class="data" v-for="s of staff" v-bind:key="s.staffID" @click="openStaff()">
+                              <td>{{ s.staffID }}</td>
+                              <td>{{ s.name }}</td>
+                              <td>{{ s.role }}</td>
+                            </tr>
+                          </thead>
+                        </table>
+                    </div>
+                  </div>
                 </div>
-                <div class="case-staff">
-                  <span class="text16"><span>STAFF</span></span>
-                  <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-                  <span class="text21"><span>Txt.</span></span>
-                  <img src="@/assets/image/Frame.png" alt="Icon_staff" class="frame" />
-                </div>
-                <div class="case-information">
-                  <span class="text18"><span>INFORMATION</span></span>
-                  <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
-                  <span class="text19"><span><ul>
-                                              <li>Name :</li>
-                                              <li>Type :</li>
-                                              <li>CLient :</li>
-                                              <li>Start Date :</li>
-                                              <li>End Date :</li>
-                                              <li>Benefits :</li>
-                                              <li>State :</li>
-                                            </ul></span></span>
-                </div>
-                <button type="button" class="save-button">
-                  <span class="text20"><span>SAVE</span></span>
-                  <img src="@/assets/image/save.svg" alt="Icon_save" class="saveimg" />
-                </button>
+                  
+
+                  <div class="col" style="background-color: rgb(11, 8, 36); width: 102%; height: 270px; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
+                    <div class="col" style="margin-left: 2%; margin-right:2%;font-family: NOMA">
+                      <div class="row">
+                        <div class="col" style="font-size: 20px">EQUIPMENT</div>
+                        <div class="col-1" style="margin-right: -6%">
+                          <img src="@/assets/image/Vector.svg" alt="Icon_edit" class="editimg" />
+                        </div>
+                      </div>
+                        <table class="table table-striped table-hover" style="color: white;text-align: center">
+                          <thead>
+                            <tr class="2" style="font-size: 15px">
+                              <th scope="col">ID</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Condition</th>
+                              <th scope="col">Storage place</th>
+                              <th scope="col">Available</th>
+                            </tr>
+                            <tr class="data" v-for="e of equipment" v-bind:key="e.equipmentID" @click="openEquipment()">
+                              <td>{{ e.equipmentID }}</td>
+                              <td>{{ e.name }}</td>
+                              <td>{{ e.type }}</td>
+                              <td>{{ e.condition}}</td>
+                              <td>{{ e.storagePlace}}</td>
+                              <td>{{ e.available }}</td>
+                            </tr>
+                          </thead>
+                        </table>
+                    </div>
+                  </div>
+              </table>
             </div>
           </div>
         </div>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -109,226 +181,21 @@
   height: 721px;
   color: #0c0923;
 }
-
-.all-case-project {
-  top: 106px;
-  left: 18%;
-  width: 63%;
-  height: 560px;
-  display: flex;
-  position: absolute;
-  border-radius: 0px 0px 0px 0px;
-  background-color: transparent;
+.data:hover {
+    color: #d82367;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-@media only screen and (max-width: 1300px) {
-  .all-case-project {
-    margin-left: -8%;
-  }
+.save{
+    margin-right: 5%; 
+    margin-top: 0.6%; 
+    background-color: #d82367; 
+    border-color: #d82367;
 }
 
-.case-information {
-  top: 10%;
-  left: 0px;
-  width: 60%;
-  height: 216px;
-  display: flex;
-  position: absolute;
-  border-radius: 15px 15px 15px 15px;
-  background-color: rgba(17, 12, 54, 1);
+.save:hover{
+    background-color: #d823686e;
+    border-color: #d823686e;
 }
 
-.text18 {
-  top: 3%;
-  left: 3%;
-  color: rgb(255, 255, 255);
-  width: 100%;
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  font-family: NOMA;
-}
-
-.text18 :hover {
-  color: #d82367;
-}
-
-.text19 {
-  top: 20%;
-  left: 3%;
-  max-width: 500px;
-  max-height: 150px;
-  margin-right: 8%;
-  margin-left: 3%;
-  color: rgb(255, 255, 255);
-  position: relative;
-  font-size: 12px;
-  font-family: NOMA;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 15;
-  -webkit-box-orient: vertical;
-  line-height: 180%;
-}
-
-.case-staff {
-  top: 10%;
-  left: 65%;
-  width: 60%;
-  height: 216px;
-  display: flex;
-  padding: 0;
-  position: absolute;
-  border-radius: 15px 15px 15px 15px;
-  background-color: rgba(17, 12, 54, 1);
-}
-
-.frame {
-  top: 3%;
-  left: 2.5%;
-  width: 5%;
-  height: 25px;
-  position: absolute;
-}
-
-@media only screen and (max-width: 1300px) {
-  .frame {
-    display: none;
-  }
-}
-
-.text16 {
-  top: 3%;
-  left: 8%;
-  color: rgb(255, 255, 255);
-  width: 100%;
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  font-family: NOMA;
-}
-
-@media only screen and (max-width: 1300px) {
-  .text16 {
-    left: 5%;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .text16 {
-    left: 8%;
-  }
-}
-
-.text16 :hover {
-  color: #d82367;
-}
-
-.text23 {
-  top: 20%;
-  left: 3%;
-  max-width: 1500px;
-  max-height: 192px;
-  margin-right: 6%;
-  margin-left: 0;
-  color: rgb(255, 255, 255);
-  position: relative;
-  font-size: 12px;
-  font-family: NOMA;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 15;
-  -webkit-box-orient: vertical;
-}
-
-.case-equipement {
-  top: 55%;
-  left: 0px;
-  width: 125%;
-  height: 260px;
-  display: flex;
-  position: absolute;
-  border-radius: 15px 15px 15px 15px;
-  background-color: rgba(17, 12, 54, 1);
-}
-
-.text14 {
-  top: 3%;
-  left: 1.5%;
-  color: rgb(255, 255, 255);
-  width: 100%;
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  font-family: NOMA;
-}
-
-.text14 :hover {
-  color: #d82367;
-}
-
-@media only screen and (max-width: 500px) {
-  .text14 {
-    left: 4%;
-  }
-}
-
-.text21 {
-  top: 20%;
-  left: 3%;
-  max-width: 500px;
-  max-height: 150px;
-  margin-right: 8%;
-  margin-left: 3%;
-  color: rgb(255, 255, 255);
-  position: relative;
-  font-size: 12px;
-  font-family: NOMA;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 15;
-  -webkit-box-orient: vertical;
-}
-
-.save-button {
-  top: 1.5%;
-  right: -25%;
-  width: 90px;
-  height: 32px;
-  display: block;
-  position: absolute;
-  border-radius: 15px 15px 15px 15px;
-  background-color: rgba(17, 12, 54, 1);
-}
-
-.saveimg {
-  top: 23.5%;
-  right: 16%;
-  width: 15%;
-  height: auto;
-  position: absolute;
-}
-
-.editimg {
-  top: 5.5%;
-  right: 15px;
-  width: 15px;
-  height: auto;
-  position: absolute;
-}
-.text20 {
-  top: 17%;
-  left: 14%;
-  color: rgba(255, 255, 255, 1);
-  width: 42px;
-  height: auto;
-  position: absolute;
-  font-size: 16px;
-  font-family: NOMA;
-  vertical-align: center;
-}
-
-.text20 :hover {
-  color: #d82367;
-}
 </style>
