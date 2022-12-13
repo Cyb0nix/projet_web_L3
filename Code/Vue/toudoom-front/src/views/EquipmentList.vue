@@ -66,10 +66,10 @@
       <div class="col-9">
         <div class="row">
           <div class="col">
-            <h2 class="p-3">Equipments</h2>
+            <h2 class="p-3" style="margin-left: 7%; margin-top: 5%;">Equipments</h2>
           </div>
           <div class="col p-3">
-            <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" value="Add">
+            <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" value="ADD">
           </div>
         </div>
         <div class="container" style="margin-top:1.5%; margin-right: -5%; margin-left:4%">
@@ -139,13 +139,13 @@ export default {
     color: #d82367;
     background-color: rgba(255, 255, 255, 0.05);
 }
-
 .add{
-    margin-right: 5%; 
-    margin-top: 0.6%; 
-    background-color: #d82367; 
-    border-color: #d82367;
+  margin-top: 1.7%; 
+  margin-right: 3.8%; 
+  background-color: #d82367; 
+  border-color: #d82367;
 }
+
 
 .add:hover{
     background-color: #d823686e;
