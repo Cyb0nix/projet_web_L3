@@ -153,7 +153,7 @@
                               <th scope="col">Client</th>
                               <th scope="col">State</th>
                             </tr>
-                            <tr class="data" v-for="e of project" v-bind:key="e.ProjectID" @click="openProject()">
+                            <tr class="data" v-for="p of project" v-bind:key="p.ProjectID" @click="openProject()">
                               <td>{{ p.projectID }}</td>
                               <td>{{ p.projectName }}</td>
                               <td>{{ p.type }}</td>
