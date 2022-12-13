@@ -183,9 +183,17 @@ export default {
     },
 
     async getAllEquipments() {
-      let list = await this.$http.get("http://localhost:9000/toudoomapi/project/page");
-      this.projects = list.data;
-      console.log(this.equipments);
+
+      try {
+
+        let list = await this.$http.get("http://localhost:9000/toudoomapi/project/page");
+        this.projects = list.data;
+        console.log(this.equipments);
+
+      } catch (error) {
+        
+      }
+      
     },
 
     async openEquipment(){

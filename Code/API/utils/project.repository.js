@@ -63,12 +63,12 @@ module.exports = {
         }
     },
  
-    async addOneProject(projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID){ 
+    async addOneProject(projectName, type, startingDate, endingDate, isPaid, benefits, state, client){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO project (ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID) VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?) ";
+            let sql = "INSERT INTO project (projectID, projectName, type, startingDate, endingDate, isPaid, benefits, state, client) VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?) ";
             const [okPacket, fields] = await conn.execute(sql, 
-                [projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID]);
+                [projectName, type, startingDate, endingDate, isPaid, benefits, state, client]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
