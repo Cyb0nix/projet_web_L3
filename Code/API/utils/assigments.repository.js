@@ -61,12 +61,12 @@ module.exports = {
         }
     },
 
-    async addOneAssignement(projectID, staffID){ 
+    async addOneAssignement(projectID, staffID,task){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO assigments (staffstaffID, projectID, staffID) VALUES (NULL, ?, ?)"; // TODO: named parameters? :something
+            let sql = "INSERT INTO assigments (assignmentID, projectID, staffID,task) VALUES (NULL, ?, ?, ?)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [projectID, staffID]);
+                        [projectID, staffID,task]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;

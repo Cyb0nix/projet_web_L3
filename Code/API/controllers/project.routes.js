@@ -14,10 +14,10 @@ router.get('/edit/:projectID', auth.checkAuthentication("USER"), projectEditActi
 router.post('/update/:projectID', auth.checkAuthentication("USER"), projectUpdateAction);
 router.get('/staffList/:projectID', auth.checkAuthentication("USER"), projectStaffListAction);
 router.post('/addStaff/:projectID', auth.checkAuthentication("USER"), projectAddStaffAction);
-router.get('/delStaff/:projectID', auth.checkAuthentication("USER"), projectDelStaffAction);
+router.post('/delStaff/:projectID', auth.checkAuthentication("USER"), projectDelStaffAction);
 router.get('/equipmentList/:projectID', auth.checkAuthentication("USER"),projectEquipmentListAction);
 router.post('/addEquipment/:projectID', auth.checkAuthentication("USER"),projectAddEquipmentAction);
-router.get('/delEquipment/:projectID', auth.checkAuthentication("USER"), projectDelEquipmentAction);
+router.post('/delEquipment/:projectID', auth.checkAuthentication("USER"), projectDelEquipmentAction);
 
 
 
@@ -42,7 +42,7 @@ async function projectStaffListAction(request, response){
 }
 
 async function projectAddStaffAction(request,response){
-    var assigmentID = await assignementRepo.addOneAssignement(request.params.projectID, request.body.staffID);
+    var assigmentID = await assignementRepo.addOneAssignement(request.params.projectID, request.body.staffID,request.body.task);
 
     response.send(JSON.stringify(assigmentID));
     console.log('[',request.ip,'] ADDED staff to : ', request.params.projectID);
@@ -73,7 +73,7 @@ async function projectEquipmentListAction(request, response){
 
 async function projectAddEquipmentAction(request, response){
 
-    var equipmentUsedID = await equipmentRepo.addOneProjectEquipment(request.body.equipmentID,request.params.projectID);
+    var equipmentUsedID = await equipmentRepo.addOneProjectEquipment(request.body.equipmentID,request.params.projectID,request.body.startCondition,request.body.endCondition);
 
     response.send(JSON.stringify(equipmentUsedID));
 
