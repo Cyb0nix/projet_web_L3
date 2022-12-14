@@ -32,15 +32,12 @@ module.exports = {
         try {
             let conn = await pool.getConnection();
             
-            let sql = "SELECT * FROM project";
+            let sql = "SELECT * FROM project WHERE ProjectID = ?";
             const [rows, fields] = await conn.execute(sql, [ ProjectID ]);
             conn.release();
             console.log("Project FETCHED: "+rows.length);
-            if (rows.length == 1) {
-                return rows[0];
-            } else {
-                return false;
-            }
+            
+            return rows[0];
         }
         catch (err) {
             console.log(err);
