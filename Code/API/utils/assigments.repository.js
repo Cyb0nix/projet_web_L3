@@ -34,7 +34,7 @@ module.exports = {
             let sql = "SELECT staff.staffID,task,name,role FROM assigments INNER JOIN staff ON staff.staffID = assigments.staffID WHERE projectID = ?";
             const [rows, fields] = await conn.execute(sql, [ projectID ]);
             conn.release();
-            if (rows.length == 1) {
+            if (rows.length != 0) {
                 return rows;
             } else {
                 return false;
