@@ -69,38 +69,46 @@
                 <h2 class="p-3" style="margin-left: 6%; margin-top: 5%;">Project</h2>
               </div>
               <div class="col p-3">
-                <input type="button" class="btn btn-primary position-absolute top-1 end-0 add" value="Edit">
+                <input type="button" class="btn btn-primary btn-toudoom position-absolute top-1 end-0 add " value="Edit" @click="edit(project.projectID)">
               </div>
             </div>
 
-            <div class="container" style="margin-right: -5%; margin-left:4%">
+            <div class="container" style="margin-right: -5%; margin-left:4%; height: auto">
               <table class="table table-striped table-hover" style="color: white">
                 <div class="row">
-                  <div class="col" style="background-color: #110C36; width: 48%; height: 270px; border-radius: 15px 15px 15px 15px">
-                    <div class="col" style="font-family: NOMA">
+                  <div class="col" style="background-color: #110C36; width: 48%; height: auto; border-radius: 15px 15px 15px 15px">
+                    <div>
                       <div class="row">
-                        <div class="col" style="font-size: 20px; margin-bottom: 3%;">INFORMATION</div>
+                        <div class="col cat mb-3">INFORMATION</div>
+                      
                       </div>
                       <div class="row">
-                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Name : </div>
+                        <div class="col mb-2 info-name">Name : <span class="info">{{project.projectName}}</span></div>
+                        
                       </div>
                       <div class="row">
-                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Type : </div>
+                        <div class="col mb-2 info-name">Type : <span class="info">{{project.type}}</span></div>
+                        
                       </div>
                       <div class="row">
-                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Client : </div>
+                        <div class="col mb-2 info-name">Client : <span class="info">{{project.client}}</span></div>
+                        
                       </div>
                       <div class="row">
-                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Start Date : </div>
+                        <div class="col mb-2 info-name">Start Date : <span class="info">{{project.startingDate.split("T")[0]}}</span></div>
+                        
                       </div>
                       <div class="row">
-                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">End Date : </div>
+                        <div class="col mb-2 info-name">End Date : <span class="info">{{project.endingDate.split("T")[0]}}</span></div>
+                        
                       </div>
                       <div class="row">
-                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">State : </div>
+                        <div class="col mb-2 info-name">State : <span class="info">{{project.state}}</span></div>
+                        
                       </div>
-                      <div class="row">
-                        <div class="col" style="font-size: 12px; margin-bottom: 2%;">Benefit : </div>
+                      <div class="row" v-if="project.isPaid">
+                        <div class="col mb-2 info-name">Benefits : <span class="info">{{project.benefits + "€"}}</span></div>
+                        
                       </div>
                     </div>
                   </div>
@@ -110,7 +118,7 @@
                         <div class="col-1" style="margin-left: 0%; margin-top: 0.6%;">
                           <img src="@/assets/image/Frame.svg" alt="Icon_staff" class="staffimg" />
                         </div>
-                        <div class="col" style=" margin-left: -2.5%; font-family: NOMA">STAFF</div>
+                        <div class="col cat" style=" margin-left: -2.5%;">STAFF</div>
                       </div>
                       <table class="table table-striped table-hover" style="color: white; text-align: center">
                           <thead>
@@ -119,7 +127,7 @@
                               <th scope="col">First Name</th>
                               <th scope="col">Role</th>
                             </tr>
-                            <tr class="data" v-for="s of staff" v-bind:key="s.staffID" @click="openStaff()">
+                            <tr class="data" v-for="s of staff" v-bind:key="s.staffID" @click="openStaff(s.staffID)">
                               <td>{{ s.staffID }}</td>
                               <td>{{ s.name }}</td>
                               <td>{{ s.role }}</td>
@@ -131,10 +139,10 @@
                 </div>
                   
 
-                  <div class="col" style="background-color: #110C36; width: 102%; height: 270px; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
+                  <div class="col" style="background-color: #110C36; width: 102%; min-height:270px; height: auto; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
                     <div class="col" style="margin-left: 2%; margin-right:2%;">
                       <div class="row">
-                        <div class="col" style="font-family: NOMA;font-size: 20px;">EQUIPMENT</div>
+                        <div class="col cat">EQUIPMENT</div>
                       </div>
                         <table class="table table-striped table-hover" style="color: white;text-align: center">
                           <thead>
@@ -146,7 +154,7 @@
                               <th scope="col">Storage place</th>
                               <th scope="col">Available</th>
                             </tr>
-                            <tr class="data" v-for="e of equipments" v-bind:key="e.equipmentID" @click="openEquipment()">
+                            <tr class="data" v-for="e of equipments" v-bind:key="e.equipmentID" @click="openEquipment(e.equipmentID)">
                               <td>{{ e.equipmentID }}</td>
                               <td>{{ e.name }}</td>
                               <td>{{ e.type }}</td>
@@ -171,7 +179,18 @@ export default {
   data() {
     return {
       equipments: [],
-      staff : []
+      staff : [],
+      project : {
+            projectID : null,
+            projectName : null,
+            type: null,
+            isPaid : null,
+            startingDate : null,
+            endingDate : null,
+            benefits : null,
+            state : null,
+            client : null
+      }
     };
   },
   methods: {
@@ -190,15 +209,24 @@ export default {
         this.equipments = listEquipment.data;
         let listStaff = await this.$http.get("http://localhost:9000/toudoomapi/project/staffList/"+this.$route.params.id);
         this.staff = listStaff.data;
-
+        let projectInfo =await this.$http.get("http://localhost:9000/toudoomapi/project/show/"+this.$route.params.id);
+        this.project = projectInfo.data;
       } catch (error) {
         
       }
       
     },
 
-    async openEquipment(){
-      
+    async openEquipment(id){
+      this.$router.push({ name: 'equipment', params: {id : id.toString()}});
+    },
+
+    async openStaff(id){
+      this.$router.push({ name: 'staff', params: {id : id.toString()}});
+    },
+
+    async edit(id){
+      this.$router.push({ name: 'projectEdit', params: {id : id.toString()}});
     }
   },
 
@@ -211,21 +239,26 @@ export default {
 
 <style scoped>
 
-.data:hover {
-    color: #d82367;
-    background-color: rgba(255, 255, 255, 0.05);
-}
 
 .add{
     margin-top: 1.7%; 
     margin-right: 3.8%; 
-    background-color: #d82367; 
-    border-color: #d82367;
 }
 
-.add:hover{
-    background-color: #d823686e;
-    border-color: #d823686e;
+.btn-toudoom {
+--bs-btn-color: #fff;
+--bs-btn-bg: #d82367;
+--bs-btn-border-color: #d82367;
+--bs-btn-hover-color: #fff;
+--bs-btn-hover-bg: #ea095f;
+--bs-btn-hover-border-color: #ea095f;
+--bs-btn-focus-shadow-rgb: 49, 132, 253;
+--bs-btn-active-color: #fff;
+--bs-btn-active-bg: #d82367;
+--bs-btn-active-border-color: #d82367;
+--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+--bs-btn-disabled-color: #fff;
+--bs-btn-disabled-bg: #dd6090;
+--bs-btn-disabled-border-color: #dd6090;
 }
-
 </style>

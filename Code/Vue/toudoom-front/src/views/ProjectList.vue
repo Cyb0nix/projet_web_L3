@@ -292,8 +292,7 @@ export default {
 
     async addOneProject(){
       try {
-        let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/project/update/0",this.project);
-        console.log(loginResponse);
+        let postResponse = await this.$http.post("http://localhost:9000/toudoomapi/project/update/0",this.project);
         getAllProjects();
       
 
@@ -309,35 +308,9 @@ export default {
 </script>
 
 <style scoped>
-.data:hover {
-  color: #d82367;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
 .add {
   margin-right: 5%;
   margin-top: 0.6%;
 }
 
-.btn-toudoom {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #d82367;
-  --bs-btn-border-color: #d82367;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #ea095f;
-  --bs-btn-hover-border-color: #ea095f;
-  --bs-btn-focus-shadow-rgb: 49, 132, 253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #d82367;
-  --bs-btn-active-border-color: #d82367;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #dd6090;
-  --bs-btn-disabled-border-color: #dd6090;
-}
-
-.close {
-  color: #fff;
-  opacity: 1;
-}
 </style>

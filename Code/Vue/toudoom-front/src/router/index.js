@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ProjectPage from '../views/ProjectPageView.vue'
+import ProjectPage from '../views/ProjectpageView.vue'
 import ProjectEdit from '../views/ProjectEdit.vue'
 import ProjectList from '../views/ProjectList.vue'
 import EquipmentPage from '../views/EquipmentPage.vue'
@@ -25,7 +25,7 @@ const router = createRouter({
       component: ProjectPage
     },
     {
-      path: '/admin/projectEdit',
+      path: '/admin/projectEdit/:id',
       name: 'projectEdit',
       component: ProjectEdit
     },
@@ -35,33 +35,33 @@ const router = createRouter({
       component: ProjectList
     },
     {
-      path: '/admin/Equipment',
-      name: 'Equipment',
+      path: '/admin/equipment/:id',
+      name: 'equipment',
       component: EquipmentPage
     },
     {
-      path: '/admin/EquipmentEdit',
-      name: 'EquipmentEdit',
+      path: '/admin/equipmentEdit/:id',
+      name: 'equipmentEdit',
       component: EquipmentEdit
     },
     {
-      path: '/admin/EquipmentList',
-      name: 'EquipmentList',
+      path: '/admin/equipmentList',
+      name: 'equipmentList',
       component: EquipmentList
     },
     {
-      path: '/admin/Staff',
-      name: 'Staff',
+      path: '/admin/staff/:id',
+      name: 'staff',
       component: StaffPage
     },
     {
-      path: '/admin/StaffEdit',
-      name: 'StaffEdit',
+      path: '/admin/staffEdit/:id',
+      name: 'staffEdit',
       component: StaffEdit
     },
     {
-      path: '/admin/StaffList',
-      name: 'StaffList',
+      path: '/admin/staffList/:id',
+      name: 'staffList',
       component: StaffList
     },
     {
