@@ -98,6 +98,13 @@ async function StaffDelAction(request, response) {
 async function StaffUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var staffID = request.params.staffID;
+    let isFormed;
+    if (request.body.isFormed) {
+        isFormed = 1;
+    }else{
+        isFormed = 0;
+    }
+     
     if (staffID==="0"){
         staffID = await StaffRepo.addOneStaff(request.body.name, 
             request.body.discordID,  
@@ -105,23 +112,19 @@ async function StaffUpdateAction(request, response) {
             request.body.phone,
             request.body.role,
             request.body.joinDate,
-            request.body.isFormed,
-            request.body.mdp,
-            request.body.isAdmin);
+            isFormed);
         
         response.send(JSON.stringify(staffID));
         console.log('[',request.ip,'] ADDED Staff :', staffID);
     }else{
-        var available = request.body.available === undefined ? 0 : 1; 
+
         var numRows = await StaffRepo.editOneStaff(request.body.name, 
             request.body.discordID,  
             request.body.email, 
             request.body.phone,
             request.body.role,
             request.body.joinDate,
-            request.body.isFormed,
-            request.body.mdp,
-            request.body.isAdmin);
+            request.body.isFormed);
 
         console.log('[',request.ip,'] EDITED Staff :', request.params.staffID);
     } 

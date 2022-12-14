@@ -85,23 +85,21 @@
       <div class="col-9">
         <div class="row">
           <div class="col">
-            <h2 class="p-3" style="margin-left: 8%">Staff</h2>
+            <h2 class="p-3" style="margin-left: 8%">Staffs</h2>
           </div>
           <div class="col p-3">
             <input
               type="button"
               class="btn btn-primary btn-toudoom position-absolute top-1 end-0 add"
               value="ADD"
+              data-bs-toggle="modal"
+              data-bs-target="#staffAddModal"
             />
           </div>
         </div>
         <div
           class="container"
-          style="
-                  background-color: #110c36;
-                  border-radius: 15px 15px 15px 15px;
-                  height: 85%;
-                margin-top: 1.5%; margin-right: -5%; margin-left: 4%"
+          style="background-color: #110c36;border-radius: 15px 15px 15px 15px;height: 85%;margin-top: 1.5%; margin-right: -5%; margin-left: 4%"
         >
           <table class="table table-striped table-hover" style="color: white">
             <thead>
@@ -117,9 +115,9 @@
               </tr>
               <tr
                 class="data"
-                v-for="s of staff"
-                v-bind:key="p.staffID"
-                @click="openStaff()"
+                v-for="s of staffs"
+                v-bind:key="s.staffID"
+                @click="openStaff(s.staffID)"
               >
                 <td>{{ s.staffID }}</td>
                 <td>{{ s.name }}</td>
@@ -136,7 +134,185 @@
       </div>
     </div>
   </div>
+
+  <div
+    class="modal fade"
+    id="staffAddModal"
+    tabindex="-1"
+    aria-labelledby="staffAddModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #0c0923; color: white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staffAddModalLabel">Add a new staff</h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            style="color: #ffff; opacity: 1"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form action="">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <label for="projectName" class="form-label">Staff Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="projectName"
+                    placeholder="Prénom Nom"
+                    v-model="staff.name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectStartingDate" class="form-label"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="projectStartingDate"
+                    placeholder="prénom.nom@toudoom.fr"
+                    v-model="staff.email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectClient" class="form-label">Discord</label>
+                  <input
+                    placeholder="Discord#3209"
+                    type="text"
+                    class="form-control"
+                    id="projectClient"
+                    v-model="staff.discordID"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="projectType" class="form-label">Role</label>
+                  <input
+                    type="text"
+                    placeholder="Membre"
+                    class="form-control"
+                    id="projectType"
+                    v-model="staff.role"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectEndingDate" class="form-label">Phone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="projectEndingDate"
+                    placeholder="06XXXXXXXX"
+                    v-model="staff.phone"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="projectState" class="form-label">Join Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="projectEndingDate"
+                    v-model="staff.joinDate"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="isFormed" v-model="staff.isFormed">
+                  <label class="form-check-label" for="isFormed">
+                    is Formed
+                  </label>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-toudoom"
+              @click="addOneStaff()"
+              data-bs-dismiss="modal"
+            >
+              Create Project
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </template>
+
+<script>
+export default {
+  name: "projectList",
+  data() {
+    return {
+      staffs: [],
+
+      staff: {
+        staffID : null,
+        name : null,
+        discordID : null,
+        email : null,
+        phone : null,
+        role : null,
+        joinDate : null,
+        isFormed : null,
+      },
+    };
+  },
+  methods: {
+    async logout() {
+      try {
+        let logoutResponse = await this.$http.get(
+          "http://localhost:9000/toudoomapi/auth/logout"
+        );
+        console.log(logoutResponse);
+        this.$router.push({ name: "home" });
+      } catch (error) {}
+    },
+
+    async getAllStaffs() {
+      let list = await this.$http.get("http://localhost:9000/toudoomapi/staff/list");
+      this.staffs = list.data;
+    },
+
+    async openStaff(id) {
+      this.$router.push({ name: "staff", params: { id: id.toString() } });
+    },
+
+    async addOneStaff() {
+      try {
+        console.log(this.staff);
+        let postResponse = await this.$http.post("http://localhost:9000/toudoomapi/staff/update/0",this.staff);
+        console.log(postResponse);
+        
+        getAllStaffs();
+      } catch (error) {}
+    },
+  },
+
+  created() {
+    this.getAllStaffs();
+  },
+};
+</script>
 
 <style scoped>
 

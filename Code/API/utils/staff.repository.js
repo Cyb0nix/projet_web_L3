@@ -11,9 +11,7 @@ module.exports = {
             "phone" : null,
             "role" : null,
             "joinDate" : null,
-            "isFormed" : null,
-            "mdp" : null,
-            "isAdmin" : null
+            "isFormed" : null
         }
     },
 
@@ -64,12 +62,12 @@ module.exports = {
             throw err; 
         }
     },
-    async addOneStaff(name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
+    async addOneStaff(name, discordID, email, phone, role, joinDate, isFormed){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO staff (staffID, name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin) VALUES (NULL, ?, ?, ?, ?, ?, now(), ?, ?, 0)"; // TODO: named parameters? :something
+            let sql = "INSERT INTO staff (staffID, name, discordID, email, phone, role, joinDate, isFormed) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [name,discordID,email,phone,role,isFormed,mdp,isAdmin]);
+                        [name,discordID,email,phone,role,joinDate,isFormed]);
             conn.release();
             console.log("INSERT "+JSON.stringify(okPacket));
             return okPacket.insertId;
@@ -80,12 +78,12 @@ module.exports = {
         }
     },
 
-    async editOneStaff(staffID, name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin){ 
+    async editOneStaff(staffID, name, discordID, email, phone, role, joinDate, isFormed){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE staff SET name=?, discordID=?, email=?, phone=?, role=?, joinDate=?, isFormed=?, mdp=?, isAdmin=?, WHERE staffID=?"; // TODO: named parameters? :something
+            let sql = "UPDATE staff SET name=?, discordID=?, email=?, phone=?, role=?, joinDate=?, isFormed=? WHERE staffID=?"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
-                        [name, discordID, email, phone, role, joinDate, isFormed, mdp, isAdmin, staffID]);
+                        [name, discordID, email, phone, role, joinDate, isFormed, staffID]);
             conn.release();
             console.log("UPDATE "+JSON.stringify(okPacket));
             return okPacket.affectedRows;
