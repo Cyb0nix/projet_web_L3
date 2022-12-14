@@ -9,7 +9,7 @@ const equipmentRepo = require('../utils/equipmentused.repository');
 router.get('/', auth.checkAuthentication("USER"), projectRootAction);
 router.get('/list', auth.checkAuthentication("USER"), projectListAction);
 router.get('/show/:projectID', auth.checkAuthentication("USER"), projectShowAction);
-router.get('/del/:projectID', auth.checkAuthentication("ADMIN"), projectDelAction);
+router.get('/del/:projectID', auth.checkAuthentication("USER"), projectDelAction);
 router.get('/edit/:projectID', auth.checkAuthentication("USER"), projectEditAction);
 router.post('/update/:projectID', auth.checkAuthentication("USER"), projectUpdateAction);
 router.get('/staffList/:projectID', auth.checkAuthentication("USER"), projectStaffListAction);
@@ -17,7 +17,7 @@ router.post('/addStaff/:projectID', auth.checkAuthentication("USER"), projectAdd
 router.get('/delStaff/:projectID', auth.checkAuthentication("USER"), projectDelStaffAction);
 router.get('/equipmentList/:projectID', auth.checkAuthentication("USER"),projectEquipmentListAction);
 router.post('/addEquipment/:projectID', auth.checkAuthentication("USER"),projectAddEquipmentAction);
-router.get('/delEquipment/:projectID', auth.checkAuthentication("ADMIN"), projectDelEquipmentAction);
+router.get('/delEquipment/:projectID', auth.checkAuthentication("USER"), projectDelEquipmentAction);
 
 
 
@@ -86,6 +86,7 @@ async function projectDelEquipmentAction(request,response){
     var numRows = await equipmentRepo.delOneProjectEquipment(request.body.equipmentID,request.params.projectID);
 
     console.log('[',request.ip,'] DELETED equipment of project : ', request.params.projectID);
+    response.send(JSON.stringify("Deleted Equipment"));
 
 }
 
@@ -104,6 +105,7 @@ async function projectEditAction(request, response) {
 async function projectDelAction(request, response) {
     var numRows = await projectRepo.delOneProject(request.params.projectID);
     console.log('[',request.ip,'] DELETED project : ', request.params.projectID);
+    response.send(JSON.stringify("Deleted"));
 }
 
 async function projectUpdateAction(request, response) {
@@ -123,20 +125,20 @@ async function projectUpdateAction(request, response) {
         response.send(JSON.stringify(projectID));
         console.log('[',request.ip,'] ADDED project : ', projectID);
     }else{
-        var isPaid = request.body.isPaid === undefined ? 0 : 1;
         var numRows = await projectRepo.editOneProject(projectID,
             request.body.projectName,
             request.body.type,  
-            isPaid, 
             request.body.startingDate,
             request.body.endingDate,
+            request.body.isPaid,
             request.body.benefits,
             request.body.state,
-            request.body.clientID);
+            request.body.client);
     
         console.log('[',request.ip,'] EDITED project : ', request.params.projectID);
+        response.send(JSON.stringify(numRows));
     }
     
-}
+};
 
 module.exports = router;

@@ -68,7 +68,7 @@ module.exports = {
     async addOneEquipment(name, type, condition, available, purchaseDate, storagePlace, rentingRate, bailRate){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "INSERT INTO equipment (equipmentID, name, type, condition, available, purchaseDate, storagePlace, rentingRate, bailRate) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
+            let sql = "INSERT INTO equipment (equipmentID, name, type, state, available, purchaseDate, storagePlace, rentingRate, bailRate) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
             const [okPacket, fields] = await conn.execute(sql, 
                         [name, type, condition, available, purchaseDate, storagePlace, rentingRate, bailRate]);
             conn.release();
@@ -84,7 +84,7 @@ module.exports = {
     async editOneEquipment(equipmentID, name, type, condition, available, purchaseDate, storagePlace, rentingRate, bailRate){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE equipment SET name=?, type=?, condition=?, available=?, purchaseDate=?, storagePlace=?, rentingRate=?, bailRate=?, WHERE equipmentID=?"; // TODO: named parameters? :something
+            let sql = "UPDATE equipment SET name=?, type=?, state=?, available=?, purchaseDate=?, storagePlace=?, rentingRate=?, bailRate=? WHERE equipmentID=?"; // TODO: named parameters? :something
             const [okPacket, fields] = await conn.execute(sql, 
                         [name, type, condition, available, purchaseDate, storagePlace, rentingRate, bailRate, equipmentID]);
             conn.release();

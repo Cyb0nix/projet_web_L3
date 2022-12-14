@@ -77,7 +77,7 @@ module.exports = {
     async editOneClient(clientID, name, number, email){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE clients SET name=?, number=?, email=?, WHERE clientID=? "; 
+            let sql = "UPDATE clients SET name=?, number=?, email=? WHERE clientID=? "; 
             const [okPacket, fields] = await conn.execute(sql, 
                         [name,number,email,clientID]);
             conn.release();

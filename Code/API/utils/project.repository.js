@@ -82,7 +82,7 @@ module.exports = {
     async editOneProject(ProjectID, projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "UPDATE project SET projectName=?, type=?, startingDate=?, endingDate=?, IsPaid=?, benefits=?, state=?, ClientID=? WHERE ProjectID=?";
+            let sql = "UPDATE project SET projectName=?, type=?, startingDate=?, endingDate=?, IsPaid=?, benefits=?, state=?, Client=? WHERE ProjectID=?";
             const [okPacket, fields] = await conn.execute(sql, 
                         [projectName, type, startin_date, endingDate, IsPaid, benefits, state, ClientID, ProjectID]);
             conn.release();

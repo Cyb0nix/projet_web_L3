@@ -45,7 +45,7 @@ auth.initialization(app);
 
 // app.use(routeBase, callback);
 app.use("/toudoomapi/project", require("./controllers/project.routes"));
-app.use("/toudoomapi/equipement", require("./controllers/equipment.routes"));
+app.use("/toudoomapi/equipment", require("./controllers/equipment.routes"));
 app.use("/toudoomapi/client", require("./controllers/client.routes"));
 app.use("/toudoomapi/staff", require("./controllers/staff.routes"));
 app.use("/toudoomapi/auth", require("./controllers/auth.routes"));

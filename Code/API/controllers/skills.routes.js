@@ -7,8 +7,8 @@ const auth = require("../utils/users.auth");
 router.get('/', auth.checkAuthentication("USER"), skillsRootAction);
 router.get('/list', auth.checkAuthentication("USER"), skillsListAction);
 router.get('/show/:skillID', auth.checkAuthentication("USER"), skillsShowAction);
-router.get('/del/:skillID', auth.checkAuthentication("ADMIN"), skillsDelAction);
-router.post('/update/:skillID', auth.checkAuthentication("ADMIN"), skillsUpdateAction);
+router.get('/del/:skillID', auth.checkAuthentication("USER"), skillsDelAction);
+router.post('/update/:skillID', auth.checkAuthentication("USER"), skillsUpdateAction);
 
 
 function skillsRootAction(request, response) {

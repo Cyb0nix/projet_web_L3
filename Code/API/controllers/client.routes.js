@@ -7,9 +7,9 @@ const auth = require("../utils/users.auth");
 router.get('/', auth.checkAuthentication("USER"), clientRootAction);
 router.get('/list', auth.checkAuthentication("USER"), clientListAction);
 router.get('/show/:clientID', auth.checkAuthentication("USER"), clientShowAction);
-router.get('/del/:clientID', auth.checkAuthentication("ADMIN"), clientDelAction);
-router.get('/edit/:clientID', auth.checkAuthentication("ADMIN"), clientEditAction);
-router.post('/update/:clientID', auth.checkAuthentication("ADMIN"), clientUpdateAction);
+router.get('/del/:clientID', auth.checkAuthentication("USER"), clientDelAction);
+router.get('/edit/:clientID', auth.checkAuthentication("USER"), clientEditAction);
+router.post('/update/:clientID', auth.checkAuthentication("USER"), clientUpdateAction);
 
 
 function clientRootAction(request, response) {
@@ -43,6 +43,7 @@ async function clientEditAction(request, response) {
 async function clientDelAction(request, response) {
 
     var numRows = await clientRepo.delOneClient(request.params.clientID);
+    response.send(JSON.stringify("Deleted"));
     
     console.log('[',request.ip,'] DELETED Client : ', request.params.clientID);
 
@@ -51,12 +52,12 @@ async function clientDelAction(request, response) {
 async function clientUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var clientID = request.params.clientID;
-    if (clientID===null) {
+    if (clientID==="0") {
         clientID = await clientRepo.addOneClient(request.body.name, 
             request.body.number, 
             request.body.email);
 
-        response.send(clientID);
+        response.send(JSON.stringify(clientID));
         console.log('[',request.ip,'] ADDED Client : ', clientID);
     }else{
         var numRows = await clientRepo.editOneClient(clientID, 
@@ -65,6 +66,8 @@ async function clientUpdateAction(request, response) {
             request.body.email);
     
             console.log('[',request.ip,'] EDITED Client : ', request.params.clientID);
+        
+            response.send(JSON.stringify("Updated"));
     }
     
 }

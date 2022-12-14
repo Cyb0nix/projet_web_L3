@@ -7,7 +7,7 @@ const auth = require("../utils/users.auth");
 router.get('/', auth.checkAuthentication("USER"), equipmentRootAction);
 router.get('/list', auth.checkAuthentication("USER"), equipmentListAction);
 router.get('/show/:equipmentID', auth.checkAuthentication("USER"), equipmentShowAction);
-router.get('/del/:equipmentID', auth.checkAuthentication("ADMIN"), equipmentDelAction);
+router.get('/del/:equipmentID', auth.checkAuthentication("USER"), equipmentDelAction);
 router.get('/edit/:equipmentID', auth.checkAuthentication("USER"), equipmentEditAction);
 router.post('/update/:equipmentID', auth.checkAuthentication("USER"), equipmentUpdateAction);
 
@@ -46,38 +46,37 @@ async function equipmentEditAction(request, response) {
 async function equipmentDelAction(request, response) {
     var numRows = await equipmentRepo.delOneEquipment(request.params.equipmentID);
     console.log('[',request.ip,'] DELETED Equipment : ', request.params.equipmentID);
+    response.send(JSON.stringify("Deleted"));
 }
 async function equipmentUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var equipmentID = request.params.equipmentID;
-    if (equipmentID===null){
+    if (equipmentID==="0"){
         equipmentID = await equipmentRepo.addOneEquipment(request.body.type, 
             request.body.name,  
             request.body.condition, 
             request.body.available,
-            request.body.purchase_date,
-            request.body.storage_place,
-            request.body.renting_rate,
-            request.body.bail_rate);
+            request.body.purchaseDate,
+            request.body.storagePlace,
+            request.body.rentingRate,
+            request.body.bailRate);
         
         response.send(JSON.stringify(equipmentID));
         console.log('[',request.ip,'] ADDED Equipment : ', equipmentID);
     }else{
-        var available = request.body.available === undefined ? 0 : 1; 
         var numRows = await equipmentRepo.editOneEquipment(equipmentID, 
             request.body.type, 
             request.body.name,  
             request.body.condition, 
-            available,
-            request.body.purchase_date,
-            request.body.storage_place,
-            request.body.renting_rate,
-            request.body.bail_rate);
+            request.body.available,
+            request.body.purchaseDate,
+            request.body.storagePlace,
+            request.body.rentingRate,
+            request.body.bailRate);
 
         console.log('[',request.ip,'] EDITED Equipment : ', request.params.equipmentID);
+        response.send(JSON.stringify(numRows));
     } 
-
-    
 }
 
 module.exports = router;

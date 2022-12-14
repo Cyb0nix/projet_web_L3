@@ -98,7 +98,7 @@ async function StaffDelAction(request, response) {
 async function StaffUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var staffID = request.params.staffID;
-    if (staffID===null){
+    if (staffID==="0"){
         staffID = await StaffRepo.addOneStaff(request.body.name, 
             request.body.discordID,  
             request.body.email, 
