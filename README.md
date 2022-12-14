@@ -1,5 +1,5 @@
 # Toudoom
 
-Web Site of a Video production company with integrated internal management tool
+Web Site of a video production company with integrated internal management tool
 
 by Cédric Yoganathan, Julien Starck, Romain Dubois
