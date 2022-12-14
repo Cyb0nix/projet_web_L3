@@ -2,7 +2,7 @@
 
 <template>
   <div style="background-color: #0c0923">
-    <div class="row" style="--bs-gutter-x: 0">
+    <div class="row text-white" style="--bs-gutter-x: 0">
       <div class="col-md-auto">
         <!-- SideBar -->
         <div
@@ -92,14 +92,14 @@
               type="button"
               class="btn btn-primary position-absolute top-1 end-0 add"
               value="Edit"
+              @click="edit(staff.staffID)"
             />
           </div>
         </div>
         <div class="container" style="margin-right: -5%; margin-left: 4%">
-          <table class="table table-striped table-hover" style="color: white">
+          
             <div class="row">
               <div
-                class="col"
                 style="
                   background-color: #110c36;
                   width: 48%;
@@ -107,60 +107,49 @@
                   border-radius: 15px 15px 15px 15px;
                 "
               >
-                <div class="col" style="font-family: NOMA">
+                <div class="col">
                   <div class="row">
-                    <div class="col" style="font-size: 20px; margin-bottom: 3%">
+                    <div class="col cat mb-3">
                       INFORMATION
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col" style="font-size: 12px; margin-bottom: 2%">
-                      Name :
+                    <div class="col info-name mb-2">
+                      Name : <span class="info">{{ staff.name }}</span>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col" style="font-size: 12px; margin-bottom: 2%">
-                      Discord_ID :
+                    <div class="col info-name mb-2">
+                      Discord ID : <span class="info">{{ staff.discordID }}</span>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col" style="font-size: 12px; margin-bottom: 2%">
-                      Email :
+                    <div class="col info-name mb-2">
+                      Email : <span class="info">{{ staff.email }}</span>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col" style="font-size: 12px; margin-bottom: 2%">
-                      Phone :
+                    <div class="col info-name mb-2">
+                      Phone : <span class="info">{{ staff.phone }}</span>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col" style="font-size: 12px; margin-bottom: 2%">
-                      Join Date :
+                    <div class="col info-name mb-2">
+                      Join Date : <span class="info">{{ staff.joinDate }}</span>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col" style="font-size: 12px; margin-bottom: 2%">
-                      Is Formed :
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col" style="font-size: 12px; margin-bottom: 2%">
-                      Is Admin :
+                    <div class="col info-name mb-2">
+                      Is Formed : <span class="info">{{ staff.isFormed }}</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div
                 class="col"
-                style="
-                  background-color: #110c36;
-                  width: 48%;
-                  border-radius: 15px 15px 15px 15px;
-                  margin-left: 3%;
-                  height: 270px;
-                "
+                style="background-color: #110c36;width: 48%;border-radius: 15px 15px 15px 15px;margin-left: 3%;height: 270px;"
               >
-                <div class="col" style="font-family: NOMA">
+                <div class="col">
                   <div class="row">
                     <div class="col-1" style="margin-left: 0%; margin-top: 0.6%">
                       <img
@@ -169,7 +158,7 @@
                         class="skillimg"
                       />
                     </div>
-                    <div class="col" style="font-size: 20px; margin-left: -2.5%">
+                    <div class="col cat" style="margin-left: -2.5%">
                       STAFF SKILLS
                     </div>
                   </div>
@@ -178,17 +167,14 @@
                     style="color: white; text-align: center"
                   >
                     <thead>
-                      <tr class="1" style="font-size: 15px">
-                        <th scope="col">SkillID</th>
+                      <tr class="info-name">
                         <th scope="col">Skill</th>
                       </tr>
                       <tr
                         class="data"
                         v-for="s of skills"
                         v-bind:key="s.skillID"
-                        @click="openSkills()"
                       >
-                        <td>{{ s.skillID }}</td>
                         <td>{{ s.skill }}</td>
                       </tr>
                     </thead>
@@ -210,46 +196,105 @@
             >
               <div class="col" style="margin-left: 2%; margin-right: 2%">
                 <div class="row">
-                  <div class="col" style="font-size: 20px">PROJECT HISTORY</div>
+                  <div class="col cat">PROJECT HISTORY</div>
                 </div>
                 <table
                   class="table table-striped table-hover"
                   style="color: white; text-align: center"
                 >
                   <thead>
-                    <tr class="2" style="font-size: 15px; font-family: NOMA">
+                    <tr class="info-name" >
                       <th scope="col">ID</th>
                       <th scope="col">Name</th>
                       <th scope="col">Type</th>
-                      <th scope="col">StartDate</th>
-                      <th scope="col">EndDate</th>
+                      <th scope="col">Start Date</th>
+                      <th scope="col">End Date</th>
                       <th scope="col">Client</th>
                       <th scope="col">State</th>
                     </tr>
                     <tr
                       class="data"
-                      v-for="p of project"
+                      v-for="p of projects"
                       v-bind:key="p.ProjectID"
-                      @click="openProject()"
+                      @click="openProject(p.projectID)"
                     >
                       <td>{{ p.projectID }}</td>
                       <td>{{ p.projectName }}</td>
                       <td>{{ p.type }}</td>
                       <td>{{ p.startingDate.split("T")[0] }}</td>
                       <td>{{ p.endingDate.split("T")[0] }}</td>
-                      <td>{{ p.clientID }}</td>
+                      <td>{{ p.client }}</td>
                       <td>{{ p.state }}</td>
                     </tr>
                   </thead>
                 </table>
               </div>
             </div>
-          </table>
+          
         </div>
       </div>
     </div>
   </div>
+
+  
 </template>
+
+<script>
+export default {
+  name: "projectList",
+  data() {
+    return {
+      skills: [],
+      projects: [],
+
+      staff: {
+        staffID : null,
+        name : null,
+        discordID : null,
+        email : null,
+        phone : null,
+        role : null,
+        joinDate : null,
+        isFormed : null,
+      },
+    };
+  },
+  methods: {
+    async logout() {
+      try {
+        let logoutResponse = await this.$http.get(
+          "http://localhost:9000/toudoomapi/auth/logout"
+        );
+        console.log(logoutResponse);
+        this.$router.push({ name: "home" });
+      } catch (error) {}
+    },
+
+    async getAllData() {
+      let list = await this.$http.get("http://localhost:9000/toudoomapi/skills/list");
+      this.skills = list.data;
+      let staffInfo = await this.$http.get("http://localhost:9000/toudoomapi/staff/show/"+this.$route.params.id);
+      this.staff = staffInfo.data;
+      this.staff.joinDate = this.staff.joinDate.split("T")[0];
+
+      let projectList = await this.$http.get("http://localhost:9000/toudoomapi/staff/projects/"+this.$route.params.id);
+      this.projects = projectList.data;
+    },
+
+    async openProject(id) {
+      this.$router.push({ name: "project", params: { id: id.toString() } });
+    },
+
+    async edit(id) {
+      this.$router.push({ name: "staffEdit", params: { id: id.toString() } });
+    },
+  },
+
+  created() {
+    this.getAllData();
+  },
+};
+</script>
 
 <style scoped>
 .data:hover {

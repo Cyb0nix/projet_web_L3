@@ -249,7 +249,7 @@
               @click="addOneStaff()"
               data-bs-dismiss="modal"
             >
-              Create Project
+              Add New Staff
             </button>
           </div>
         </form>
@@ -299,7 +299,6 @@ export default {
 
     async addOneStaff() {
       try {
-        console.log(this.staff);
         let postResponse = await this.$http.post("http://localhost:9000/toudoomapi/staff/update/0",this.staff);
         console.log(postResponse);
         

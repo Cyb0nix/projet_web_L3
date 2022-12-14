@@ -13,7 +13,7 @@ module.exports = {
     async getAllProjectsOf(staffID){ 
         try {
             let conn = await pool.getConnection();
-            let sql = "SELECT Type, starting_date,ending_date, state FROM assigments INNER JOIN project p on assigments.projectID = p.projectID WHERE staffID = ?";
+            let sql = "SELECT * FROM assigments INNER JOIN project p on assigments.projectID = p.projectID WHERE staffID = ?";
             const [rows, fields] = await conn.execute(sql, [ staffID ]);
             conn.release();
             if (rows.length != 0) {
