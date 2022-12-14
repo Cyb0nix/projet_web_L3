@@ -64,7 +64,6 @@
             </div>
           </div>
           <div class="col-9">
-
             <div class="row">
               <div class="col">
                 <h2 class="p-3" style="margin-left: 6%; margin-top: 5%;">Project</h2>
@@ -106,16 +105,16 @@
                     </div>
                   </div>
                   <div class="col" style="background-color: #110C36; width: 48%; border-radius: 15px 15px 15px 15px; margin-left: 3%; height: 270px;">
-                    <div class="col" style="font-family: NOMA">
+                    <div class="col">
                       <div class="row">
                         <div class="col-1" style="margin-left: 0%; margin-top: 0.6%;">
                           <img src="@/assets/image/Frame.svg" alt="Icon_staff" class="staffimg" />
                         </div>
-                        <div class="col" style="font-size: 20px; margin-left: -2.5%;">STAFF</div>
+                        <div class="col" style=" margin-left: -2.5%; font-family: NOMA">STAFF</div>
                       </div>
                       <table class="table table-striped table-hover" style="color: white; text-align: center">
                           <thead>
-                            <tr class="1" style="font-size: 15px">
+                            <tr class="1" style="font-size: 15px; font-family: NOMA">
                               <th scope="col">Last Name</th>
                               <th scope="col">First Name</th>
                               <th scope="col">Role</th>
@@ -135,7 +134,7 @@
                   <div class="col" style="background-color: #110C36; width: 102%; height: 270px; border-radius: 15px 15px 15px 15px;margin-top: 3%; margin-left: -1%;">
                     <div class="col" style="margin-left: 2%; margin-right:2%;">
                       <div class="row">
-                        <div class="col" style="font-size: 20px">EQUIPMENT</div>
+                        <div class="col" style="font-family: NOMA;font-size: 20px;">EQUIPMENT</div>
                       </div>
                         <table class="table table-striped table-hover" style="color: white;text-align: center">
                           <thead>
@@ -147,11 +146,11 @@
                               <th scope="col">Storage place</th>
                               <th scope="col">Available</th>
                             </tr>
-                            <tr class="data" v-for="e of equipment" v-bind:key="e.equipmentID" @click="openEquipment()">
+                            <tr class="data" v-for="e of equipments" v-bind:key="e.equipmentID" @click="openEquipment()">
                               <td>{{ e.equipmentID }}</td>
                               <td>{{ e.name }}</td>
                               <td>{{ e.type }}</td>
-                              <td>{{ e.condition}}</td>
+                              <td>{{ e.state}}</td>
                               <td>{{ e.storagePlace}}</td>
                               <td>{{ e.available }}</td>
                             </tr>
@@ -171,26 +170,26 @@ export default {
   name: "projectPage",
   data() {
     return {
-      equipments: []
+      equipments: [],
+      staff : []
     };
   },
   methods: {
     async logout() {
       try {
-        // console.log("test");
-        // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
-        // console.log(logoutResponse);
+        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
 
-    async getAllEquipments() {
+    async getAllData() {
 
       try {
 
-        let list = await this.$http.get("http://localhost:9000/toudoomapi/project/page");
-        this.projects = list.data;
-        console.log(this.equipments);
+        let listEquipment = await this.$http.get("http://localhost:9000/toudoomapi/project/equipmentList/"+this.$route.params.id);
+        this.equipments = listEquipment.data;
+        let listStaff = await this.$http.get("http://localhost:9000/toudoomapi/project/staffList/"+this.$route.params.id);
+        this.staff = listStaff.data;
 
       } catch (error) {
         
@@ -204,8 +203,9 @@ export default {
   },
 
   created() {
-    this.getAllEquipments();
-  },
+    this.getAllData();
+    
+  }
 };
 </script>
 

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ProjectPage from '../views/ProjectPage.vue'
+import ProjectPage from '../views/ProjectPageView.vue'
 import ProjectEdit from '../views/ProjectEdit.vue'
 import ProjectList from '../views/ProjectList.vue'
 import EquipmentPage from '../views/EquipmentPage.vue'
@@ -20,7 +20,7 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/admin/project',
+      path: '/admin/project/:id',
       name: 'project',
       component: ProjectPage
     },

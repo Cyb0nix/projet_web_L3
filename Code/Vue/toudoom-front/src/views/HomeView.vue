@@ -147,10 +147,8 @@ export default {
         let auth = await this.$http.get("http://localhost:9000/toudoomapi/auth/protected");
 
         this.isAuth = auth.data
-
-        console.log(this.isAuth);
          
-        if (this.isAuth) {
+        if (await this.$http.get("http://localhost:9000/toudoomapi/auth/protected").data) {
         
           this.$router.push({ name: 'projectList'});
 

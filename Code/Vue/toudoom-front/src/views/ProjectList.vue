@@ -115,7 +115,7 @@ import NavbarVue from "../components/Navbar.vue";
                 class="data"
                 v-for="p of projects"
                 v-bind:key="p.projectID"
-                @click="openProject()"
+                @click="openProject(p.projectID)"
               >
                 <td>{{ p.projectID }}</td>
                 <td>{{ p.projectName }}</td>
@@ -238,6 +238,7 @@ import NavbarVue from "../components/Navbar.vue";
               type="button"
               class="btn btn-primary btn-toudoom"
               @click="addOneProject()"
+              data-bs-dismiss="modal"
             >
               Create Project
             </button>
@@ -282,10 +283,12 @@ export default {
     async getAllProjects() {
       let list = await this.$http.get("http://localhost:9000/toudoomapi/project/list");
       this.projects = list.data;
-      console.log(this.projects);
-    },
+    },  
 
-    async openProject() {},
+    async openProject(id) {
+      console.log(id.toString());
+      this.$router.push({ name: 'project', params: {id : id.toString()}});
+    },
 
     async addOneProject(){
       try {
