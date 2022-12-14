@@ -23,36 +23,41 @@ import NavbarVue from "../components/Navbar.vue";
             /></span>
           </a>
           <hr />
-          <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item" style="--bs-nav-pills-link-active-bg: #d82367">
-              <a href="#" class="nav-link active" aria-current="page">
-                <svg class="bi pe-none me-2" width="16" height="16">
-                  <use xlink:href="#home" />
-                </svg>
-                Project
-              </a>
-            </li>
+          <ul
+            class="nav nav-pills flex-column mb-auto"
+            style="--bs-nav-pills-link-active-bg: #d82367"
+          >
             <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi pe-none me-2" width="16" height="16">
-                  <use xlink:href="#speedometer2" />
-                </svg>
-                Staff
-              </a>
+              <router-link
+                to="/admin/projectList"
+                class="nav-link active text-white"
+                style="text-align: center"
+                >project</router-link
+              >
             </li>
+
             <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi pe-none me-2" width="16" height="16">
-                  <use xlink:href="#table" />
-                </svg>
-                Equipment
-              </a>
+              <router-link
+                to="/admin/staffList"
+                class="nav-link text-white"
+                style="text-align: center"
+                >Staff</router-link
+              >
+            </li>
+
+            <li>
+              <router-link
+                to="/admin/equipmentList"
+                class="nav-link text-white"
+                style="text-align: center"
+                >Equipment</router-link
+              >
             </li>
           </ul>
           <hr />
           <div class="dropdown">
             <a
-              href="#"
+              href=""
               class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -70,10 +75,10 @@ import NavbarVue from "../components/Navbar.vue";
               class="dropdown-menu dropdown-menu-dark text-small shadow"
               style="--bs-dropdown-bg: #d82367"
             >
-              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><hr class="dropdown-divider" /></li>
+              <li><hr class="dropdown-divider" /></li> -->
               <li><a class="dropdown-item" @click="logout()">Sign out</a></li>
             </ul>
           </div>
@@ -97,9 +102,11 @@ import NavbarVue from "../components/Navbar.vue";
         </div>
 
         <div
-          class="container"
-          style="margin-top: 1.5%; margin-right: -5%; margin-left: 4%"
-        >
+          class="container" style="
+                  background-color: #110c36;
+                  border-radius: 15px 15px 15px 15px;
+                  height: 85%;
+                margin-top: 1.5%; margin-right: -5%; margin-left: 4%">
           <table class="table table-striped table-hover" style="color: white">
             <thead>
               <tr class="2" style="font-size: 15px; font-family: NOMA">
@@ -211,8 +218,13 @@ import NavbarVue from "../components/Navbar.vue";
                 </div>
                 <div class="mb-3">
                   <label for="projectState" class="form-label">State</label>
-                  <select id="projectState" v-model="project.state" placeholder="Project State"
-                    required class="form-select">
+                  <select
+                    id="projectState"
+                    v-model="project.state"
+                    placeholder="Project State"
+                    required
+                    class="form-select"
+                  >
                     <option value="Stand By">Stand By</option>
                     <option value="Preparation">Preparation</option>
                     <option value="Started">Started</option>
@@ -276,21 +288,21 @@ export default {
     async getAllProjects() {
       let list = await this.$http.get("http://localhost:9000/toudoomapi/project/list");
       this.projects = list.data;
-    },  
-
-    async openProject(id) {
-      this.$router.push({ name: 'project', params: {id : id.toString()}});
     },
 
-    async addOneProject(){
-      try {
-        let postResponse = await this.$http.post("http://localhost:9000/toudoomapi/project/update/0",this.project);
-        getAllProjects();
-      
+    async openProject(id) {
+      this.$router.push({ name: "project", params: { id: id.toString() } });
+    },
 
-      } catch (error) {
-      }
-    }
+    async addOneProject() {
+      try {
+        let postResponse = await this.$http.post(
+          "http://localhost:9000/toudoomapi/project/update/0",
+          this.project
+        );
+        getAllProjects();
+      } catch (error) {}
+    },
   },
 
   created() {
@@ -306,19 +318,19 @@ export default {
 }
 
 .btn-toudoom {
---bs-btn-color: #fff;
---bs-btn-bg: #d82367;
---bs-btn-border-color: #d82367;
---bs-btn-hover-color: #fff;
---bs-btn-hover-bg: #ea095f;
---bs-btn-hover-border-color: #ea095f;
---bs-btn-focus-shadow-rgb: 49, 132, 253;
---bs-btn-active-color: #fff;
---bs-btn-active-bg: #d82367;
---bs-btn-active-border-color: #d82367;
---bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
---bs-btn-disabled-color: #fff;
---bs-btn-disabled-bg: #dd6090;
---bs-btn-disabled-border-color: #dd6090;
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #d82367;
+  --bs-btn-border-color: #d82367;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #ea095f;
+  --bs-btn-hover-border-color: #ea095f;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #d82367;
+  --bs-btn-active-border-color: #d82367;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #dd6090;
+  --bs-btn-disabled-border-color: #dd6090;
 }
 </style>

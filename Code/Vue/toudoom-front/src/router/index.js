@@ -60,7 +60,7 @@ const router = createRouter({
       component: StaffEdit
     },
     {
-      path: '/admin/staffList/:id',
+      path: '/admin/staffList/',
       name: 'staffList',
       component: StaffList
     },
