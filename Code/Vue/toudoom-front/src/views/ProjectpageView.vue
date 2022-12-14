@@ -123,14 +123,14 @@
                       <table class="table table-striped table-hover" style="color: white; text-align: center">
                           <thead>
                             <tr class="1" style="font-size: 15px; font-family: NOMA">
-                              <th scope="col">Last Name</th>
-                              <th scope="col">First Name</th>
+                              <th scope="col">Name</th>
                               <th scope="col">Role</th>
+                              <th scope="col">task</th>
                             </tr>
                             <tr class="data" v-for="s of staff" v-bind:key="s.staffID" @click="openStaff(s.staffID)">
-                              <td>{{ s.staffID }}</td>
                               <td>{{ s.name }}</td>
                               <td>{{ s.role }}</td>
+                              <td>{{ s.task }}</td>
                             </tr>
                           </thead>
                         </table>
@@ -211,6 +211,8 @@ export default {
         this.staff = listStaff.data;
         let projectInfo =await this.$http.get("http://localhost:9000/toudoomapi/project/show/"+this.$route.params.id);
         this.project = projectInfo.data;
+        this.project.startingDate = this.project.startingDate.split("T")[0];
+        this.project.endingDate = this.project.endingDate.split("T")[0];
       } catch (error) {
         
       }

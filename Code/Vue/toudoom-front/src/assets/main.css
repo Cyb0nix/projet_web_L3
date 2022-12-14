@@ -38,10 +38,16 @@ body{
     font-size: 16px;
     font-family: 'toudoom-classic';
   }
+
+.edit:hover{
+  filter: invert(29%) sepia(28%) saturate(5495%) hue-rotate(316deg) brightness(84%) contrast(102%);
+  cursor: pointer;
+}
   
 .data:hover {
       color: #d82367;
       background-color: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
   }
 
 .btn-toudoom {

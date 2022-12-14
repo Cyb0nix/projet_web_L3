@@ -82,7 +82,6 @@ export default {
       try {
         
           let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/auth/login",this.user);
-          console.log(loginResponse);
           this.$router.push({ name: 'projectList'});
         
 

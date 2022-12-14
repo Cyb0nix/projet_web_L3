@@ -211,21 +211,14 @@ import NavbarVue from "../components/Navbar.vue";
                 </div>
                 <div class="mb-3">
                   <label for="projectState" class="form-label">State</label>
-                  <input
-                    class="form-control"
-                    list="datalistOptions"
-                    v-model="project.state"
-                    id="projectState"
-                    placeholder="Project State"
-                    required
-                  />
-                  <datalist id="datalistOptions">
-                    <option value="Stand By" />
-                    <option value="Preparation" />
-                    <option value="Started" />
-                    <option value="Finish" />
-                    <option value="Canceled" />
-                  </datalist>
+                  <select id="projectState" v-model="project.state" placeholder="Project State"
+                    required class="form-select">
+                    <option value="Stand By">Stand By</option>
+                    <option value="Preparation">Preparation</option>
+                    <option value="Started">Started</option>
+                    <option value="Finish">Finish</option>
+                    <option value="Canceled">Canceled</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -286,7 +279,6 @@ export default {
     },  
 
     async openProject(id) {
-      console.log(id.toString());
       this.$router.push({ name: 'project', params: {id : id.toString()}});
     },
 
@@ -313,4 +305,20 @@ export default {
   margin-top: 0.6%;
 }
 
+.btn-toudoom {
+--bs-btn-color: #fff;
+--bs-btn-bg: #d82367;
+--bs-btn-border-color: #d82367;
+--bs-btn-hover-color: #fff;
+--bs-btn-hover-bg: #ea095f;
+--bs-btn-hover-border-color: #ea095f;
+--bs-btn-focus-shadow-rgb: 49, 132, 253;
+--bs-btn-active-color: #fff;
+--bs-btn-active-bg: #d82367;
+--bs-btn-active-border-color: #d82367;
+--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+--bs-btn-disabled-color: #fff;
+--bs-btn-disabled-bg: #dd6090;
+--bs-btn-disabled-border-color: #dd6090;
+}
 </style>
