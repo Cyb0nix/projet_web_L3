@@ -90,7 +90,7 @@
           <div class="col p-3">
             <input
               type="button"
-              class="btn btn-primary position-absolute top-1 end-0 add"
+              class="btn btn-primary position-absolute top-1 end-0 add btn-toudoom"
               value="Edit"
               @click="edit(staff.staffID)"
             />
@@ -173,8 +173,7 @@
                       <tr
                         class="data"
                         v-for="s of skills"
-                        v-bind:key="s.skillID"
-                      >
+                        v-bind:key="s.staffID">
                         <td>{{ s.skill }}</td>
                       </tr>
                     </thead>
@@ -185,14 +184,7 @@
 
             <div
               class="col"
-              style="
-                background-color: #110c36;
-                width: 102%;
-                height: 270px;
-                border-radius: 15px 15px 15px 15px;
-                margin-top: 3%;
-                margin-left: -1%;
-              "
+              style="background-color: #110c36;width: 102%;height: 270px;border-radius: 15px 15px 15px 15px;margin-top: 3%;margin-left: -1%;"
             >
               <div class="col" style="margin-left: 2%; margin-right: 2%">
                 <div class="row">
@@ -271,8 +263,9 @@ export default {
     },
 
     async getAllData() {
-      let list = await this.$http.get("http://localhost:9000/toudoomapi/skills/list");
+      let list = await this.$http.get("http://localhost:9000/toudoomapi/staff/getskill/"+this.$route.params.id);
       this.skills = list.data;
+
       let staffInfo = await this.$http.get("http://localhost:9000/toudoomapi/staff/show/"+this.$route.params.id);
       this.staff = staffInfo.data;
       this.staff.joinDate = this.staff.joinDate.split("T")[0];
@@ -297,20 +290,26 @@ export default {
 </script>
 
 <style scoped>
-.data:hover {
-  color: #d82367;
-  background-color: rgba(255, 255, 255, 0.05);
+
+.btn-toudoom {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #d82367;
+  --bs-btn-border-color: #d82367;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #ea095f;
+  --bs-btn-hover-border-color: #ea095f;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #d82367;
+  --bs-btn-active-border-color: #d82367;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #dd6090;
+  --bs-btn-disabled-border-color: #dd6090;
 }
 
 .add {
   margin-top: 1.7%;
   margin-right: 3.8%;
-  background-color: #d82367;
-  border-color: #d82367;
-}
-
-.add:hover {
-  background-color: #d823686e;
-  border-color: #d823686e;
 }
 </style>

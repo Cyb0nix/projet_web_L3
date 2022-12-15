@@ -102,12 +102,7 @@
             <div class="row">
               <div
                 class="col"
-                style="
-                  background-color: #110c36;
-                  width: 48%;
-                  height: 270px;
-                  border-radius: 15px 15px 15px 15px;
-                "
+                style="background-color: #110c36; width: 48%;height: 270px;border-radius: 15px 15px 15px 15px;"
               >
                 <div class="col">
                   <div class="row">
