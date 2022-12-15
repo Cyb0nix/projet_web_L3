@@ -339,6 +339,7 @@ export default {
     },
 
     async openEquipment(id) {
+      console.log(id);
       this.$router.push({ name: "equipment", params: { id: id.toString() } });
     },
   },

@@ -18,7 +18,7 @@ module.exports = {
     return function (request, response, next) {
       if (request.isAuthenticated()) {
         if (role) {
-          if (role === request.user.userRole) { 
+          if (role === request.user.userRole || 'ADMIN' === request.user.userRole) { 
             return next();
           } else {
             return response.end("401 Unautorized (bad user level)"); // TODO: Hierarchy

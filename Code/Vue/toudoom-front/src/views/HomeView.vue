@@ -74,7 +74,7 @@ import Footer from '../components/Footer.vue';
           <div class="col-sm-7">
             <h2>What is Toudoom ?</h2>
             <p class="left">
-              Besides its name recalling a famous video streaming platform, Toudoom
+              Besides it's name recalling a famous video streaming platform, Toudoom
               is the video production association of the Efrei, this association
               will allow you to attend many Efreien events live on the
               campus and off. Our team takes care of making recordings

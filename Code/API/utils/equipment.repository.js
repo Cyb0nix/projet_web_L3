@@ -34,7 +34,7 @@ module.exports = {
         try {
             let conn = await pool.getConnection();
             
-            let sql = "SELECT * FROM equipment";
+            let sql = "SELECT * FROM equipment WHERE equipmentID = ?";
             const [rows, fields] = await conn.execute(sql, [ equipmentID ]);
             conn.release();
             console.log("Equipment FETCHED: "+rows.length);
