@@ -16,6 +16,7 @@ const instance = axios.create({
   })
 
 app.use(VueAxios, instance)
+
 app.use(router)
 
 app.mount('#app')

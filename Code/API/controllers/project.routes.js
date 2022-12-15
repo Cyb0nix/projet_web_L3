@@ -9,7 +9,7 @@ const equipmentRepo = require('../utils/equipmentused.repository');
 router.get('/', auth.checkAuthentication("USER"), projectRootAction);
 router.get('/list', auth.checkAuthentication("USER"), projectListAction);
 router.get('/show/:projectID', auth.checkAuthentication("USER"), projectShowAction);
-router.get('/del/:projectID', auth.checkAuthentication("USER"), projectDelAction);
+router.get('/del/:projectID', auth.checkAuthentication("ADMIN"), projectDelAction);
 router.get('/edit/:projectID', auth.checkAuthentication("USER"), projectEditAction);
 router.post('/update/:projectID', auth.checkAuthentication("USER"), projectUpdateAction);
 router.get('/staffList/:projectID', auth.checkAuthentication("USER"), projectStaffListAction);

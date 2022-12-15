@@ -47,6 +47,8 @@ import NavbarVue from "../components/Navbar.vue";
             />
           </div>
 
+          <p>{{rep}}</p>
+
           <div style="text-align: end; padding-top: 5%">
             <input
               class="btn btn-primary"
@@ -75,14 +77,32 @@ export default {
         username: null,
         password: null,
       },
+      rep : " ",
     };
   },
   methods: {
     async login() {
       try {
         
-          let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/auth/login",this.user);
+        let loginResponse = await this.$http.post("http://localhost:9000/toudoomapi/auth/login",this.user);
+        this.rep = loginResponse.data;
+        if (loginResponse.data == 'Invalid credentials provided') {
+          this.rep = loginResponse.data;
+        } else {
+          this.rep = loginResponse.data;
+          localStorage.setItem('LoggedUser',this.rep);
+          localStorage.role = this.rep.userRole;
+          localStorage.username = this.rep.username;
+        }
+        console.log(this.rep)
+        let auth = await this.$http.get("http://localhost:9000/toudoomapi/auth/protected");
+
+        this.isAuth = auth.data
+        if ( this.isAuth) {
+        
           this.$router.push({ name: 'projectList'});
+
+        }
         
 
       } catch (error) {
@@ -123,7 +143,7 @@ label {
   position: absolute;
   text-align: center;
   width: 490px;
-  height: 320px;
+  height: 360px;
   background: #110c36;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;

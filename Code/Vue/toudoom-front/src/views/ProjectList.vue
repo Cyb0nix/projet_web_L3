@@ -1,5 +1,4 @@
 <script setup>
-import NavbarVue from "../components/Navbar.vue";
 </script>
 
 <template>
@@ -69,7 +68,7 @@ import NavbarVue from "../components/Navbar.vue";
                 height="32"
                 class="rounded-circle me-2"
               />
-              <strong>User</strong>
+              <strong>USER</strong>
             </a>
             <ul
               class="dropdown-menu dropdown-menu-dark text-small shadow"
@@ -117,7 +116,7 @@ import NavbarVue from "../components/Navbar.vue";
                 <th scope="col">EndDate</th>
                 <th scope="col">Client</th>
                 <th scope="col">State</th>
-                <th scope="col">...</th>
+                <th scope="col" v-if="this.isAdmin">...</th>
               </tr>
               <tr
                 class="data"
@@ -132,7 +131,7 @@ import NavbarVue from "../components/Navbar.vue";
                 <td @click="openProject(p.projectID)">{{ p.endingDate.split("T")[0] }}</td>
                 <td @click="openProject(p.projectID)">{{ p.client }}</td>
                 <td @click="openProject(p.projectID)">{{ p.state }}</td>
-                <td>   
+                <td v-if="this.isAdmin">   
                   <img src="@/assets/trash-ico.svg" alt="" style="height: 2.5vh" class="edit" @click="delProject(p)"/>
                 </td>
               </tr>
@@ -265,6 +264,8 @@ export default {
     return {
       projects: [],
 
+      isAdmin: false,
+
       project: {
         projectID: null,
         projectName: null,
@@ -281,17 +282,21 @@ export default {
   methods: {
     async logout() {
       try {
-        let logoutResponse = await this.$http.get(
-          "http://localhost:9000/toudoomapi/auth/logout"
-        );
-        console.log(logoutResponse);
+        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        localStorage.removeItem('LoggedUser')
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
 
+
     async getAllProjects() {
       let list = await this.$http.get("http://localhost:9000/toudoomapi/project/list");
       this.projects = list.data;
+     
+      if (localStorage.role == 'ADMIN') {
+        this.isAdmin = true;
+      }
+
     },
 
 

@@ -9,7 +9,7 @@ const auth = require("../utils/users.auth");
 router.get('/', auth.checkAuthentication("USER"), StaffRootAction);
 router.get('/list', auth.checkAuthentication("USER"), StaffListAction);
 router.get('/show/:staffID', auth.checkAuthentication("USER"), StaffShowAction);
-router.get('/del/:staffID', StaffDelAction);
+router.get('/del/:staffID', auth.checkAuthentication("ADMIN"),StaffDelAction);
 router.get('/edit/:staffID', auth.checkAuthentication("USER"), StaffEditAction);
 router.post('/update/:staffID', auth.checkAuthentication("USER"), StaffUpdateAction);
 router.get('/formed', auth.checkAuthentication("USER"), StaffFormed);

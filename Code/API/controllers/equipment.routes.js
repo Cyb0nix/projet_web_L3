@@ -8,7 +8,7 @@ const usage = require("../utils/equipmentused.repository");
 router.get('/', auth.checkAuthentication("USER"), equipmentRootAction);
 router.get('/list', auth.checkAuthentication("USER"), equipmentListAction);
 router.get('/show/:equipmentID', auth.checkAuthentication("USER"), equipmentShowAction);
-router.get('/del/:equipmentID', auth.checkAuthentication("USER"), equipmentDelAction);
+router.get('/del/:equipmentID', auth.checkAuthentication("ADMIN"), equipmentDelAction);
 router.get('/edit/:equipmentID', auth.checkAuthentication("USER"), equipmentEditAction);
 router.post('/update/:equipmentID', auth.checkAuthentication("USER"), equipmentUpdateAction);
 router.get('/getProjects/:equipmentID',auth.checkAuthentication("USER"),equipmentProjectsAction);

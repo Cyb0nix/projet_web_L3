@@ -112,7 +112,7 @@
                 <th scope="col">Role</th>
                 <th scope="col">Joining Date</th>
                 <th scope="col">Is Formed</th>
-                <th scope="col">...</th>
+                <th scope="col" v-if="this.isAdmin">...</th>
               </tr>
               <tr
                 class="data"
@@ -129,7 +129,7 @@
                 <td @click="openStaff(s.staffID)">{{ s.joinDate.split("T")[0] }}</td>
                 <td @click="openStaff(s.staffID)">{{ s.isFormed }}</td>
                 <td>   
-                  <img src="@/assets/trash-ico.svg" alt="" style="height: 2.5vh" class="edit" @click="delStaff(s)"/>
+                  <img src="@/assets/trash-ico.svg" v-if="this.isAdmin" alt="" style="height: 2.5vh" class="edit" @click="delStaff(s)"/>
                 </td>
               </tr>
             </thead>
@@ -269,6 +269,8 @@ export default {
     return {
       staffs: [],
 
+      isAdmin: false,
+
       staff: {
         staffID : null,
         name : null,
@@ -284,17 +286,19 @@ export default {
   methods: {
     async logout() {
       try {
-        let logoutResponse = await this.$http.get(
-          "http://localhost:9000/toudoomapi/auth/logout"
-        );
-        console.log(logoutResponse);
+        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        localStorage.removeItem('LoggedUser')
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
 
+
     async getAllStaffs() {
       let list = await this.$http.get("http://localhost:9000/toudoomapi/staff/list");
       this.staffs = list.data;
+      if (localStorage.role == 'ADMIN') {
+        this.isAdmin = true;
+      }
     },
 
     async openStaff(id) {

@@ -11,6 +11,20 @@ import StaffEdit from '../views/StaffEdit.vue'
 import StaffList from '../views/StaffList.vue'
 import LoginView from '../views/LoginView.vue'
 
+function routeGuard(to, from, next)
+{
+ var isAuthenticated= false;
+ if(localStorage.getItem('LoggedUser'))
+  isAuthenticated = true;
+ else
+  isAuthenticated= false;
+if(isAuthenticated) {
+  next(); // allow to enter route
+ } else{
+  next('/login'); // go to '/login';
+ }
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -22,47 +36,56 @@ const router = createRouter({
     {
       path: '/admin/project/:id',
       name: 'project',
-      component: ProjectPage
+      component: ProjectPage,
+      beforeEnter: routeGuard,
     },
     {
       path: '/admin/projectEdit/:id',
       name: 'projectEdit',
-      component: ProjectEdit
+      component: ProjectEdit,
+      beforeEnter: routeGuard
     },
     {
       path: '/admin/projectList',
       name: 'projectList',
-      component: ProjectList
+      component: ProjectList,
+      beforeEnter: routeGuard
     },
     {
       path: '/admin/equipment/:id',
       name: 'equipment',
-      component: EquipmentPage
+      component: EquipmentPage,
+      beforeEnter: routeGuard
     },
     {
       path: '/admin/equipmentEdit/:id',
       name: 'equipmentEdit',
-      component: EquipmentEdit
+      component: EquipmentEdit,
+      beforeEnter: routeGuard
     },
     {
       path: '/admin/equipmentList',
       name: 'equipmentList',
-      component: EquipmentList
+      component: EquipmentList,
+      beforeEnter: routeGuard
     },
     {
       path: '/admin/staff/:id',
       name: 'staff',
-      component: StaffPage
+      component: StaffPage,
+      beforeEnter: routeGuard
     },
     {
       path: '/admin/staffEdit/:id',
       name: 'staffEdit',
-      component: StaffEdit
+      component: StaffEdit,
+      beforeEnter: routeGuard
     },
     {
       path: '/admin/staffList/',
       name: 'staffList',
-      component: StaffList
+      component: StaffList,
+      beforeEnter: routeGuard
     },
     {
       path: '/login',
@@ -71,5 +94,9 @@ const router = createRouter({
     }
   ]
 })
+
+
+
+
 
 export default router

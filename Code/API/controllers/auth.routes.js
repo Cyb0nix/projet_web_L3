@@ -18,6 +18,7 @@ async function userAction(request, response) {
 }
 
 async function protectedAction(request, response) {
+  console.log("Auth check")
   if (request.isAuthenticated()) {
     response.send(true)
   } else {

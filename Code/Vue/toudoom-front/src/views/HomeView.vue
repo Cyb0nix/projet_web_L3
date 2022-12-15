@@ -53,14 +53,14 @@ import Footer from '../components/Footer.vue';
     <img src="@/assets/image/bg_1.png" class="bg-image-blur" alt="" />
     <div class="title">
       <img class="toudoom" src="@/assets/image/logo.svg" alt="" />
-      <h1 class="subtitle">Association de production vidéo de l'Efrei</h1>
+      <h1 class="subtitle">Efrei Video Production Association</h1>
     </div>
     <div class="classique" id="live" style="margin-top: -2vh">
       <div style="padding-left: 20%; padding-right: 20%; padding-top: 19vh">
         <div class="ratio ratio-16x9">
-          <!-- <iframe
+          <iframe
             src="https://www.youtube.com/embed/-lXaAgf7f8I?start=0&autoplay=O&loop=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3&fs=0&color=white&controls=0&playlist=-lXaAgf7f8I&vq=hd1080"
-          ></iframe> -->
+          ></iframe>
         </div>
       </div>
     </div>
@@ -72,29 +72,29 @@ import Footer from '../components/Footer.vue';
             <img src="@/assets/image/logo.svg" style="margin-right: 3%" alt="" />
           </div>
           <div class="col-sm-7">
-            <h2>Qu'est ce que Toudoom</h2>
+            <h2>What is Toudoom ?</h2>
             <p class="left">
-              Outre son nom rappelant une célèbre plateforme de streaming vidéo, Toudoom
-              est l'associaton de production vidéo de l'Efrei, cette association vous
-              permettra d'assister en direct à de nombreux événements efreiens sur le
-              campus et en dehors. Notre équipe s'occupe de réaliser des captations
-              vidéos, des émissions et la diffusion en direct des actualités de l'école et
-              de la vie étudiante. Avec sa passion pour la vidéo et un matériel
-              audio-visuel semi-professionnel, elle vous proposera un contenu immersif de
-              qualité pour être sûr que vous ne passiez à côté d'aucun moment majeur.
+              Besides its name recalling a famous video streaming platform, Toudoom
+              is the video production association of the Efrei, this association
+              will allow you to attend many Efreien events live on the
+              campus and off. Our team takes care of making recordings
+              videos, broadcasts and live streaming of school news and
+              of student life. With his passion for video and material
+              semi-professional audio-visual, it will offer you immersive content from
+              quality to make sure you don't miss any major moments.
             </p>
           </div>
         </div>
         <div class="row" style="padding: 2%">
           <div class="col-sm-7">
-            <h2>Des captations</h2>
+            <h2>Recordings</h2>
             <p>
-              Que serait Toudoom sans ses captations de tous les évènements de l’école ?
-              Que ce soit des concerts, des spectacles, des débats ou des compétitions,
-              les caméras 4K de Toudoom sont là pour enregistrer pour vous ces moments
-              mémorables dans les meilleures conditions possibles. Et parce que vous
-              n’avez pas forcément pu y assister en direct sur Twitch, vous pourrez en
-              plus les retrouver en rediffusion pour être sûr de ne rien louper.
+              What would Toudoom be without its recordings of all school events?
+              Whether concerts, shows, debates or competitions,
+              Toudoom's 4K cameras are here to record those moments for you
+              memorable in the best possible conditions. And because you
+              have not necessarily been able to attend live on Twitch, you can
+              no longer find them on replay to be sure not to miss anything.
             </p>
           </div>
           <div class="col-sm-5">
@@ -114,14 +114,14 @@ import Footer from '../components/Footer.vue';
             />
           </div>
           <div class="col-sm-7">
-            <h2>Des Régies</h2>
+            <h2>Video control rooms</h2>
             <p>
-              Mais, que serait nos captations sans notre régie ? Notre équipe dévouée
-              s’active derrière les caméras pour vous fournir une réalisation digne des
-              plus grand. Que ce soit à l’installation du plateau, le mixage audio, les
-              changements de caméras, le passage des assets, la modération et toute la
-              préparation en amont, Toudoom s’évertue à vous fournir les meilleures
-              prestations possibles.
+              But, what would our recordings be without our management? Our dedicated team
+              is active behind the cameras to provide you with an achievement worthy of the
+              biggers. Whether it's setting up the set, audio mixing,
+              camera changes, assets passing, moderation and all the
+              upstream preparation, Toudoom strives to provide you with the best
+              possible services.
             </p>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default {
 
         this.isAuth = auth.data
          
-        if (await this.$http.get("http://localhost:9000/toudoomapi/auth/protected").data) {
+        if (this.isAuth) {
         
           this.$router.push({ name: 'projectList'});
 

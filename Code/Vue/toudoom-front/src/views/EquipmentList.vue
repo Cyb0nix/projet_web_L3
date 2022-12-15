@@ -110,7 +110,7 @@
                 <th scope="col">Condition</th>
                 <th scope="col">Storage Place</th>
                 <th scope="col">Available</th>
-                <th scope="col">...</th>
+                <th scope="col" v-if="this.isAdmin">...</th>
               </tr>
               <tr
                 class="data"
@@ -124,7 +124,7 @@
                 <td @click="openEquipment(e.equipmentID)">{{ e.storagePlace }}</td>
                 <td @click="openEquipment(e.equipmentID)">{{ e.available }}</td>
                 <td @click="openEquipment(e.equipmentID)">   
-                  <img src="@/assets/trash-ico.svg" alt="" style="height: 2.5vh" class="edit" @click="delEquipment(e)"/>
+                  <img v-if="this.isAdmin" src="@/assets/trash-ico.svg" alt="" style="height: 2.5vh" class="edit" @click="delEquipment(e)"/>
                 </td>
               </tr>
             </thead>
@@ -292,6 +292,8 @@ export default {
     return {
       equipments: [],
 
+      isAdmin : false,
+
       equipment:{
         equipmentID: null,
         type: null,
@@ -309,14 +311,18 @@ export default {
     async logout() {
       try {
         let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
-        console.log(logoutResponse);
+        localStorage.removeItem('LoggedUser')
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
 
+
     async getAllEquipments() {
       let list = await this.$http.get("http://localhost:9000/toudoomapi/equipment/list");
       this.equipments = list.data;
+      if (localStorage.role == 'ADMIN') {
+        this.isAdmin = true;
+      }
     },
 
     async delEquipment(id) {

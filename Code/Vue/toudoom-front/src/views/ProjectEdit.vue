@@ -571,12 +571,12 @@ export default {
   methods: {
     async logout() {
       try {
-        // console.log("test");
-        // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
-        // console.log(logoutResponse);
+        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        localStorage.removeItem('LoggedUser')
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
+
 
     async save() {
       this.$router.push({ name: "project", params: { id: this.$route.params.id } });

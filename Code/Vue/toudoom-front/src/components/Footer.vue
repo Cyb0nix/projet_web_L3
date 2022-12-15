@@ -32,9 +32,7 @@
     </div>
 
     <div class="footer-left">
-      <p class="footer-links">
-        <a class="link-1" href="../html/apropos.html">À Propos</a>
-      </p>
+      
 
       <p>Toudoom &copy; 2022</p>
     </div>

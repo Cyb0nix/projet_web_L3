@@ -463,13 +463,12 @@ export default {
   methods: {
     async logout() {
       try {
-        let logoutResponse = await this.$http.get(
-          "http://localhost:9000/toudoomapi/auth/logout"
-        );
-        console.log(logoutResponse);
+        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        localStorage.removeItem('LoggedUser')
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
+
 
     async getAllData() {
       let listskill = await this.$http.get("http://localhost:9000/toudoomapi/staff/getskill/"+this.$route.params.id);
