@@ -67,8 +67,8 @@ async function equipmentUpdateAction(request, response) {
     // response.send("UPDATE ACTION");
     var equipmentID = request.params.equipmentID;
     if (equipmentID==="0"){
-        equipmentID = await equipmentRepo.addOneEquipment(request.body.type, 
-            request.body.name,  
+        equipmentID = await equipmentRepo.addOneEquipment(request.body.name, 
+            request.body.type,  
             request.body.state, 
             isAvailable,
             request.body.purchaseDate,
@@ -80,8 +80,8 @@ async function equipmentUpdateAction(request, response) {
         console.log('[',request.ip,'] ADDED Equipment : ', equipmentID);
     }else{
         var numRows = await equipmentRepo.editOneEquipment(equipmentID, 
-            request.body.type, 
-            request.body.name,  
+            request.body.name, 
+            request.body.type,  
             request.body.state, 
             isAvailable,
             request.body.purchaseDate,

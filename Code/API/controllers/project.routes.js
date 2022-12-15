@@ -87,7 +87,6 @@ async function projectDelEquipmentAction(request,response){
     var numRows = await equipmentRepo.delOneProjectEquipment(request.body.equipmentID,request.params.projectID);
 
     console.log('[',request.ip,'] DELETED equipment of project : ', request.params.projectID);
-    response.send(JSON.stringify("Deleted Equipment"));
     response.send(JSON.stringify("del", numRows));
 
 }
