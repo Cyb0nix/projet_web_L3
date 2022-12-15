@@ -38,11 +38,8 @@ module.exports = {
             const [rows, fields] = await conn.execute(sql, [ equipmentID ]);
             conn.release();
             console.log("Equipment FETCHED: "+rows.length);
-            if (rows.length == 1) {
-                return rows[0];
-            } else {
-                return false;
-            }
+            return rows[0];
+           
         }
         catch (err) {
             console.log(err);

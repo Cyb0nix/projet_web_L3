@@ -15,17 +15,13 @@ module.exports = {
     async getProjectsOf(equipmentID){ 
         try {
             let conn = await pool.getConnection();
-            // sql = "SELECT * FROM cars INNER JOIN brands ON car_brand=brand_id WHERE car_id = "+carId; 
-            // SQL INJECTION => !!!!ALWAYS!!!! sanitize user input!
-            // escape input (not very good) OR prepared statements (good) OR use orm (GOOD!)
-            let sql = "SELECT name, type, startingDate,endingDate, state FROM equipmentUsed INNER JOIN project p on equipmentUsed.projectID = p.projectID WHERE equipmentID = ?";
+          
+            let sql = "SELECT * FROM equipmentUsed INNER JOIN project p on equipmentUsed.projectID = p.projectID WHERE equipmentID = ?";
             const [rows, fields] = await conn.execute(sql, [ equipmentID ]);
             conn.release();
-            if (rows.length != 0) {
+        
                 return rows;
-            } else {
-                return false;
-            }
+            
         }
         catch (err) {
             console.log(err);

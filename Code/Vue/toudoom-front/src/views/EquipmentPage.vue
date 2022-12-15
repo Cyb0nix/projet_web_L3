@@ -90,8 +90,9 @@
           <div class="col p-3">
             <input
               type="button"
-              class="btn btn-primary position-absolute top-1 end-0 add"
+              class="btn btn-primary position-absolute top-1 end-0 add btn-toudoom"
               value="EDIT"
+              @click="edit(this.$route.params.id)"
             />
           </div>
         </div>
@@ -101,17 +102,49 @@
             <div class="row">
               <div
                 class="col"
-                style="
+                style=" 
                   background-color: #110c36;
                   width: 102%;
                   height: 270px;
                   border-radius: 15px 15px 15px 15px;
                 "
               >
-                <div class="col" style="font-family: NOMA">
+                <div class="col">
                   <div class="row">
-                    <div class="col" style="font-size: 20px; margin-bottom: 3%">
+                    <div class="col cat" style="font-size: 20px; margin-bottom: 3%">
                       INFORMATION
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col info-name mb-2">
+                      Name : <span class="info">{{ equipment.name }}</span>
+                    </div>
+                    <div class="col info-name mb-2">
+                      Purchase Date : <span class="info">{{ equipment.purchaseDate }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col info-name mb-2">
+                       Type : <span class="info">{{ equipment.type }}</span>
+                    </div>
+                    <div class="col info-name mb-2">
+                      Storage Place : <span class="info">{{ equipment.storagePlace }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col info-name mb-2">
+                      Condition : <span class="info">{{ equipment.state }}</span>
+                    </div>
+                    <div class="col info-name mb-2">
+                      Renting Rate : <span class="info">{{ equipment.rentingRate }}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col info-name mb-2">
+                      Available : <span class="info">{{ equipment.available }}</span>
+                    </div>
+                    <div class="col info-name mb-2">
+                      Bail Rate: <span class="info">{{ equipment.bailRate }}</span>
                     </div>
                   </div>
                 </div>
@@ -130,17 +163,17 @@
             >
               <div
                 class="col"
-                style="margin-left: 2%; margin-right: 2%; font-family: NOMA"
+                style="margin-left: 2%; margin-right: 2%;"
               >
                 <div class="row">
-                  <div class="col" style="font-size: 20px">PROJECT HISTORY</div>
+                  <div class="col cat">PROJECT HISTORY</div>
                 </div>
                 <table
                   class="table table-striped table-hover"
                   style="color: white; text-align: center"
                 >
                   <thead>
-                    <tr>
+                    <tr class="info-name">
                       <th scope="col">ID</th>
                       <th scope="col">Name</th>
                       <th scope="col">Type</th>
@@ -153,7 +186,7 @@
                       class="data"
                       v-for="p of projects"
                       v-bind:key="p.projectID"
-                      @click="openProject()"
+                      @click="openProject(p.projectID)"
                     >
                       <td>{{ p.projectID }}</td>
                       <td>{{ p.projectName }}</td>
@@ -180,6 +213,17 @@ export default {
   data() {
     return {
       projects: [],
+      equipment:{
+        equipmentID: null,
+        type: null,
+        name: null,
+        state: null,
+        available: null,
+        purchaseDate: null,
+        storagePlace : null,
+        rentingRate : null,
+        bailRate : null,
+      }
     };
   },
   methods: {
@@ -192,35 +236,54 @@ export default {
       } catch (error) {}
     },
 
-    async getAllProjects() {
-      let list = await this.$http.get("http://localhost:9000/toudoomapi/equipment/page");
+    async getAllData() {
+
+      let list = await this.$http.get("http://localhost:9000/toudoomapi/equipment/getprojects/"+this.$route.params.id);
       this.projects = list.data;
-      console.log(this.projects);
+      let thisEquipment = await this.$http.get("http://localhost:9000/toudoomapi/equipment/show/"+this.$route.params.id);
+      this.equipment = thisEquipment.data;
+      this.equipment.purchaseDate = this.equipment.purchaseDate.split("T")[0];
     },
 
-    async openProject() {},
+    async openProject(id) {
+      this.$router.push({ name: "project", params: { id: id.toString() } });
+    },
+
+    async edit(id) {
+      this.$router.push({ name: "equipmentEdit", params: { id: id.toString() } });
+    },
   },
 
   created() {
-    this.getAllProjects();
+    this.getAllData();
   },
 };
 </script>
 
 <style scoped>
-.data:hover {
-  color: #d82367;
-  background-color: rgba(255, 255, 255, 0.05);
-}
+
 
 .add {
   margin-top: 1.7%;
   margin-right: 3.8%;
-  background-color: #d82367;
-  border-color: #d82367;
+  
 }
-.add:hover {
-  background-color: #d823686e;
-  border-color: #d823686e;
+
+.btn-toudoom {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #d82367;
+  --bs-btn-border-color: #d82367;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #ea095f;
+  --bs-btn-hover-border-color: #ea095f;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #d82367;
+  --bs-btn-active-border-color: #d82367;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #dd6090;
+  --bs-btn-disabled-border-color: #dd6090;
 }
+
 </style>

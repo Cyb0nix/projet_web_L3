@@ -326,6 +326,7 @@ export default {
 
     async addEquipment() {
       try {
+        this.equipment.purchaseDate = this.equipment.purchaseDate.split("T")[0];
         let postResponse = await this.$http.post("http://localhost:9000/toudoomapi/equipment/update/0",this.equipment);
         this.getAllEquipments();
       } catch (error) {}

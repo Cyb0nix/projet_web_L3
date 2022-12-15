@@ -93,6 +93,7 @@
               type="button"
               class="btn btn-primary position-absolute top-1 end-0 add btn-toudoom"
               value="SAVE"
+              @click="edit(this.$route.params.id)"
             />
           </div>
         </div>
@@ -489,7 +490,7 @@ export default {
     },
 
     async edit(id) {
-      this.$router.push({ name: "staffEdit", params: { id: id.toString() } });
+      this.$router.push({ name: "staff", params: { id: id.toString() } });
     },
 
     async editOneStaff() {

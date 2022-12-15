@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const equipmentRepo = require('../utils/equipment.repository');
 const auth = require("../utils/users.auth");
+const usage = require("../utils/equipmentused.repository");
 
 router.get('/', auth.checkAuthentication("USER"), equipmentRootAction);
 router.get('/list', auth.checkAuthentication("USER"), equipmentListAction);
@@ -10,12 +11,14 @@ router.get('/show/:equipmentID', auth.checkAuthentication("USER"), equipmentShow
 router.get('/del/:equipmentID', auth.checkAuthentication("USER"), equipmentDelAction);
 router.get('/edit/:equipmentID', auth.checkAuthentication("USER"), equipmentEditAction);
 router.post('/update/:equipmentID', auth.checkAuthentication("USER"), equipmentUpdateAction);
+router.get('/getProjects/:equipmentID',auth.checkAuthentication("USER"),equipmentProjectsAction);
 
 
 function equipmentRootAction(request, response) {
 
     response.redirect("/toudoomapi/equipment/list");
 }
+
 async function equipmentListAction(request, response) {
 
     var equipment = await equipmentRepo.getAllEquipment();
@@ -30,6 +33,12 @@ async function equipmentShowAction(request, response) {
     response.send(JSON.stringify(oneEquipment));
 
     console.log('[',request.ip,'] FETCHED Equipment : ', request.params.equipmentID);
+}
+
+async function equipmentProjectsAction(request, response){
+    var projects = await usage.getProjectsOf(request.params.equipmentID);
+    response.send(JSON.stringify(projects));
+    console.log('[',request.ip,'] FETCHED All Projects of ', request.params.equipmentID);
 }
 async function equipmentEditAction(request, response) {
 
