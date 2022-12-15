@@ -51,6 +51,7 @@ async function projectAddStaffAction(request,response){
 async function projectDelStaffAction(request,response){
     var numbRow = await assignementRepo.delOneAssignement(request.params.projectID, request.body.staffID);
     console.log('[',request.ip,'] DELETED staff from : ', request.params.projectID);
+    response.send(JSON.stringify("del",numbRow));
 }
 
 async function projectShowAction(request, response) {
@@ -87,6 +88,7 @@ async function projectDelEquipmentAction(request,response){
 
     console.log('[',request.ip,'] DELETED equipment of project : ', request.params.projectID);
     response.send(JSON.stringify("Deleted Equipment"));
+    response.send(JSON.stringify("del", numRows));
 
 }
 

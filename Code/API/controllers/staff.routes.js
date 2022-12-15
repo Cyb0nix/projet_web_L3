@@ -15,7 +15,7 @@ router.post('/update/:staffID', auth.checkAuthentication("USER"), StaffUpdateAct
 router.get('/formed', auth.checkAuthentication("USER"), StaffFormed);
 router.get('/projects/:staffID', auth.checkAuthentication("USER"), StaffProjects);
 router.post('/addSkill/:staffID', auth.checkAuthentication("USER"), StaffAddSkill);
-router.get('/delSkill/:staffID', auth.checkAuthentication("USER"), StaffDelSkill);
+router.post('/delSkill/:staffID', auth.checkAuthentication("USER"), StaffDelSkill);
 router.get('/getSkill/:staffID', auth.checkAuthentication("USER"), StaffGetSkill);
 
 
@@ -59,6 +59,7 @@ async function StaffDelSkill(request, response) {
     // response.send("SHOW ACTION");
     var assigmentID = await StaffSkillRepo.delOneStaffSkill(request.params.staffID,request.body.skillID);
     console.log('[',request.ip,'] DELETED skill to Staff :', request.params.staffID);
+    response.send(JSON.stringify("del",assigmentID));
 
 }
 
@@ -93,6 +94,7 @@ async function StaffEditAction(request, response) {
 async function StaffDelAction(request, response) {
     var numRows = await StaffRepo.delOneStaff(request.params.staffID);
     console.log('[',request.ip,'] DELETED Staff :', request.params.staffID);
+    response.send(JSON.stringify("del",numRows));
 }
 
 async function StaffUpdateAction(request, response) {
@@ -118,13 +120,15 @@ async function StaffUpdateAction(request, response) {
         console.log('[',request.ip,'] ADDED Staff :', staffID);
     }else{
 
-        var numRows = await StaffRepo.editOneStaff(request.body.name, 
+        var numRows = await StaffRepo.editOneStaff(
+            request.params.staffID,
+            request.body.name, 
             request.body.discordID,  
             request.body.email, 
             request.body.phone,
             request.body.role,
             request.body.joinDate,
-            request.body.isFormed);
+            isFormed);
 
         console.log('[',request.ip,'] EDITED Staff :', request.params.staffID);
     } 
