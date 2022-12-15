@@ -94,7 +94,7 @@ import NavbarVue from "../components/Navbar.vue";
             <input
               type="button"
               class="btn btn-primary position-absolute top-1 end-0 add btn-toudoom"
-              value="Add"
+              value="ADD"
               data-bs-toggle="modal"
               data-bs-target="#projectAddModal"
             />
@@ -107,7 +107,7 @@ import NavbarVue from "../components/Navbar.vue";
                   border-radius: 15px 15px 15px 15px;
                   height: 85%;
                 margin-top: 1.5%; margin-right: -5%; margin-left: 4%">
-          <table class="table table-striped table-hover" style="color: white">
+          <table class="table table-striped table-hover" style="color: white; text-align: center;">
             <thead>
               <tr class="2" style="font-size: 15px; font-family: NOMA">
                 <th scope="col">#</th>
@@ -117,20 +117,24 @@ import NavbarVue from "../components/Navbar.vue";
                 <th scope="col">EndDate</th>
                 <th scope="col">Client</th>
                 <th scope="col">State</th>
+                <th scope="col">...</th>
               </tr>
               <tr
                 class="data"
                 v-for="p of projects"
                 v-bind:key="p.projectID"
-                @click="openProject(p.projectID)"
+                
               >
-                <td>{{ p.projectID }}</td>
-                <td>{{ p.projectName }}</td>
-                <td>{{ p.type }}</td>
-                <td>{{ p.startingDate.split("T")[0] }}</td>
-                <td>{{ p.endingDate.split("T")[0] }}</td>
-                <td>{{ p.client }}</td>
-                <td>{{ p.state }}</td>
+                <td @click="openProject(p.projectID)">{{ p.projectID }}</td>
+                <td @click="openProject(p.projectID)">{{ p.projectName }}</td>
+                <td @click="openProject(p.projectID)">{{ p.type }}</td>
+                <td @click="openProject(p.projectID)">{{ p.startingDate.split("T")[0] }}</td>
+                <td @click="openProject(p.projectID)">{{ p.endingDate.split("T")[0] }}</td>
+                <td @click="openProject(p.projectID)">{{ p.client }}</td>
+                <td @click="openProject(p.projectID)">{{ p.state }}</td>
+                <td>   
+                  <img src="@/assets/trash-ico.svg" alt="" style="height: 2.5vh" class="edit" @click="delProject(p)"/>
+                </td>
               </tr>
             </thead>
           </table>
@@ -290,8 +294,15 @@ export default {
       this.projects = list.data;
     },
 
+
+
     async openProject(id) {
       this.$router.push({ name: "project", params: { id: id.toString() } });
+    },
+
+    async delProject(id) {
+      let listp = await this.$http.get("http://localhost:9000/toudoomapi/project/del/"+id.projectID);
+      this.getAllProjects();
     },
 
     async addOneProject() {
@@ -300,7 +311,7 @@ export default {
           "http://localhost:9000/toudoomapi/project/update/0",
           this.project
         );
-        getAllProjects();
+        this.getAllProjects();
       } catch (error) {}
     },
   },

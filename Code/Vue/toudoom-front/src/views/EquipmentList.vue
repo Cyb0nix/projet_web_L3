@@ -85,45 +85,201 @@
       <div class="col-9">
         <div class="row">
           <div class="col">
-            <h2 class="p-3" style="margin-left: 7%; margin-top: 5%">Equipments</h2>
+            <h2 class="p-3" style="margin-left: 8%;">Equipments</h2>
           </div>
           <div class="col p-3">
             <input
               type="button"
-              class="btn btn-primary position-absolute top-1 end-0 add"
+              class="btn btn-primary btn-toudoom position-absolute top-1 end-0 add "
               value="ADD"
+              data-bs-toggle="modal"
+              data-bs-target="#equipmentAddModal"
             />
           </div>
         </div>
         <div
           class="container"
-          style="margin-top: 1.5%; margin-right: -5%; margin-left: 4%"
+          style="background-color: #110c36;border-radius: 15px 15px 15px 15px;height: 85%;margin-top: 1.5%; margin-right: -5%; margin-left: 4%"
         >
-          <table class="table table-striped table-hover" style="color: white">
+          <table class="table table-striped table-hover" style="text-align: center; color: white">
             <thead>
-              <tr>
+              <tr class="info-name">
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Condition</th>
                 <th scope="col">Storage Place</th>
                 <th scope="col">Available</th>
+                <th scope="col">...</th>
               </tr>
               <tr
                 class="data"
                 v-for="e of equipments"
-                v-bind:key="p.equipmentID"
-                @click="openEquipment()"
+                v-bind:key="e.equipmentID"
               >
-                <td>{{ e.projectID }}</td>
-                <td>{{ e.projectName }}</td>
-                <td>{{ e.type }}</td>
-                <td>{{ e.Condition }}</td>
-                <td>{{ e.Available }}</td>
+                <td @click="openEquipment(e.equipmentID)">{{ e.equipmentID }}</td>
+                <td @click="openEquipment(e.equipmentID)">{{ e.name }}</td>
+                <td @click="openEquipment(e.equipmentID)">{{ e.type }}</td>
+                <td @click="openEquipment(e.equipmentID)">{{ e.state }}</td>
+                <td @click="openEquipment(e.equipmentID)">{{ e.storagePlace }}</td>
+                <td @click="openEquipment(e.equipmentID)">{{ e.available }}</td>
+                <td @click="openEquipment(e.equipmentID)">   
+                  <img src="@/assets/trash-ico.svg" alt="" style="height: 2.5vh" class="edit" @click="delEquipment(e)"/>
+                </td>
               </tr>
             </thead>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="equipmentAddModal"
+    tabindex="-1"
+    aria-labelledby="equipmentAddModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background-color: #0c0923; color: white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staffAddModalLabel">Add a new equipment</h5>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            style="color: #ffff; opacity: 1"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form action="">
+          <div class="modal-body">
+            
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectName" class="form-label">Equipment Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="projectName"
+                      placeholder="name"
+                      v-model="equipment.name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectType" class="form-label">Type</label>
+                    <input
+                      type="text"
+                      placeholder="Type"
+                      class="form-control"
+                      id="projectType"
+                      v-model="equipment.type"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectStartingDate" class="form-label"
+                      >Condition</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="projectStartingDate"
+                      placeholder="Condition"
+                      v-model="equipment.state"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectEndingDate" class="form-label">Purchase Date</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="projectEndingDate"
+                      placeholder=""
+                      v-model="equipment.purchaseDate"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectClient" class="form-label">Renting Rate</label>
+                    <input
+                      placeholder="xx €"
+                      type="number"
+                      class="form-control"
+                      id="projectClient"
+                      v-model="equipment.rentingRate"
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectState" class="form-label">Bail Rate</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="projectEndingDate"
+                      v-model="equipment.bailRate"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="m-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="isFormed" v-model="equipment.available">
+                      <label class="form-check-label" for="isFormed">
+                        Available
+                      </label>
+                    </div>
+                  </div> 
+                </div>
+
+                <div class="col">
+                  <div class="mb-3">
+                    <label for="projectState" class="form-label">Storage Place</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="projectEndingDate"
+                      v-model="equipment.storagePlace"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-toudoom"
+              @click="addEquipment()"
+              data-bs-dismiss="modal"
+            >
+              Add New Equipment
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -135,14 +291,25 @@ export default {
   data() {
     return {
       equipments: [],
+
+      equipment:{
+        equipmentID: null,
+        type: null,
+        name: null,
+        state: null,
+        available: null,
+        purchaseDate: null,
+        storagePlace : null,
+        rentingRate : null,
+        bailRate : null,
+      }
     };
   },
   methods: {
     async logout() {
       try {
-        // console.log("test");
-        // let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
-        // console.log(logoutResponse);
+        let logoutResponse = await this.$http.get("http://localhost:9000/toudoomapi/auth/logout");
+        console.log(logoutResponse);
         this.$router.push({ name: "home" });
       } catch (error) {}
     },
@@ -150,11 +317,25 @@ export default {
     async getAllEquipments() {
       let list = await this.$http.get("http://localhost:9000/toudoomapi/equipment/list");
       this.equipments = list.data;
-      console.log(this.equipments);
     },
 
-    async openEquipment() {},
+    async delEquipment(id) {
+      let listp = await this.$http.get("http://localhost:9000/toudoomapi/equipment/del/"+id.equipmentID);
+      this.getAllEquipments();
+    },
+
+    async addEquipment() {
+      try {
+        let postResponse = await this.$http.post("http://localhost:9000/toudoomapi/equipment/update/0",this.equipment);
+        this.getAllEquipments();
+      } catch (error) {}
+    },
+
+    async openEquipment(id) {
+      this.$router.push({ name: "equipment", params: { id: id.toString() } });
+    },
   },
+
 
   created() {
     this.getAllEquipments();
@@ -163,19 +344,27 @@ export default {
 </script>
 
 <style scoped>
-.data:hover {
-  color: #d82367;
-  background-color: rgba(255, 255, 255, 0.05);
-}
+
 .add {
-  margin-top: 1.7%;
-  margin-right: 3.8%;
-  background-color: #d82367;
-  border-color: #d82367;
+  margin-top: 0.5%;
+  margin-right: 5%;
 }
 
-.add:hover {
-  background-color: #d823686e;
-  border-color: #d823686e;
+
+.btn-toudoom {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #d82367;
+  --bs-btn-border-color: #d82367;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #ea095f;
+  --bs-btn-hover-border-color: #ea095f;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #d82367;
+  --bs-btn-active-border-color: #d82367;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #dd6090;
+  --bs-btn-disabled-border-color: #dd6090;
 }
 </style>

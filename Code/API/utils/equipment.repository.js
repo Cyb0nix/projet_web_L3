@@ -66,6 +66,8 @@ module.exports = {
     },
 
     async addOneEquipment(name, type, condition, available, purchaseDate, storagePlace, rentingRate, bailRate){ 
+        
+
         try {
             let conn = await pool.getConnection();
             let sql = "INSERT INTO equipment (equipmentID, name, type, state, available, purchaseDate, storagePlace, rentingRate, bailRate) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";

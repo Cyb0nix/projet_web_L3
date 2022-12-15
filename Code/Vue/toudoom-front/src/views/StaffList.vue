@@ -101,7 +101,7 @@
           class="container"
           style="background-color: #110c36;border-radius: 15px 15px 15px 15px;height: 85%;margin-top: 1.5%; margin-right: -5%; margin-left: 4%"
         >
-          <table class="table table-striped table-hover" style="color: white">
+          <table class="table table-striped table-hover" style="color: white; text-align: center;">
             <thead>
               <tr class="2" style="font-size: 15px; font-family: NOMA">
                 <th scope="col">#</th>
@@ -112,21 +112,25 @@
                 <th scope="col">Role</th>
                 <th scope="col">Joining Date</th>
                 <th scope="col">Is Formed</th>
+                <th scope="col">...</th>
               </tr>
               <tr
                 class="data"
                 v-for="s of staffs"
                 v-bind:key="s.staffID"
-                @click="openStaff(s.staffID)"
+                
               >
-                <td>{{ s.staffID }}</td>
-                <td>{{ s.name }}</td>
-                <td>{{ s.discordID }}</td>
-                <td>{{ s.email }}</td>
-                <td>{{ s.phone }}</td>
-                <td>{{ s.role }}</td>
-                <td>{{ s.joinDate.split("T")[0] }}</td>
-                <td>{{ s.isFormed }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.staffID }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.name }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.discordID }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.email }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.phone }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.role }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.joinDate.split("T")[0] }}</td>
+                <td @click="openStaff(s.staffID)">{{ s.isFormed }}</td>
+                <td>   
+                  <img src="@/assets/trash-ico.svg" alt="" style="height: 2.5vh" class="edit" @click="delStaff(s)"/>
+                </td>
               </tr>
             </thead>
           </table>
@@ -302,8 +306,13 @@ export default {
         let postResponse = await this.$http.post("http://localhost:9000/toudoomapi/staff/update/0",this.staff);
         console.log(postResponse);
         
-        getAllStaffs();
+        this.getAllStaffs();
       } catch (error) {}
+    },
+
+    async delStaff(id) {
+      let listp = await this.$http.get("http://localhost:9000/toudoomapi/staff/del/"+id.staffID);
+      this.getAllStaffs();
     },
   },
 

@@ -49,13 +49,19 @@ async function equipmentDelAction(request, response) {
     response.send(JSON.stringify("Deleted"));
 }
 async function equipmentUpdateAction(request, response) {
+
+    if (request.body.available) {
+        isAvailable = 1;
+    }else{
+        isAvailable = 0;
+    }
     // response.send("UPDATE ACTION");
     var equipmentID = request.params.equipmentID;
     if (equipmentID==="0"){
         equipmentID = await equipmentRepo.addOneEquipment(request.body.type, 
             request.body.name,  
-            request.body.condition, 
-            request.body.available,
+            request.body.state, 
+            isAvailable,
             request.body.purchaseDate,
             request.body.storagePlace,
             request.body.rentingRate,
@@ -67,8 +73,8 @@ async function equipmentUpdateAction(request, response) {
         var numRows = await equipmentRepo.editOneEquipment(equipmentID, 
             request.body.type, 
             request.body.name,  
-            request.body.condition, 
-            request.body.available,
+            request.body.state, 
+            isAvailable,
             request.body.purchaseDate,
             request.body.storagePlace,
             request.body.rentingRate,
